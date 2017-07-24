@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as AuthAction from '../Auth/AuthAction/AuthAction';
+import * as AuthAction from './authAction';
 
 // handling logout only
 export const logout = (history) => {

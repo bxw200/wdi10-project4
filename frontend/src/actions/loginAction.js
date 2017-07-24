@@ -1,6 +1,6 @@
 // No need for reducer since it's redirecting you to a page.
 import axios from 'axios';
-import * as AuthAction from '../Auth/AuthAction/AuthAction'
+import * as AuthAction from './authAction'
 
 // handling login only
 export const login = (credentials, history) => {

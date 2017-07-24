@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import initStore from './Store';
+
 import { Provider } from 'react-redux';
 import {HashRouter, Link} from 'react-router-dom';
-import {Logout} from './Components/Login/LogoutAction';
 import {connect} from 'react-redux';
 
 import { Button, Navbar, NavItem, Nav, Grid, Image } from 'react-bootstrap';
-import Main from './Routes';
+import Main from '../../routes';
 
-import NavbarInstance from './Components/NavBar/Navbar';
+import NavbarInstance from '../NavBar/NavBar';
 
 
 class App extends Component {

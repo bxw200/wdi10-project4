@@ -8,7 +8,7 @@ import {
 // import thunk from 'redux-thunk';
 
 //reducers
-import AuthReducer from './Components/Auth/AuthReducer/AuthReducer';
+import AuthReducer from '../reducers/authReducer';
 
 
 export let initStore = () => {

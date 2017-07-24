@@ -2,12 +2,12 @@ import React, {PropTypes} from 'react';
 
 
 
-import Login from './Components/Login/Login';
-import Logout from './Components/Login/Logout';
-import SignUp from './Components/SignUp/SignUp';
+import Login from './components/Login/Login';
+import Logout from './components/Logout/Logout';
+import SignUp from './components/SignUp/SignUp';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-import Error from './Components/Error/Error';
+import Error from './components/Error/Error';
 
 
 const Main = () => (
