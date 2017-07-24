@@ -1,16 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Button, FormGroup, InputGroup, ControlLabel, FormControl, Glyphicon, Row, Col, Form, Checkbox } from 'react-bootstrap';
-import {signUp} from './SignUpAction';
-// import './signUp.css';
+import {
+  Button,
+  FormGroup,
+  InputGroup,
+  ControlLabel,
+  FormControl,
+  Glyphicon,
+  Row,
+  Col,
+  Form, Checkbox } from 'react-bootstrap';
 
+import {signUp} from '../../actions/signUpAction';
+// import './signUp.css';
 
 export class SignUp extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      
+
       name: '',
       email: '',
       password: '',

@@ -20,4 +20,4 @@ const NavbarInstance = () => {
   );
 }
 
-export default NavbarInstance
+export default NavbarInstance;

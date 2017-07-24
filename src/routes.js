@@ -1,7 +1,5 @@
 import React, {PropTypes} from 'react';
 
-
-
 import Login from './components/Login/Login';
 import Logout from './components/Logout/Logout';
 import SignUp from './components/SignUp/SignUp';
