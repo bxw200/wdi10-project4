@@ -1,0 +1,54 @@
+.loginField{
+  background-color: black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  border: 3px solid white;
+  /*height: 500px;*/
+}
+
+h1#login {
+  font-family: serif;
+  padding: 15px;
+  color: gray;
+}
+
+h4 {
+  font-size: 13px;
+  color: gray;
+  margin-bottom: 40px;
+}
+
+div.email.form-group {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+div.password.form-group {
+  margin-bottom: 20px;
+}
+
+div.checkbox label{
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
+
+
+label.emailLabel {
+  padding-left: 35px;
+}
+
+label.passwordLabel {
+  padding-left: 35px;
+}
+
+Button.signupButton {
+  margin-bottom: 20px;
+  border: 2px solid white;
+}
+Button.loginButton {
+  margin-bottom: 20px;
+  border: 2px solid white;
+}
