@@ -7,6 +7,7 @@ import Logout from './components/Logout/Logout';
 import SignUp from './components/SignUp/SignUp';
 import Error from './components/Error/Error';
 import Location from './components/Location/Location';
+import Cart from './components/Cart/Cart';
 
 
 const Main = () => (
@@ -14,7 +15,7 @@ const Main = () => (
 <Router>
   <Switch>
     <Route exact path = '/' component = {Home}></Route>
-    <Route exact path = '/locations' component = {Location}></Route>
+    <Route exact path = '/locations' component = {Cart}></Route>
     <Route exact path = '/Login' component = {Login}></Route>
     <Route exact path = '/Logout' component = {Logout}></Route>
     <Route exact path = '/signUp' component = {SignUp}></Route>
