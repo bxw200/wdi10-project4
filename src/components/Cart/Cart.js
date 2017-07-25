@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react';
 import Location from '../Location/Location'
+import data from '../../data/data';
+
 import './Cart.css'
 
 export default class Cart extends React.Component {
@@ -9,11 +11,11 @@ export default class Cart extends React.Component {
 
   render() {
     return (<div className='cartLocationsDiv'>
-      <Location/>
-      <Location/>
-      <Location/>
-      <Location/>
-      <Location/>
+
+      {data.map(loc =>(
+          <Location key={loc.id} location={loc}/>
+
+      ))}
       </div>);
   }
 }

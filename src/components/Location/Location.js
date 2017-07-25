@@ -41,9 +41,11 @@ return;
               price,
               currency,
               image,
+              description,
+              pax,
               url,
               qty,
-              quantityInCart } = this.props;
+              quantityInCart } = this.props.location;
 
       var cartQty, minusAllButton, minusOneButton;
       if (quantityInCart) {
@@ -61,26 +63,28 @@ return;
         }
       }
 
+      // const { name, price, pax, image, description } = this.props;
+
       return (
           <div className="product thumbnail" >
-              <img src="background.png" alt="product" onClick={this.pictureClicked}/>
+              <img src={image}alt="product" onClick={this.pictureClicked}/>
               <div className="caption">
                   <h3>
-                      <a href={url}>Japan</a>
+                      <a href={url}>{name}</a>
                   </h3>
                   <div className="product__price row">
                     <div className="col-md-3">
-                      <strong className="dPrice">$500</strong> {currency}
+                      <strong className="dPrice">${price}</strong> 
                     </div>
                     <div className="col-md-4">
-                      <strong className="dPrice">Pax: 5</strong> {currency}
+                      <strong className="Pax">Pax: {pax}</strong>
                     </div>
                     <div className="col-md-5">
-                      <strong className="dPrice">$to: 2500$</strong> {currency}
+                      <strong className="totalPrice">to: {price*pax}</strong>
                     </div>
                   </div>
                   <p>
-                  Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec sollicitudin molestie malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  {description}
                   </p>
               </div>
           </div>
