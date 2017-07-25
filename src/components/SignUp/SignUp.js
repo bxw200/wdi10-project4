@@ -74,6 +74,7 @@ export class SignUp extends Component {
                           type="name"
                           name="name"
                           placeholder="Name"
+                          autoFocus
                           onChange={this.onChange}
                           />
           </div>
@@ -133,7 +134,13 @@ export class SignUp extends Component {
 // A higher order component is when you do a {connect}: a higher-order component is a function that takes a
 // component and returns a new component.
 const mapStateToProps = (state) => {
-    return state;
+    return {
+      email:state.auth.email,
+      password:state.auth.password,
+      name:state.auth.name,
+      gender:state.auth.gender,
+      // age:state.auth.age
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {

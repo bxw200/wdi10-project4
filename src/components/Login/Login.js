@@ -61,6 +61,7 @@ class Login extends Component {
               <FormControl name="email"
                            type="email"
                            placeholder="Email"
+                           autoFocus
                            onChange={this.onChange}/>
             </Col>
           </FormGroup>

@@ -9,12 +9,12 @@ const NavbarInstance = () => {
     <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="#">iTINA</a>
+          <a href="./">iTINA</a>
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
-        <NavItem eventKey={1} href="#">Sign In</NavItem>
-        <NavItem eventKey={2} href="./Login">Login</NavItem>
+        <NavItem eventKey={1} href="../SignUp">Sign Up</NavItem>
+        <NavItem eventKey={2} href="../Login">Login</NavItem>
       </Nav>
     </Navbar>
   );

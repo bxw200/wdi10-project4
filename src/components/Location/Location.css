@@ -1,0 +1,19 @@
+.product.thumbnail {
+  /*height: 20%;*/
+  width: 20%;
+  background: black;
+}
+
+.product.thumbnail img {
+  border-radius: 5px;
+}
+
+.product__price {
+  color: white;
+  /*font-weight: bold;*/
+  font-size: 1vw;
+}
+
+.product.thumbnail p {
+  color: #777;
+}

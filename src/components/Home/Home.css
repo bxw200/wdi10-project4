@@ -1,0 +1,11 @@
+.homeDiv {
+  /*height: 100vh;*/
+  color: black;
+
+}
+
+.homeDiv p {
+  width: 65%;
+  /*text-align: center;*/
+  margin-left: 18%;
+}
