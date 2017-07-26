@@ -1,0 +1,68 @@
+[33mcommit 48623262c9fa3573ca91ab6fca43a3ecbf7f9fd9[m
+Author: Your Name <you@example.com>
+Date:   Wed Jul 26 15:17:50 2017 +0800
+
+    completed the itinerary page failure and success button
+
+[33mcommit 9e6b0c1278fce36df399c2cb49f91dd86b44629c[m
+Author: Your Name <you@example.com>
+Date:   Tue Jul 25 16:25:06 2017 +0800
+
+    updated the data.js and able to populate the data to the frontend artifically
+
+[33mcommit 96750ee81f4ae85868ad30dddbce8cd9ca44ec74[m
+Author: Your Name <you@example.com>
+Date:   Tue Jul 25 15:31:40 2017 +0800
+
+    Update location folder
+
+[33mcommit ee71034b0af24bec2ab90d68ad0080d51bae1636[m
+Author: Your Name <you@example.com>
+Date:   Tue Jul 25 13:23:52 2017 +0800
+
+    setup homepage and done partial of location page
+
+[33mcommit b96550de8bc8bebe9c4cd69f0036714af5d257ce[m
+Author: Tan-Sam <samjoyzful@gmail.com>
+Date:   Tue Jul 25 01:12:38 2017 +0800
+
+    1. Resolved dir referencing bugs & naming bugs.
+    2. Removed unnecessary files & folders.
+    3. Stage-1 re-factoring for frontend complete. Now to add/fine tune features.
+
+[33mcommit db4dd43c750c055cc91dbe07f811d4cdd8cbe469[m
+Author: Your Name <you@example.com>
+Date:   Mon Jul 24 17:31:45 2017 +0800
+
+    refactor halfway
+
+[33mcommit ee19ec1804550a8bc6611d66c9df4c8b383030b2[m
+Merge: 7fee458 8d9cb34
+Author: Your Name <you@example.com>
+Date:   Mon Jul 24 15:49:26 2017 +0800
+
+    Merge branch 'master' of https://github.com/bxw200/wdi10-project4
+
+[33mcommit 7fee458cf6808b2281e4c7a115aebff37b8114cf[m
+Author: Your Name <you@example.com>
+Date:   Mon Jul 24 15:39:15 2017 +0800
+
+    updated login page. update store. navbar working and loginpage working but not yet able to console log any login information
+
+[33mcommit 8d9cb34ad300626de7866d3029861cd17bf94056[m
+Author: Tan-Sam <samjoyzful@gmail.com>
+Date:   Thu Jul 20 11:21:51 2017 +0800
+
+    add react-app
+
+[33mcommit 840efc048c5869b786be115eaa49e275c208057e[m
+Author: xavier <b.x.w@live.com>
+Date:   Wed Jul 19 10:39:50 2017 +0800
+
+    test1
+
+[33mcommit bbee1bef8b161c6700a2c7151cb591314b0c5e6a[m
+Author: bxw200 <b.x.w@live.com>
+Date:   Tue Jul 18 21:36:13 2017 +0800
+
+    Initial commit

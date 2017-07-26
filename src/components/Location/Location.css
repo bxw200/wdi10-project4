@@ -1,5 +1,4 @@
 .product.thumbnail {
-  /*height: 20%;*/
   width: 20%;
   background: black;
 }
@@ -10,10 +9,14 @@
 
 .product__price {
   color: white;
-  /*font-weight: bold;*/
   font-size: 1vw;
 }
 
 .product.thumbnail p {
   color: #777;
+}
+
+h3 input[type=checkbox] {
+  width: 1em;
+  height: 1em;
 }

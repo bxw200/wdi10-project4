@@ -34,7 +34,7 @@ class Product extends Component {
     // add item to cart.
     pictureClicked = (e) => {
         e.preventDefault();
-return;
+        return;
           // const {addToCart, id} = this.props;
           // addToCart(id);
     }
@@ -75,9 +75,10 @@ return;
               <div className="caption">
                   <h3>
                       <a href={url}>{name}</a>
-                      <input type="checkBox" onChecked={this.checkBoxChange}>
+                      <Checkbox> I want to go!</Checkbox>
+                      {/*<input type="checkBox" onChecked={this.checkBoxChange}>
 
-                      </input>
+                      </input>*/}
                   </h3>
                   <div className="product__price row">
                     <div className="col-md-3">

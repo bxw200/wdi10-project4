@@ -12,11 +12,9 @@ export default class Cart extends React.Component {
 
   render() {
     return (<div className='cartLocationsDiv'>
-
-      {data.map(x =>(
-          <Location key={x.id} location={x}/>
-
-      ))}
+      {
+        data.map(x =>(<Location key={x.id} location={x}/>))
+      }
       <div>
       <a href="/itinerary">
       <Button bsStyle="primary">Primary</Button>
