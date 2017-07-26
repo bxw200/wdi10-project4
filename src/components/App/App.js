@@ -32,7 +32,7 @@ class App extends Component {
             <Col xs={12} md={8}>
                 <Main/>
             </Col>
-          </Row>          
+          </Row>
         </Grid>
       </div>
     );

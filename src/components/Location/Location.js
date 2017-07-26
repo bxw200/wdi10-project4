@@ -27,10 +27,10 @@ class Product extends Component {
               <img src={image}alt="product" onClick={this.pictureClicked}/>
               <div className="caption">
                   <h3>
-                      <a href={url}>{name}</a>
-                      <input type="checkBox" onChecked={this.checkBoxChange}>
-                        I want to go!
-                      </input>
+                    <a href={url}>{name}</a>
+                    <input type="checkBox" onChecked={this.checkBoxChange}>
+                      I want to go!
+                    </input>
                   </h3>
                   <div className="product__price row">
                     <div className="col-md-3">
@@ -47,9 +47,7 @@ class Product extends Component {
                   {description}
                   </p>
               </div>
-
           </div>
-
       );
     }
 }

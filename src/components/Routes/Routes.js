@@ -12,8 +12,9 @@ import Itinerary from '../Itinerary/Itinerary';
 import Success from '../Success/Success';
 import Failure from '../Failure/Failure';
 
+import Deleteme from '../Deleteme/sajay';
+
 const Main = () => (
-  // switch is a component from react-router
   <Router>
     <Switch>
       <Route exact path = '/' component={Home}></Route>

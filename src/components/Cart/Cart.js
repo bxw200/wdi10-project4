@@ -5,30 +5,28 @@ import { Button } from 'react-bootstrap';
 
 import './Cart.css'
 
-export default class Cart extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Cart = () => {
+  const pt = (<p>
+  vdfhbv dbvukhbvfdfvbv vdhfvbudbvuidbv vdufhybvudbv vbdusfb
+  vdfhbv dbvukhbvfdfvbv vdhfvbudbvuidbv vdufhybvudbv vbdusfb
+  vdfhbv dbvukhbvfdfvbv vdhfvbudbvuidbv vdufhybvudbv vbdusfb
+  vdfhbv dbvukhbvfdfvbv vdhfvbudbvuidbv vdufhybvudbv vbdusfb
+  </p>);
 
-  render() {
-    const locs = data.map(x => {return <Location key={x.id} location={x}/>});
+  const ray = [1,1,1,1,1,1,1,1];
+
     return (
-      <div className='cartLocationsDiv'>
-          <div>dscnlkjvsi</div>
-          <div>dscnlkjvsi</div>
-          <div>dscnlkjvsi</div>
-          <div>dscnlkjvsi</div>
-          <div>dscnlkjvsi</div>
-          
         <div>
+      {ray.map(x => pt)}
           <a href="/itinerary">
-            <Button bsStyle="primary">Primary</Button>
+            <Button bsStyle="primary">Itinerary</Button>
           </a>
         </div>
-      </div>
-    );
-  }
+      );
 }
 
 Cart.propTypes = {
 };
+
+
+export default Cart;
