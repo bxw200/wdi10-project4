@@ -9,12 +9,14 @@ import {
 
 //reducers
 import AuthReducer from '../reducers/authReducer';
+import userCheckReducer from '../reducers/userCheckReducer'
 
 
 export let initStore = () => {
 
   const reducer = combineReducers ({
-    auth: AuthReducer
+    auth: AuthReducer,
+    itinerary: userCheckReducer
   });
   return createStore(reducer,
                      compose(applyMiddleware(thunk),

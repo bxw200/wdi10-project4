@@ -8,6 +8,9 @@ import SignUp from './components/SignUp/SignUp';
 import Error from './components/Error/Error';
 import Location from './components/Location/Location';
 import Cart from './components/Cart/Cart';
+import Itinerary from './components/Itinerary/Itinerary';
+import Success from './components/Success/Success';
+import Failure from './components/Failure/Failure';
 
 
 const Main = () => (
@@ -16,9 +19,12 @@ const Main = () => (
   <Switch>
     <Route exact path = '/' component = {Home}></Route>
     <Route exact path = '/locations' component = {Cart}></Route>
-    <Route exact path = '/Login' component = {Login}></Route>
-    <Route exact path = '/Logout' component = {Logout}></Route>
+    <Route exact path = '/login' component = {Login}></Route>
+    <Route exact path = '/logout' component = {Logout}></Route>
     <Route exact path = '/signUp' component = {SignUp}></Route>
+    <Route exact path = '/itinerary' component = {Itinerary}></Route>
+    <Route exact path = '/success' component = {Success}></Route>
+    <Route exact path = '/failure' component = {Failure}></Route>
     <Route component = {Error}></Route>
   </Switch>
 </Router>

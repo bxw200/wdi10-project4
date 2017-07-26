@@ -15,6 +15,7 @@ const NavbarInstance = () => {
       <Nav>
         <NavItem eventKey={1} href="../SignUp">Sign Up</NavItem>
         <NavItem eventKey={2} href="../Login">Login</NavItem>
+        <NavItem eventKey={3} href="../Locations">Location</NavItem>
       </Nav>
     </Navbar>
   );
