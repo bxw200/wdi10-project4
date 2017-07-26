@@ -4,12 +4,8 @@ import { HashRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import {
-  Button,
-  Navbar,
-  NavItem,
-  Nav,
-  Grid,
-  Image } from 'react-bootstrap';
+  Button, Navbar, NavItem, Nav, Grid, Image, Row, Col
+} from 'react-bootstrap';
 
 import Main from '../Routes/Routes';
 import NavbarInstance from '../NavBar/NavBar';
@@ -28,12 +24,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
+        <div clkassName="App-header">
           <NavbarInstance/>
         </div>
-        <Main/>
+        <Grid>
+          <Row className="show-grid">
+            <Col xs={12} md={8}>
+                <Main/>
+            </Col>
+          </Row>          
+        </Grid>
       </div>
-
     );
   }
 }

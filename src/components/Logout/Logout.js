@@ -1,6 +1,6 @@
 import React , { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import {logout} from '../../actions/logoutAction';
+import { logout } from '../../actions/logoutAction';
 
 export const Logout = (props) => {
   props.logout(props.history)

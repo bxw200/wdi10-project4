@@ -3,12 +3,6 @@ import { connect } from 'react-redux';
 
 import { Checkbox, Button } from 'react-bootstrap';
 
-// import { getItemQtyInCart } from '../../apis/cartAPI';
-// import {
-//   addToCart,
-//   removeFromCart,
-//   removeAllFromCart} from  '../../actions/cartActions';
-
 import './Location.css';
 
 class Product extends Component {
@@ -18,67 +12,25 @@ class Product extends Component {
 
     checkBoxChange = (e) => {
       e.preventDefault();
-      // debugger;
+
       console.log(e.target.checked);
       return;
-      // // eslint-disable-next-line
-      // const { id, removeFromCart, removeAllFromCart } = this.props;
-      //
-      // if (e.target.name === 'minusOne') {
-      //   removeFromCart(id);
-      // }else if (e.target.name === 'minusAll') {
-      //   removeAllFromCart(id);
-      // }
-    }
-
-    // add item to cart.
-    pictureClicked = (e) => {
-        e.preventDefault();
-        return;
-          // const {addToCart, id} = this.props;
-          // addToCart(id);
     }
 
     render() {
-      // eslint-disable-next-line
-      const { name,
-              price,
-              currency,
-              image,
-              description,
-              pax,
-              url,
-              qty,
-              quantityInCart } = this.props.location;
-
-      var cartQty, minusAllButton, minusOneButton;
-      if (quantityInCart) {
-        cartQty = (<span className="qtySpan">{quantityInCart}</span>);
-        minusOneButton = (
-          <button
-            name="minusOne"
-            className='btn btn-danger'
-            onClick={this.removeItemClicked}>  - 1</button>);
-        if (quantityInCart > 1) {
-            minusAllButton =
-            (<button name="minusAll"
-                    className='btn btn-danger'
-                    onClick={this.removeItemClicked}>- All</button>)
-        }
-      }
-
-      // const { name, price, pax, image, description } = this.props;
-
+      const {
+        name, price, currency, image, description, pax, url, qty, quantityInCart
+      } = this.props.location;
+      console.log(this.props.location);
       return (
           <div className="product thumbnail" >
               <img src={image}alt="product" onClick={this.pictureClicked}/>
               <div className="caption">
                   <h3>
                       <a href={url}>{name}</a>
-                      <Checkbox> I want to go!</Checkbox>
-                      {/*<input type="checkBox" onChecked={this.checkBoxChange}>
-
-                      </input>*/}
+                      <input type="checkBox" onChecked={this.checkBoxChange}>
+                        I want to go!
+                      </input>
                   </h3>
                   <div className="product__price row">
                     <div className="col-md-3">

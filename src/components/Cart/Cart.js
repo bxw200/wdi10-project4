@@ -11,16 +11,22 @@ export default class Cart extends React.Component {
   }
 
   render() {
-    return (<div className='cartLocationsDiv'>
-      {
-        data.map(x =>(<Location key={x.id} location={x}/>))
-      }
-      <div>
-      <a href="/itinerary">
-      <Button bsStyle="primary">Primary</Button>
-      </a>
+    const locs = data.map(x => {return <Location key={x.id} location={x}/>});
+    return (
+      <div className='cartLocationsDiv'>
+          <div>dscnlkjvsi</div>
+          <div>dscnlkjvsi</div>
+          <div>dscnlkjvsi</div>
+          <div>dscnlkjvsi</div>
+          <div>dscnlkjvsi</div>
+          
+        <div>
+          <a href="/itinerary">
+            <Button bsStyle="primary">Primary</Button>
+          </a>
+        </div>
       </div>
-      </div>);
+    );
   }
 }
 
