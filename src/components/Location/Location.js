@@ -19,8 +19,9 @@ class Product extends Component {
 
     render() {
       const {
-        name, price, currency, image, description, pax, url, qty, quantityInCart
+        name, price, image, description, pax, url
       } = this.props.location;
+
       console.log(this.props.location);
       return (
           <div className="product thumbnail" >

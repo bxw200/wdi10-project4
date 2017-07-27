@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import Cart from '../../Cart/Cart';
-import data from '../../data/data';
+import axios from 'axios';
+
 import {
   Button,
   FormGroup,
@@ -12,6 +12,8 @@ import {
   Row,
   Col,
   Form, Checkbox } from 'react-bootstrap';
+
+import data from '../../data/data';
 import './Itinerary.css';
 
 class Itinerary extends Component {
@@ -21,12 +23,38 @@ class Itinerary extends Component {
       this.state ={
         name:'',
         price:'',
+        user: {
+          name: "not found",
+          email: "not found",
+          trips: [{
+            itineraries: [{
+              places: [{
+                price_pax: "not found"
+              }]
+            }]
+            ,pax: -1
+          }]
+
+        }
       }
     }
 
-
-
-
+    componentWillMount(){
+      console.clear();
+      console.log('prior axios call');
+      let self = this;
+      axios.get('/trips').then(res => {
+        console.log(res);
+        // self.setState({
+        //   user: res.data
+        // });
+      }).catch(function(err){
+        console.log('Error in server call: ',err);
+        if (err.response) {
+          console.log('server responded with err: ', err.response);
+        }
+      })
+    }
 
     render() {
       const row = (name, price, pax) => (
@@ -48,24 +76,40 @@ class Itinerary extends Component {
 
       return (
         <div>
-        <Row className="show-grid">
-        <Col md={3}>
-          <h3>Name</h3>
-        </Col>
-        <Col md={3}>
-          <h3>Price</h3>
-        </Col>
-        <Col md={3}>
-          <h3>Pax</h3>
-        </Col>
-        <Col md={3}>
-          <h3>Total</h3>
-        </Col>
-      </Row>
+          <Row className="show-grid">
+            <Col md={3}>
+              <h3>Name</h3>
+            </Col>
+            <Col md={3}>
+              <h3>Price</h3>
+            </Col>
+            <Col md={3}>
+              <h3>Pax</h3>
+            </Col>
+            <Col md={3}>
+              <h3>Total</h3>
+            </Col>
+          </Row>
 
-          {data.map(loc => {
+          <Row className="show-grid">
+            <Col md={3}>
+              <h3>{this.state.user.name}</h3>
+            </Col>
+            <Col md={3}>
+              <h3>{this.state.user.trips[0].itineraries[0].places[0].price_pax}</h3>
+            </Col>
+            <Col md={3}>
+              <h3>{this.state.user.trips[0].pax}</h3>
+            </Col>
+            <Col md={3}>
+              <h3>{this.state.user.trips[0].pax * this.state.user.trips[0].itineraries[0].places[0].price_pax}</h3>
+            </Col>
+          </Row>
+
+
+          {/*{data.map(loc => {
               return row(loc.name, loc.price, loc.pax)
-          })}
+          })}*/}
 
                   <div>
                   <a href="/">
@@ -85,10 +129,7 @@ Itinerary.propTypes = {
     // currency: PropTypes.string,
     // image: PropTypes.string,
     // url: PropTypes.string,
-    // addToCart: PropTypes.func.isRequired,
-    // removeFromCart: PropTypes.func.isRequired,
-    // removeAllFromCart: PropTypes.func.isRequired,
-    // quantityInCart: PropTypes.number
+
 }
 
 // const mapStateToProps = (state, props) => {

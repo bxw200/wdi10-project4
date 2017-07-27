@@ -2,6 +2,16 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy":{
+    "/users": {
+      "target": "http://localhost:3001",
+      "ws":true
+    },
+    "trips": {
+      "target": "http://localhost:3001",
+      "ws":true
+    }
+  },
   "dependencies": {
     "axios": "^0.16.2",
     "react": "^15.6.1",

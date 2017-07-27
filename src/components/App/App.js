@@ -13,9 +13,9 @@ import NavbarInstance from '../NavBar/NavBar';
 import './App.css';
 
 class App extends Component {
- constructor(props){
+  constructor(props){
    super(props);
- }
+  }
 
   onClick = (e) => {
     this.props.login(this.props.history);
