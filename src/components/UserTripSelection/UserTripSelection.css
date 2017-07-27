@@ -1,0 +1,25 @@
+.messageDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.messageDiv img{
+  order: 1;
+  width: auto;
+  height: 5em;
+  border-radius: 5px;
+}
+
+.messageDiv p{
+  order: 2;
+}
+
+.selectionDiv  {
+  margin: 5em;
+  display: flex;
+  justify-content: space-around;
+}
+.selectionDiv button {
+  min-width: 105px;
+}

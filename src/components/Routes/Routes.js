@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
+// <editor-fold components imports
 import Home from '../Home/Home';
 import Login from '../Login/Login';
 import Logout from '../Logout/Logout';
@@ -11,6 +12,8 @@ import Cart from '../Cart/Cart';
 import Itinerary from '../Itinerary/Itinerary';
 import Success from '../Success/Success';
 import Failure from '../Failure/Failure';
+import UserTripSelection from '../UserTripSelection/UserTripSelection';
+// </editor-fold>
 
 import Deleteme from '../Deleteme/sajay';
 
@@ -18,6 +21,7 @@ const Main = () => (
   <Router>
     <Switch>
       <Route exact path = '/' component={Home}></Route>
+      <Route exact path = '/trip_selection' component={UserTripSelection}></Route>
       <Route exact path = '/locations' component={Cart}></Route>
       <Route exact path = '/login' component={Login}></Route>
       <Route exact path = '/logout' component={Logout}></Route>

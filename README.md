@@ -1,17 +1,15 @@
 ## Setting up proxy
 **In package.json**,  
-
-doesn't work
-```
+```js
 "proxy":"http://localhost/3001/",  
 "proxy":"http://localhost/3001",
-```
----  
-**↓ works** bcos: ( exclude the last **/** from *url* )
+// doesn't work..
+```  
 ```js
 "proxy":{
   "/users": {
-    "target": "http://localhost:3001",
+    "target": "http://localhost:3001",  
+          /* http://localhost:3001/ doesn't work */
     "ws":true
   },
   // ↓ without the "/", it works as well.
@@ -21,6 +19,7 @@ doesn't work
   }
 },
 ```
+**↑ works** bcos: ( exclude the last **/** from *url* )  
 
 **In axios call**,  
 ```js

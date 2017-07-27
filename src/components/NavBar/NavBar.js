@@ -19,9 +19,9 @@ const NavbarInstance = () => (
     <Navbar.Collapse>
       <Nav>
 
-          <li><a href='/locations'>Locations</a></li>
+          <li><a href='/locations'>Places to visit</a></li>
           <li><a href='/locations'>Budget</a></li>
-          
+
         <NavDropdown eventKey={3} title="Options" id="basic-nav-dropdown">
           <MenuItem eventKey={3.1}>Action</MenuItem>
           <MenuItem eventKey={3.2}>Another action</MenuItem>

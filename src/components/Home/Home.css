@@ -1,11 +1,22 @@
 .homeDiv {
-  /*height: 100vh;*/
   color: black;
-
 }
 
 .homeDiv p {
   width: 65%;
-  /*text-align: center;*/
   margin-left: 18%;
+}
+
+.homeDiv section:first-of-type {
+  padding-top: 5em;
+}
+
+.homeDiv button {
+  position: absolute;
+  right: 10em;
+}
+
+.homeDiv h1 {
+  position: absolute;
+  left: 4em;
 }
