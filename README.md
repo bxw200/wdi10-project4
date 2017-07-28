@@ -1,3 +1,5 @@
+[REsult](#result:)
+
 ## Setting up proxy
 **In package.json**,  
 ```js
@@ -9,7 +11,7 @@
 "proxy":{
   "/users": {
     "target": "http://localhost:3001",  
-          /* http://localhost:3001/ doesn't work */
+        /* if, http://localhost:3001/ doesn't work */
     "ws":true
   },
   // ↓ without the "/", it works as well.
@@ -51,10 +53,10 @@ componentWillMount(){
 ```js
 // backend setup (express)
 
-// change listening port
+// change listening port (3000 --> 3005)
 app.set('port', process.env.PORT || 3005);
 
-// set up route (3000 --> 3005)
+// set up route
 app.get('/auth0', (req, res, next) => {
     res.json({
       msg: "received your request."
