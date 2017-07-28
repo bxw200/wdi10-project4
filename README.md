@@ -1,17 +1,18 @@
-[REsult](#result:)
+[goto express](#result:)
 
 ## Setting up proxy
 **In package.json**,  
-```js
+```json
+// doesn't work..
 "proxy":"http://localhost/3001/",  
 "proxy":"http://localhost/3001",
-// doesn't work..
 ```  
+
+<strong>works</strong>
 ```js
 "proxy":{
   "/users": {
     "target": "http://localhost:3001",  
-        /* if, http://localhost:3001/ doesn't work */
     "ws":true
   },
   // ↓ without the "/", it works as well.
@@ -21,7 +22,7 @@
   }
 },
 ```
-**↑ works** bcos: ( exclude the last **/** from *url* )  
+<em>↑ works</em> bcos: ( exclude the last **/** from *url* )  
 
 **In axios call**,  
 ```js
@@ -43,16 +44,16 @@ componentWillMount(){
 }
 ```
 ## Proxy-ing to a 3rd server (express):
+
+**frontend setup**:
 ```
-/*frontend setup*/
 "auth0": {
   "target": "http://localhost:3005",
   "ws":true
 }
 ```
+ **backend setup (express)**
 ```js
-// backend setup (express)
-
 // change listening port (3000 --> 3005)
 app.set('port', process.env.PORT || 3005);
 
@@ -63,8 +64,8 @@ app.get('/auth0', (req, res, next) => {
     });
   });
 ```
+**frontend axios call**
 ```js
-// frontend axios call
 componentWillMount(){      
   console.log('prior axios call to express');
   let self = this;
