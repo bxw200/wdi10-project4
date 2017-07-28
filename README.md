@@ -1,4 +1,4 @@
-[goto express](#result:)
+[goto express](#result)
 
 ## Setting up proxy
 **In package.json**,  
@@ -8,7 +8,7 @@
 "proxy":"http://localhost/3001",
 ```  
 
-<strong>works</strong>
+<strong>works:</strong>
 ```js
 "proxy":{
   "/users": {
@@ -52,7 +52,7 @@ componentWillMount(){
   "ws":true
 }
 ```
- **backend setup (express)**
+ **backend setup (express)**:
 ```js
 // change listening port (3000 --> 3005)
 app.set('port', process.env.PORT || 3005);
@@ -64,7 +64,7 @@ app.get('/auth0', (req, res, next) => {
     });
   });
 ```
-**frontend axios call**
+**frontend axios call**:
 ```js
 componentWillMount(){      
   console.log('prior axios call to express');
@@ -80,5 +80,5 @@ componentWillMount(){
 }
 ```
 
-### Result:
+### Result
 ![Result](design-log/express_call.png)
