@@ -1,0 +1,9 @@
+.cartDiv {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.cartDiv Location {
+  display: none;
+}

@@ -10,6 +10,10 @@
     "trips": {
       "target": "http://localhost:3001",
       "ws":true
+    },
+    "auth0": {
+      "target": "http://localhost:3005",
+      "ws":true
     }
   },
   "dependencies": {

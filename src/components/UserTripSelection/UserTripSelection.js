@@ -7,6 +7,14 @@ export default class UserTripSelection extends React.Component {
     super(props);
   }
 
+  catButtonClicked = (e) => {
+    alert('I am a cat button! I was clicked!');
+  }
+
+  budgetButtonClicked = (e) => {
+    alert('I am a cat button! I was clicked!');
+  }
+
   render() {
     return (
       <div>
@@ -15,11 +23,11 @@ export default class UserTripSelection extends React.Component {
           <p>Hi! Choose an option for where you want to go.</p>
         </div>
         <div className="selectionDiv">
-          <button className="btn btn-success">By Category</button>
-          <button className="btn btn-info">By Budget  </button>          
+          <button onClick={this.catButtonClicked} className="btn btn-success">By Category</button>
+          <button onClick={this.budgetButtonClicked} className="btn btn-info">By Budget  </button>
         </div>
       </div>);
-  }
+  } start
 }
 
 UserTripSelection.propTypes = {
