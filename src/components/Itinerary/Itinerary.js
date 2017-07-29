@@ -41,9 +41,9 @@ class Itinerary extends Component {
 
     componentWillMount(){
       console.clear();
-      console.log('prior axios call');
+      console.log('prior axios call to express');
       let self = this;
-      axios.get('/trips').then(res => {
+      axios.get('/auth0').then(res => {
         console.log(res);
         // self.setState({
         //   user: res.data

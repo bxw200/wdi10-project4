@@ -1,6 +1,7 @@
-.product.thumbnail {
-  width: 20%;
+.product.div.thumbnail {
+  width: 10em;
   background: black;
+  max-height: 20%;
 }
 
 .product.thumbnail img {

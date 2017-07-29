@@ -6,7 +6,7 @@ import {
 
 // import { LinkContainer } from 'react-router-bootstrap';
 // import { Route, RouteHandler, Link } from 'react-router';
-import './NavBar';
+import './NavBar.css';
 
 const NavbarInstance = () => (
   <Navbar inverse collapseOnSelect>
@@ -31,11 +31,18 @@ const NavbarInstance = () => (
         </NavDropdown>
       </Nav>
       <Nav pullRight>
-        <NavItem eventKey={1} href="/signup">Sign Up</NavItem>
-        <NavItem eventKey={2} href="../Login">Login</NavItem>
+
+      <li><a href='/signUp'>Sign Up</a></li>
+      <li><a href='/login'>Log In</a></li>
+
       </Nav>
     </Navbar.Collapse>
   </Navbar>
 );
 
 export default NavbarInstance;
+
+
+//To enable links to Sign Up and Login ages: amended the following originally below Nav<pullright>:
+//  <NavItem eventKey={1} href="/signup">Sign Up</NavItem>
+//  <NavItem eventKey={2} href="./Login">Login</NavItem>
