@@ -1,4 +1,6 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
+import { connect } from 'react-redux';
+// import TodoListView from '../TodoListView/TodoListView';
 
 import './UserTripSelection.css';
 
@@ -7,15 +9,34 @@ export default class UserTripSelection extends React.Component {
     super(props);
   }
 
-  catButtonClicked = (e) => {
-    alert('I am a cat button! I was clicked!');
-  }
-
-  budgetButtonClicked = (e) => {
-    alert('I am a cat button! I was clicked!');
-  }
-
   render() {
+    const { tripselection } = this.props;
+
+    const renderTripSelection = () => {
+      if(onClick(className="select-category")) {
+        return (
+          <div>What are you interested in doing?</div>
+        )
+      }
+      elseif(onClick(className="select-budget")) {
+        return (
+          <div>How much is your budget per person?</div>
+        )
+      }
+      else {
+
+
+      }
+
+//map takes the todos in the state (array) & maps it
+      // return tripselection.map( (tripselection) => {
+      //   console.log(tripselection)
+      //   return (
+      //     <TodoListView todo={todo} />
+      //
+      // });
+    }
+
     return (
       <div>
         <div className="messageDiv">
@@ -23,12 +44,18 @@ export default class UserTripSelection extends React.Component {
           <p>Hi! Choose an option for where you want to go.</p>
         </div>
         <div className="selectionDiv">
-          <button onClick={this.catButtonClicked} className="btn btn-success">By Category</button>
-          <button onClick={this.budgetButtonClicked} className="btn btn-info">By Budget  </button>
+          <button className="btn btn-success select-category">By Category</button>
+          <button className="btn btn-info select-budget">By Budget  </button>
         </div>
-      </div>);
-  } start
+      </div>
+    );
+  }
 }
 
-UserTripSelection.propTypes = {
-};
+// export default connect(mapStateToProps, mapDispatchToProps) (UserTripSelection);
+
+export default connect(
+    (state) => {
+      return state;
+    }
+) (UserTripSelection);
