@@ -6,6 +6,7 @@ import Home from '../Home/Home';
 import Login from '../Login/Login';
 import Logout from '../Logout/Logout';
 import SignUp from '../SignUp/SignUp';
+import Profile from '../Profile/Profile';
 import Error from '../Error/Error';
 import Location from '../Location/Location';
 import Cart from '../Cart/Cart';
@@ -24,6 +25,7 @@ const Main = () => (
       <Route exact path = '/trip_selection' component={UserTripSelection}></Route>
       <Route exact path = '/locations' component={Cart}></Route>
       <Route exact path = '/login' component={Login}></Route>
+      <Route exact path = '/profile' component={Profile}></Route>
       <Route exact path = '/logout' component={Logout}></Route>
       <Route exact path = '/signUp' component={SignUp}></Route>
       <Route exact path = '/itinerary' component={Itinerary}></Route>

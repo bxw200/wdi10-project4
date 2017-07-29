@@ -14,6 +14,8 @@ import {
 import {signUp} from '../../actions/signUpAction';
 // import './signUp.css';
 
+import './SignUp.css'
+
 export class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -53,18 +55,9 @@ export class SignUp extends Component {
     <div className="signupBody">
 
     <Row className="show-grid">
-     <h1 id="signUpTitle">Sign Up</h1>
-        <p id="subtitle">Get Planner</p>
-        <Col md={6} mdPush={6}>
 
-
-        <Button bsStyle="success"
-                className="signup"
-                onClick={this.onClick}>
-                Sign Up</Button>
-        </Col>
-
-        <Col md={6} mdPull={6}>
+        <Col md={8} mdOffset={2} >
+        <h1 id="signUpTitle">Sign Up</h1>
         <FormGroup bsSize="large">
 
           <div className="SignUpField">
@@ -121,6 +114,13 @@ export class SignUp extends Component {
                 onChange={this.onChange}/>
           </div>
 
+          <Col md={8} >
+
+          <Button bsStyle="success"
+                  className="signup"
+                  onClick={this.onClick}>
+                  Sign Up</Button>
+          </Col>
 
         </FormGroup>
 
