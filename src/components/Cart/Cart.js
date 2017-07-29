@@ -6,18 +6,9 @@ import { Button } from 'react-bootstrap';
 import './Cart.css'
 
 const Cart = () => {
-  const pt = (<p>
-  vdfhbv dbvukhbvfdfvbv vdhfvbudbvuidbv vdufhybvudbv vbdusfb
-  vdfhbv dbvukhbvfdfvbv vdhfvbudbvuidbv vdufhybvudbv vbdusfb
-  vdfhbv dbvukhbvfdfvbv vdhfvbudbvuidbv vdufhybvudbv vbdusfb
-  vdfhbv dbvukhbvfdfvbv vdhfvbudbvuidbv vdufhybvudbv vbdusfb
-  </p>);
-
-  const ray = [1,1,1,1,1,1,1,1];
-
     return (
-        <div>
-      {ray.map(x => pt)}
+        <div className="cartDiv">
+          {data.map(x => <Location key={x.id} location={x}/>)}
           <a href="/itinerary">
             <Button bsStyle="primary">Itinerary</Button>
           </a>

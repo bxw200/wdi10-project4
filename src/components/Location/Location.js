@@ -13,7 +13,7 @@ class Product extends Component {
     checkBoxChange = (e) => {
       e.preventDefault();
 
-      console.log(e.target.checked);
+      // console.log(e.target.checked);
       return;
     }
 
@@ -30,7 +30,6 @@ class Product extends Component {
                   <h3>
                     <a href={url}>{name}</a>
                     <input type="checkBox" onChecked={this.checkBoxChange}>
-                      I want to go!
                     </input>
                   </h3>
                   <div className="product__price row">

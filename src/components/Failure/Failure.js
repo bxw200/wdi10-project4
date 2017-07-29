@@ -10,13 +10,12 @@ export default class Failure extends React.Component {
   render() {
     return (
       <div>
-      Failure
-
-      <div>
-      <a href="/Locations">
-      <Button bsStyle="primary">Confirm</Button>
-      </a>
-      </div>
+        Failure
+        <div>
+          <a href="/Locations">
+            <Button bsStyle="primary">Confirm</Button>
+          </a>
+        </div>
       </div>
     );
   }
