@@ -81,12 +81,7 @@ class Login extends Component {
               </Col>
           </FormGroup>
 
-          {/* Remember-Me Checkbox */}
-          <FormGroup className="checkbox">
-            <Col md={6}>
-              <Checkbox id="rememberMe">Remember me</Checkbox>
-            </Col>
-          </FormGroup>
+
 
         </Form>
 
@@ -95,7 +90,7 @@ class Login extends Component {
         {/* Sign UP button */}
           <Col md={6} mdPush={6}>
                   <FormGroup>
-                        <Button bsStyle="warning"
+                        <Button bsStyle="info"
                                 type="submit"
                                 className="signupButton"
                                 onClick={this.onSignup}>
@@ -151,3 +146,10 @@ const mapDispatchToProps = (dispatch) => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps) (Login);
+
+// {/* Remember-Me Checkbox */}
+//   <FormGroup className="checkbox">
+//     <Col md={6}>
+//       <Checkbox id="rememberMe">Remember me</Checkbox>
+//     </Col>
+//   </FormGroup>
