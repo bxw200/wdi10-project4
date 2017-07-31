@@ -6,7 +6,6 @@ import Select from 'react-select';
 import {BUDGET, CATEGORY} from './categoryAndBudget';
 import './UserTripSelection.css';
 
-
 const UserTripSelections = createClass({
 
 	displayName: 'UserTripSelections',
@@ -61,7 +60,7 @@ const UserTripSelections = createClass({
 				</div>
 
 				<div className = "randomCategory">
-				
+
 					<div className = "cat1">Placeholder for first location</div>
 					<div className = "cat2">Placeholder for second location</div>
 					<div className = "cat3">Placeholder for third location</div>
