@@ -2,6 +2,7 @@
   width: 10em;
   background: black;
   max-height: 20%;
+  padding-top: 5em;
 }
 
 .product.thumbnail img {
