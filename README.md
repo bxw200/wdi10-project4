@@ -81,3 +81,25 @@ componentWillMount(){
 
 ### Result
 ![Result](design-log/express_call.png)
+
+### Important! Last item cannot have comma
+```
+"proxy": {
+  "/users": {
+    "target": "http://localhost:3001",
+    "ws": true
+  },
+  "trips": {
+    "target": "http://localhost:3001",
+    "ws": true
+  },
+  "auth0": {
+    "target": "http://localhost:3005",
+    "ws": true
+  },
+  "categories": {
+    "target": "http://localhost:3001",
+    "ws": true
+  }  // < cannot have comma!
+},
+```

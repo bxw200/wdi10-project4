@@ -565,3 +565,12 @@ h6,
 .cat1{
   float: left;
 }
+
+.randomCategory {
+  display: flex;
+  align-items: flex-start;
+}
+
+.randomCategory *{
+
+}

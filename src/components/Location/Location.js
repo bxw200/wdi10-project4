@@ -5,12 +5,23 @@ import { Checkbox, Button } from 'react-bootstrap';
 
 import './Location.css';
 
-class Product extends Component {
+class Location extends Component {
     constructor(props){
       super(props);
 
       this.state = {
         going: false
+      }
+    }
+
+    getDefaultProps = () => {
+      return {
+        name:"Some place",
+        price: 200,
+        image:"images/3.png",
+        description:"This is some place",
+        pax:3,
+        url:""
       }
     }
 
@@ -62,7 +73,7 @@ class Product extends Component {
     }
 }
 
-Product.propTypes = {
+Location.propTypes = {
     // id: PropTypes.number.isRequired,
     // name: PropTypes.string.isRequired,
     // price: PropTypes.number,
@@ -87,6 +98,6 @@ Product.propTypes = {
 //     removeAllFromCart: (id) => dispatch(removeAllFromCart(id))
 // })
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Product);
+// export default connect(mapStateToProps, mapDispatchToProps)(Location);
 
-export default Product;
+export default Location;

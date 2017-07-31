@@ -21,7 +21,7 @@ const NavbarInstance = () => (
        <NavItem eventKey={1} href="/locations">Places to visit</NavItem>
        {/*<NavItem eventKey={2} href="/trip_selection">Select trip</NavItem>*/}
         <NavDropdown eventKey={3} title="Select trip by" id="basic-nav-dropdown">
-          <MenuItem eventKey={3.1}><em>Categories</em></MenuItem>
+          <MenuItem eventKey={3.1} href="/trip_selection"><em>Categories</em></MenuItem>
           <MenuItem eventKey={3.2}> <em>Price <strong>$$</strong></em></MenuItem>
           <MenuItem divider />
           <MenuItem eventKey={3.3}><i>Help me decide</i></MenuItem>
