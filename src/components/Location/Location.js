@@ -24,7 +24,7 @@ class Product extends Component {
 
       console.log(this.props.location);
       return (
-          <div className="product thumbnail" >
+          <div className="product div thumbnail" >
               <img src={image}alt="product" onClick={this.pictureClicked}/>
               <div className="caption">
                   <h3>
