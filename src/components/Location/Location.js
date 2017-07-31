@@ -8,13 +8,21 @@ import './Location.css';
 class Product extends Component {
     constructor(props){
       super(props);
+
+      this.state = {
+        going: false
+      }
     }
 
     checkBoxChange = (e) => {
-      e.preventDefault();
+      // console.log("in checkbox change");
+      // e.preventDefault(); causes issue with response
 
-      // console.log(e.target.checked);
-      return;
+      this.setState({
+        going: !this.state.going
+      });
+
+
     }
 
     render() {
@@ -29,8 +37,10 @@ class Product extends Component {
               <div className="caption">
                   <h3>
                     <a href={url}>{name}</a>
-                    <input type="checkBox" onChecked={this.checkBoxChange}>
-                    </input>
+                    <input type="checkBox" onChange={this.checkBoxChange}/>
+                    <span>
+                    {this.state.going? "I'm going!":"Take me there!"}
+                    </span>
                   </h3>
                   <div className="product__price row">
                     <div className="col-md-3">
