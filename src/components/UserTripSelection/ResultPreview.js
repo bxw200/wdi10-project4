@@ -3,6 +3,8 @@ import {UserTripSelection} from './UserTripSelection.js';
 import Redux from 'react-redux';
 import axios from 'axios';
 
+import { Link } from 'react-router-dom';
+
 import {
   Button, Navbar, NavItem, Nav, Grid, Image, Row, Col
 } from 'react-bootstrap';
@@ -74,44 +76,51 @@ export default class ResultPreview extends React.Component {
   getInitialState() {
     return { places: [] }
   }
-  componentDidMount() { $.getJSON('/api/places.json', (response) => {
+  componentDidMount() { this.props.getJSON('/api/places.json', (response) => {
     this.setState({ places: response })
     });
   }
 
-  var Results= this.state.places.map((place) => {
-    return (
-      <div key={place.id}>
-        <h3>{place.name}</h3>
-        <p>{place.address}</p>
-      </div> ) });
+
 
   render() {
+    var PlaceResult = this.state.places.map((place) => {
+      return (
+        <div key={place.id}>
+          <h3>{place.name}</h3>
+          <p>{place.address}</p>
+        </div> ) });
     return (
       <div>
         <Row className="show-grid">
           <Col xs={4} md={4}>
               <div className="result">
                 <h2>Result 1</h2>
-                {Results}
+                {PlaceResult}
               </div>
           </Col>
           <Col xs={4} md={4}>
               <div className="result">
                 <h2>Result 2</h2>
-                  {Results}
+                  {PlaceResult}
               </div>
           </Col>
           <Col xs={4} md={4}>
               <div className="result">
                 <h2>Result 3</h2>
-                  {Results}
+                  {PlaceResult}
               </div>
           </Col>
         </Row>
         <Row className="resultchoices">
           <Col xs={2} md={2}>
-            <button className="btn-primary" onClick={this.selectAgain} Link to="/trip_selection">Select again</button>
+          <Link
+          className="btn btn-danger"
+          role="button"
+          to="/"
+          onClick={this.selectAgain()}>
+          </Link>
+
           </Col>
           <Col xs={2} md={2}>
             <button className="btn-primary" onClick={this.surpriseMe}>Surprise me!</button>
@@ -124,6 +133,9 @@ export default class ResultPreview extends React.Component {
     );
   }
 }
+
+
+
 
 // export default connect(
 //     (state) => {
