@@ -556,3 +556,12 @@ h6,
 .virtual-scroll {
   z-index: 1;
 }
+
+.randomCategory{
+  padding-top: 50px;
+  float: inherit;
+}
+
+.cat1{
+  float: left;
+}

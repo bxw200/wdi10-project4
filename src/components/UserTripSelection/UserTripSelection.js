@@ -4,15 +4,17 @@ import createClass from 'create-react-class';
 import Select from 'react-select';
 
 import {BUDGET, CATEGORY} from './categoryAndBudget';
-
 import './UserTripSelection.css';
 
 const UserTripSelections = createClass({
+
 	displayName: 'UserTripSelections',
 	propTypes: {
 		label: PropTypes.string,
 	},
+
 	getInitialState () {
+
 		return {
 			disabled: false,
 			crazy: false,
@@ -20,16 +22,25 @@ const UserTripSelections = createClass({
 			value: [],
 		};
 	},
+
 	handleSelectChange (value) {
+
 		console.log('You\'ve selected:', value);
 		this.setState({ value });
 	},
+
 	toggleDisabled (e) {
+
 		this.setState({ disabled: e.target.checked });
+
 	},
 
+
+
 	render () {
+
 		return (
+
 			<div className="section">
 				<h3 className="section-heading">{this.props.label}</h3>
 				<Select className="select"
@@ -46,10 +57,18 @@ const UserTripSelections = createClass({
 						<input type="checkbox" className="checkbox-control" checked={this.state.disabled} onChange={this.toggleDisabled} />
 						<span className="checkbox-label">Disable the control</span>
 					</label>
-
 				</div>
+
+				<div className = "randomCategory">
+
+					<div className = "cat1">Placeholder for first location</div>
+					<div className = "cat2">Placeholder for second location</div>
+					<div className = "cat3">Placeholder for third location</div>
+				</div>
+
 			</div>
 		);
 	}
 });
+
 export default UserTripSelections;

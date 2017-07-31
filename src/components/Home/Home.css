@@ -1,5 +1,6 @@
 .homeDiv {
   color: black;
+  text-align: left;
 }
 
 .homeDiv p {
@@ -8,7 +9,7 @@
 }
 
 .homeDiv section:first-of-type {
-  padding-top: 5em;
+  padding-top: 3em;
 }
 
 .homeDiv button {
@@ -17,6 +18,14 @@
 }
 
 .homeDiv h1 {
-  position: absolute;
+  position: left;
   left: 4em;
+  padding-top: 50px;
+  font-size: 80px;
+}
+
+.logo{
+  border: 1px solid black;
+  float: right;
+  margin-left: 20px;
 }
