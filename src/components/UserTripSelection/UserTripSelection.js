@@ -1,11 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-// import TodoListView from '../TodoListView/TodoListView';
-
 import createClass from 'create-react-class';
 import Select from 'react-select';
-
-import {connect} from 'react-redux';
 
 import {BUDGET, CATEGORY} from './categoryAndBudget';
 

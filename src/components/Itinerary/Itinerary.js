@@ -39,7 +39,8 @@ class Itinerary extends Component {
       }
     }
 
-    componentWillMount(){      
+    componentWillMount(){
+
       console.log('prior axios call to express');
       let self = this;
       axios.get('/auth0').then(res => {
@@ -50,6 +51,8 @@ class Itinerary extends Component {
           console.log('server responded with err: ', err.response);
         }
       })
+
+
     }
 
     render() {

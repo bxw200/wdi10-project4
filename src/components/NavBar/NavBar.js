@@ -6,10 +6,10 @@ import {
 
 // import { LinkContainer } from 'react-router-bootstrap';
 // import { Route, RouteHandler, Link } from 'react-router';
-import './NavBar.css';
+// import './NavBar.css';
 
 const NavbarInstance = () => (
-  <Navbar inverse collapseOnSelect>
+  <Navbar inverse fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
         <a href="/">iTINA</a>
@@ -18,10 +18,10 @@ const NavbarInstance = () => (
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav>
-
-          <li><a href='/locations'>Places to visit</a></li>
-          <li><a href='/locations'>Budget</a></li>
-
+       <NavItem eventKey={1} href="/locations">Places to visit</NavItem>
+       <NavItem eventKey={2} href="/locations">Budget</NavItem>
+        {/*<li><a href='/locations'>Places to visit</a></li>
+        <li><a href='/locations'>Budget</a></li>*/}
         <NavDropdown eventKey={3} title="Options" id="basic-nav-dropdown">
           <MenuItem eventKey={3.1}>Action</MenuItem>
           <MenuItem eventKey={3.2}>Another action</MenuItem>
@@ -29,12 +29,10 @@ const NavbarInstance = () => (
           <MenuItem divider />
           <MenuItem eventKey={3.3}>Separated link</MenuItem>
         </NavDropdown>
-      </Nav>
-      <Nav pullRight>
-
-      <li><a href='/signUp'>Sign Up</a></li>
-      <li><a href='/login'>Log In</a></li>
-
+        <Nav pullRight>
+          <li><a href='/signUp'>Sign Up</a></li>
+          <li><a href='/login'>Log In</a></li>
+        </Nav>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
