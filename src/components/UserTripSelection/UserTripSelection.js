@@ -14,6 +14,7 @@ export default class UserTripSelection extends React.Component {
 
 
   const CATEGORY = [
+     {label: "Food", value: "food"},
      {label: "Nightlife", value: "nightlife"},
      {label: "Tourism", value: "tourism"},
      {label: "Gaming", value: "gaming"},
