@@ -44,7 +44,6 @@ componentWillMount(){
 }
 ```
 ## Proxy-ing to a 3rd server (express):
-
 **frontend setup**:
 ```
 "auth0": {

@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div clkassName="App-header">
+        <div className="App-header">
           <NavbarInstance/>
         </div>
         <Grid>

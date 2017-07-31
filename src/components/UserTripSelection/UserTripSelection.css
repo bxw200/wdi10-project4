@@ -23,3 +23,9 @@
 .selectionDiv button {
   min-width: 105px;
 }
+
+
+.select {
+  width: 50em;
+  /*display: none;*/
+}
