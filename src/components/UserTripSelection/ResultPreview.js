@@ -17,17 +17,17 @@ export default class ResultPreview extends React.Component {
       <div>
         <Row className="show-grid">
           <Col xs={4} md={4}>
-              <div className="result1">
+              <div className="result">
                 <h2>Result 1</h2>
               </div>
           </Col>
           <Col xs={4} md={4}>
-              <div className="result2">
+              <div className="result">
                 <h2>Result 2</h2>
               </div>
           </Col>
           <Col xs={4} md={4}>
-              <div className="result3">
+              <div className="result">
                 <h2>Result 3</h2>
               </div>
           </Col>
