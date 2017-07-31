@@ -91,36 +91,36 @@ export default class UserTripSelection extends React.Component {
 // 	propTypes: {
 // 		label: PropTypes.string,
 // 	},
-// 	getInitialState () {
-// 		return {
-// 			disabled: false,
-// 			options: CATEGORY,
-// 			value: [],
-// 		};
-// 	},
-// 	handleSelectChange (value) {
-// 		console.log("You've selected:", value);
-// 		this.setState({ value });
-// 	},
+	getInitialState () {
+		return {
+			disabled: false,
+			options: CATEGORY,
+			value: [],
+		};
+	},
+	handleSelectChange (value) {
+		console.log("You've selected:", value);
+		this.setState({ value });
+	},
 // 	toggleDisabled (e) {
 // 		this.setState({ disabled: e.target.checked });
 // 	},
-// 	render () {
-// 		return (
-// 			<div className="section">
-// 				<h3 className="section-heading">{this.props.label}</h3>
-// 				<Select multi simpleValue disabled={this.state.disabled} value={this.state.value} placeholder="Select your interests" options={this.state.options} onChange={this.handleSelectChange} />
-//
-// 				<div className="checkbox-list">
-// 					<label className="checkbox">
-// 						<input type="checkbox" className="checkbox-control" checked={this.state.disabled} onChange={this.toggleDisabled} />
-// 						<span className="checkbox-label">Disable the control</span>
-// 					</label>
-// 				</div>
-// 			</div>
-// 		);
-// 	}
-// });
+	render () {
+		return (
+			<div className="section">
+				<h3 className="section-heading">{this.props.label}</h3>
+				<Select multi simpleValue disabled={this.state.disabled} value={this.state.value} placeholder="Select your interests" options={this.state.options} onChange={this.handleSelectChange} />
+
+				<div className="checkbox-list">
+					<label className="checkbox">
+						<input type="checkbox" className="checkbox-control" checked={this.state.disabled} onChange={this.toggleDisabled} />
+						<span className="checkbox-label">Disable the control</span>
+					</label>
+				</div>
+			</div>
+		);
+	}
+});
 // module.exports = UserTripSelection;
 
 export default connect(mapStateToProps, mapDispatchToProps) (UserTripSelection);
