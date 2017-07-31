@@ -1,3 +1,7 @@
 .result {
-  border-style: solid black 1px;
+  border-style: solid red 1px;
+}
+
+.result h2 {
+  color: red;
 }

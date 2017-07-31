@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-import React from 'react';
-import createClass from 'create-react-class';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-=======
-import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 // import TodoListView from '../TodoListView/TodoListView';
 
 import createClass from 'create-react-class';
 import Select from 'react-select';
-
-import {connect} from 'react-redux';
 
 import {BUDGET, CATEGORY} from './categoryAndBudget';
 
@@ -101,4 +95,3 @@ export default UserTripSelections;
 // //       return state;
 // //     }
 // // ) (UserTripSelection);
->>>>>>> 03dd04129595514d1edf45a56c94ad73fd65d53e
