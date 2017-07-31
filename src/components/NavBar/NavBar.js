@@ -9,7 +9,7 @@ import {
 import './NavBar.css';
 
 const NavbarInstance = () => (
-  <Navbar inverse collapseOnSelect>
+  <Navbar inverse fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
         <a href="/">iTINA</a>
@@ -18,23 +18,18 @@ const NavbarInstance = () => (
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav>
-
-          <li><a href='/locations'>Places to visit</a></li>
-          <li><a href='/locations'>Budget</a></li>
-
-        <NavDropdown eventKey={3} title="Options" id="basic-nav-dropdown">
-          <MenuItem eventKey={3.1}>Action</MenuItem>
-          <MenuItem eventKey={3.2}>Another action</MenuItem>
-          <MenuItem eventKey={3.3}>Something else here</MenuItem>
+       <NavItem eventKey={1} href="/locations">Places to visit</NavItem>
+       {/*<NavItem eventKey={2} href="/trip_selection">Select trip</NavItem>*/}
+        <NavDropdown eventKey={3} title="Select trip by" id="basic-nav-dropdown">
+          <MenuItem eventKey={3.1} href="/trip_selection"><em>Categories</em></MenuItem>
+          <MenuItem eventKey={3.2}> <em>Price <strong>$$</strong></em></MenuItem>
           <MenuItem divider />
-          <MenuItem eventKey={3.3}>Separated link</MenuItem>
+          <MenuItem eventKey={3.3}><i>Help me decide</i></MenuItem>
         </NavDropdown>
-      </Nav>
-      <Nav pullRight>
-
-      <li><a href='/signUp'>Sign Up</a></li>
-      <li><a href='/login'>Log In</a></li>
-
+        <Nav pullRight>
+          <NavItem eventKey={1} href="/signUp">Sign Up</NavItem>
+          <NavItem eventKey={2} href="/login">Log In</NavItem>
+        </Nav>
       </Nav>
     </Navbar.Collapse>
   </Navbar>

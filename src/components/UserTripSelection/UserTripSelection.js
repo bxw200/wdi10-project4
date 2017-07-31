@@ -1,38 +1,76 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-// import TodoListView from '../TodoListView/TodoListView';
-
 import createClass from 'create-react-class';
 import Select from 'react-select';
+import axios from 'axios';
 
 import {BUDGET, CATEGORY} from './categoryAndBudget';
 
+import Location from '../Location/Location';
+import data from '../../data/data';
+import {updateCategories,updateCategory} from '../../actions/categoriesAction';
+
 import './UserTripSelection.css';
 
-const UserTripSelections = createClass({
-	displayName: 'UserTripSelections',
-	propTypes: {
-		label: PropTypes.string,
-	},
-	getInitialState () {
-		return {
+class UserTripSelections extends React.Component {
+
+	constructor(props){
+		super(props);
+		this.state = {
 			disabled: false,
 			crazy: false,
 			options: CATEGORY,
 			value: [],
+			sentToServer: false
 		};
-	},
-	handleSelectChange (value) {
+
+		axios.get('categories').then(res=>{
+			// console.log("Server response: ",res.data);
+			res.data.forEach(cat => {
+				this.props.addCategory({value:cat.id.toString(), label:cat.name});
+			});
+			// causes an additional 0 to appear between.
+			// this.props.categoriesRcvdFromSvr(res.data.map(cat => {
+			// 	return {id:cat.id, name:cat.name}
+			// }));
+
+		}).catch(err=>{
+			if (err.response) {
+				console.log("Server responded with error. ", err.response);
+			}else {
+				console.log("Server request error. ", err);
+			}
+		});
+	}
+
+	handleGetLocationsClicked = (e) => {
+
+		this.setState({
+			sentToServer: true
+		});
+	}
+
+	handleSelectChange = (value) => {
 		console.log('You\'ve selected:', value);
 		this.setState({ value });
-	},
-	toggleDisabled (e) {
+	}
+
+	toggleDisabled =(e) =>{
+
 		this.setState({ disabled: e.target.checked });
-	},
+
+	}
 
 	render () {
+
+		const dispVacations = this.state.sentToServer? (<div className="randomCategory">
+			<Location location={data[Math.floor(Math.random()*3)+1]}/>
+			<Location location={data[Math.floor(Math.random()*3)+1]}/>
+			<Location location={data[Math.floor(Math.random()*3)+1]}/>
+		</div>):"";
+
 		return (
+
 			<div className="section">
 				<h3 className="section-heading">{this.props.label}</h3>
 				<Select className="select"
@@ -41,57 +79,46 @@ const UserTripSelections = createClass({
                 disabled={this.state.disabled}
                 value={this.state.value}
                 placeholder="Select your favourite(s)"
-                options={this.state.options}
+                options={this.props.categories}
                 onChange={this.handleSelectChange} />
 
 				<div className="checkbox-list">
 					<label className="checkbox">
-						<input type="checkbox" className="checkbox-control" checked={this.state.disabled} onChange={this.toggleDisabled} />
-						<span className="checkbox-label">Disable the control</span>
+						<input type="checkbox"
+									 className="checkbox-control"
+									 checked={this.state.disabled}
+									 onChange={this.toggleDisabled} />
+						<span className="checkbox-label">Disable the control </span>
 					</label>
-
+					<input type="button"
+								 className="btn btn-success"
+								 value="Get Locations"
+								 onClick={this.handleGetLocationsClicked}/>
 				</div>
+
+
+				{dispVacations}
+
 			</div>
 		);
 	}
-});
-export default UserTripSelections;
-// 	getInitialState () {
-// 		return {
-// 			disabled: false,
-// 			options: CATEGORY,
-// 			value: [],
-// 		};
-// 	},
-// 	handleSelectChange (value) {
-// 		console.log("You've selected:", value);
-// 		this.setState({ value });
-// 	},
-// // 	toggleDisabled (e) {
-// // 		this.setState({ disabled: e.target.checked });
-// // 	},
-// 	render () {
-// 		return (
-// 			<div className="section">
-// 				<h3 className="section-heading">{this.props.label}</h3>
-// 				<Select multi simpleValue disabled={this.state.disabled} value={this.state.value} placeholder="Select your interests" options={this.state.options} onChange={this.handleSelectChange} />
-//
-// 				<div className="checkbox-list">
-// 					<label className="checkbox">
-// 						<input type="checkbox" className="checkbox-control" checked={this.state.disabled} onChange={this.toggleDisabled} />
-// 						<span className="checkbox-label">Disable the control</span>
-// 					</label>
-// 				</div>
-// 			</div>
-// 		);
-// 	}
-// });
-// // module.exports = UserTripSelection;
-//
-// export default connect(mapStateToProps, mapDispatchToProps) (UserTripSelection);
-//
-// // export default connect(
-// //     (state) => {
-// //       return state;
-// //     }
-// // ) (UserTripSelection);
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		categoriesRcvdFromSvr: (categories) => {
+			dispatch(updateCategories(categories));
+		},
+		addCategory: (category) => {
+			dispatch(updateCategory(category));
+		}
+	}
+}
+
+const mapStateToProps = (state) => {
+	return {
+		categories: state.place_categories.categories
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserTripSelections);

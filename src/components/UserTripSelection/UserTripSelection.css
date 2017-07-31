@@ -373,7 +373,7 @@
     -webkit-transform: rotate(1turn);
   }
 }
-body {
+/*body {
   color: #333;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -393,7 +393,9 @@ a:hover {
   margin-right: auto;
   max-width: 400px;
   padding: 0 30px;
-}
+}*/
+
+
 h1,
 h2,
 h3,
@@ -544,6 +546,7 @@ h6,
 }
 .section {
   margin-bottom: 40px;
+  padding-top: 5em;
 }
 .hint {
   font-size: .85em;
@@ -552,4 +555,26 @@ h6,
 }
 .virtual-scroll {
   z-index: 1;
+}
+
+.randomCategory{
+  padding-top: 50px;
+  float: inherit;
+}
+
+.cat1{
+  float: left;
+}
+
+.randomCategory {
+  display: flex;
+  align-items: flex-start;
+}
+
+.randomCategory *{
+
+}
+
+.checkbox-list > .btn.btn-success {
+  float: right;
 }

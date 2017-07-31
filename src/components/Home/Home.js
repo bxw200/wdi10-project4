@@ -10,14 +10,21 @@ export default class Home extends React.Component {
   render() {
     return (
       <div className='homeDiv'>
-        <h1>Home</h1>
+        <h1>Say Hello! to iTina</h1>
+        <span>
+          <div className = "logo"> logo here</div>
+        </span>
         <div>
           <section>
-            <p>Cras ultricies ligula sed magna dictum porta. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada.</p>
+            <span>
+              <h2>When there's time on your hands but you don't know what you want to do.</h2>
+              <h2>...and for doing things you never had time for.</h2>
+            </span>
+
           </section>
 
           <section>
-            <p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Sed porttitor lectus nibh. Donec rutrum congue leo eget malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada. Donec sollicitudin molestie malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Pellentesque in ipsum id orci porta dapibus.</p>
+            <h2>Let iTina help! </h2>
           </section>
         </div>
         <a href='/login'>
