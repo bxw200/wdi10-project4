@@ -14,11 +14,6 @@ import './UserTripSelection.css';
 
 class UserTripSelections extends React.Component {
 
-	// displayName: 'UserTripSelections',
-	// propTypes: {
-	// 	label: PropTypes.string,
-	// },
-	//
 	constructor(props){
 		super(props);
 		this.state = {
@@ -26,38 +21,34 @@ class UserTripSelections extends React.Component {
 			crazy: false,
 			options: CATEGORY,
 			value: [],
+			sentToServer: false
 		};
 
 		axios.get('categories').then(res=>{
-			console.log("Server response: ",res.data);
-
+			// console.log("Server response: ",res.data);
 			res.data.forEach(cat => {
 				this.props.addCategory({value:cat.id.toString(), label:cat.name});
 			});
-
-			// causes an additional 0
+			// causes an additional 0 to appear between.
 			// this.props.categoriesRcvdFromSvr(res.data.map(cat => {
 			// 	return {id:cat.id, name:cat.name}
 			// }));
 
 		}).catch(err=>{
-			console.log("Server error. ", err);
 			if (err.response) {
 				console.log("Server responded with error. ", err.response);
+			}else {
+				console.log("Server request error. ", err);
 			}
 		});
 	}
 
+	handleGetLocationsClicked = (e) => {
 
-	// getInitialState () {
-	//
-	// 	return {
-	// 		disabled: false,
-	// 		crazy: false,
-	// 		options: CATEGORY,
-	// 		value: [],
-	// 	};
-	// },
+		this.setState({
+			sentToServer: true
+		});
+	}
 
 	handleSelectChange = (value) => {
 		console.log('You\'ve selected:', value);
@@ -70,9 +61,13 @@ class UserTripSelections extends React.Component {
 
 	}
 
-// options={this.state.options}
-
 	render () {
+
+		const dispVacations = this.state.sentToServer? (<div className="randomCategory">
+			<Location location={data[Math.floor(Math.random()*3)+1]}/>
+			<Location location={data[Math.floor(Math.random()*3)+1]}/>
+			<Location location={data[Math.floor(Math.random()*3)+1]}/>
+		</div>):"";
 
 		return (
 
@@ -93,15 +88,16 @@ class UserTripSelections extends React.Component {
 									 className="checkbox-control"
 									 checked={this.state.disabled}
 									 onChange={this.toggleDisabled} />
-						<span className="checkbox-label">Disable the control</span>
+						<span className="checkbox-label">Disable the control </span>
 					</label>
+					<input type="button"
+								 className="btn btn-success"
+								 value="Get Locations"
+								 onClick={this.handleGetLocationsClicked}/>
 				</div>
 
-				<div className="randomCategory">
-					<Location location={data[Math.floor(Math.random()*3)+1]}/>
-					<Location location={data[Math.floor(Math.random()*3)+1]}/>
-					<Location location={data[Math.floor(Math.random()*3)+1]}/>
-				</div>
+
+				{dispVacations}
 
 			</div>
 		);

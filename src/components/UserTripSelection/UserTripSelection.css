@@ -574,3 +574,7 @@ h6,
 .randomCategory *{
 
 }
+
+.checkbox-list > .btn.btn-success {
+  float: right;
+}
