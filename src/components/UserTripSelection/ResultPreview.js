@@ -17,25 +17,19 @@ export default class ResultPreview extends React.Component {
       <div>
         <Row className="show-grid">
           <Col xs={4} md={4}>
-              <div className="result1"></div>
-              <label className="checkbox">
-                <input type="checkbox" className="checkbox-delete" checked={this.state.disabled} onChange={this.toggleDisabled} />
-                <span className="checkbox-label">Delete</span>
-              </label>
+              <div className="result1">
+                <h2>Result 1</h2>
+              </div>
           </Col>
           <Col xs={4} md={4}>
-              <div className="result2"></div>
-              <label className="checkbox">
-                <input type="checkbox" className="checkbox-delete" checked={this.state.disabled} onChange={this.toggleDisabled} />
-                <span className="checkbox-label">Delete</span>
-              </label>
+              <div className="result2">
+                <h2>Result 2</h2>
+              </div>
           </Col>
           <Col xs={4} md={4}>
-              <div className="result3"></div>
-              <label className="checkbox">
-                <input type="checkbox" className="checkbox-delete" checked={this.state.disabled} onChange={this.toggleDisabled} />
-                <span className="checkbox-label">Delete</span>
-              </label>
+              <div className="result3">
+                <h2>Result 3</h2>
+              </div>
           </Col>
         </Row>
         <Row className="resultchoices">
@@ -54,8 +48,8 @@ export default class ResultPreview extends React.Component {
   }
 }
 
-export default connect(
-    (state) => {
-      return state;
-    }
-) (ResultPreview);
+// export default connect(
+//     (state) => {
+//       return state;
+//     }
+// ) (ResultPreview);
