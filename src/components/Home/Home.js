@@ -19,6 +19,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <div className='homeDiv'>
+
       <Row className="show-grid">
      <Col xs={12} md={8}>
 
@@ -49,6 +50,7 @@ export default class Home extends React.Component {
           <button>Let's go! </button>
         </a>
       </div>
+  
     );
   }
 }
