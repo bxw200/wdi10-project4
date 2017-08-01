@@ -19,27 +19,10 @@ export default class ResultPreview extends React.Component {
 
   selectAgain = (e) => {
 
-      // const toggle = this.state.completed ? false : true;
-      console.log('clicked: Select Again');
-
-      // this.props.toggleTodo(this.props.todo.id);
-      //
-      // this.setState( {
-      //   completed: toggle
-      // });
+    console.log('clicked: Select Again');
   }
 
   surpriseMe = (e) => {
-  //
-  //     const toggle = this.state.completed ? false : true;
-      console.log('clicked: Surprise me!');
-  //
-  //     this.props.toggleTodo(this.props.todo.id);
-  //
-  //     this.setState( {
-  //       completed: toggle
-  //     });
-  }
 
   // var NewItinerary= React.createClass({
 

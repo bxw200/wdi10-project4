@@ -27,13 +27,17 @@ class App extends Component {
         <div className="App-header">
           <NavbarInstance/>
         </div>
-        <Grid>
-          <Row className="show-grid">
-            <Col xs={12} md={8}>
-                <Main/>
-            </Col>
-          </Row>
-        </Grid>
+        <div className="box">
+        <Row className="show-grid">
+          <Col xs={6} md={2}></Col>
+          <Col xs={6} md={8}>
+          <Main/>
+          </Col>
+          <Col xsHidden md={2}></Col>
+        </Row>
+
+
+        </div>
       </div>
     );
   }

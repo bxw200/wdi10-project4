@@ -103,3 +103,5 @@ componentWillMount(){
   }  // < cannot have comma!
 },
 ```
+# <span style="color:red">Always <strong>yarn start</strong> after editing package.json</style>
+(to pick up changes. not auto)
