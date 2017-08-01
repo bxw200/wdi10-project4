@@ -24,45 +24,41 @@ export default class ResultPreview extends React.Component {
 
   surpriseMe = (e) => {
 
+    console.log('clicked: Surprise Me!');
+  }
   // var NewItinerary= React.createClass({
 
   confirmTrip= (e) => {
 
     const user = {
+      name: "john smith",
+      email: "john1234smith@me.org",
+      password: "0000",
 
-name: "john iubhiuhbidufb",
-email: "john@fire.orgxc xnicj xicj ixjbc",
-password: "johvdvsv",
+      trips: [
+          {
+          duration: 1,
+          pax: 4,
+          budget: 500,
+            itineraries: [
+              {
+                places: [
+                  {
+                    id: 26,
+                    name: "National Museum of Singapore",
+                    address: null,
+                    lat: "1.2967",
+                    lng: "103.8486",
+                    price_pax: 500,
+                    duration: 1
 
-trips: [
-{
-
-duration: 1,
-pax: 4,
-budget: 500,
-
-
-itineraries: [
-{
-
-
-places: [
-{
-id: 26,
-name: "National Museum of Singapore",
-address: null,
-lat: "1.2967",
-lng: "103.8486",
-price_pax: 500,
-duration: 1
-
-}
-]
-}
-]
-}
-]
-}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
 
 
 

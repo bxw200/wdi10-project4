@@ -18,7 +18,11 @@ export class Profile extends Component {
     super(props);
 
     this.state = {
-        //TBA//
+      user: this.props.history,
+      name: '',
+      password: '',
+      email : '',
+      trips : []
     }
   }
 
@@ -31,13 +35,19 @@ export class Profile extends Component {
   //   console.log('state', this.state)
   // }
   //
-  // onClick = (e) => {
-  //
-  //   this.props.profile(this.state, this.props.history);
-  //
-  // }
+  onClick = (e) => {
+
+    this.props.profile(this.state, this.props.history);
+
+  }
 
   render() {
+    const UserOwnTrips = this.state.trip.itinerary.place.map((trip, place) => {
+      return (
+        <div key={trip.id}>
+          <h3>{trip.place.name}</h3>
+          <p>{trip.place.address}</p>
+        </div> ) });
     return (
     <div className="profileBody">
 
@@ -89,6 +99,11 @@ export class Profile extends Component {
 
         </FormGroup>
 
+        </Col>
+      </Row>
+      <Row>
+        <Col md={8} mdOffset={2} >
+          {UserOwnTrips}
         </Col>
       </Row>
     </div>);
