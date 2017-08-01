@@ -5,11 +5,15 @@ import Select from 'react-select';
 import axios from 'axios';
 
 import {BUDGET, CATEGORY} from './categoryAndBudget';
+import { Link } from 'react-router-dom';
 
 import Location from '../Location/Location';
 import data from '../../data/data';
 import {updateCategories,updateCategory} from '../../actions/categoriesAction';
 
+import {
+  Button, Navbar, NavItem, Nav, Grid, Image, Row, Col
+} from 'react-bootstrap';
 import './UserTripSelection.css';
 
 class UserTripSelections extends React.Component {
@@ -23,6 +27,8 @@ class UserTripSelections extends React.Component {
 			value: [],
 			sentToServer: false
 		};
+
+
 
 		axios.get('categories').then(res=>{
 			// console.log("Server response: ",res.data);
@@ -99,6 +105,31 @@ class UserTripSelections extends React.Component {
 
 				{dispVacations}
 
+
+        <Row className="resultchoices">
+          <Col xs={2} md={2}>
+            <Link
+                  className="btn btn-info"
+                  role="button"
+                  to="/trip_selection">Select Again!
+            </Link>
+          </Col>
+          <Col xs={2} md={2}>
+            <Link
+                  className="btn btn-info"
+                  role="button"
+                  to="/resultpreview">Surprise me!
+            </Link>
+          </Col>
+
+          <Col xs={2} md={2}>
+            <Link
+                  className="btn btn-info"
+                  role="button"
+                  to="/itinerary">Confirm your trip!
+            </Link>
+          </Col>
+        </Row>
 			</div>
 		);
 	}
