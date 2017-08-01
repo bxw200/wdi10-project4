@@ -13,7 +13,7 @@ import './ResultPreview.css';
 export default class ResultPreview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isToggleOn: true};
+    // this.state = {isToggleOn: true};
     // this.handleClick = this.handleClick.bind(this);
   }
 
@@ -58,7 +58,7 @@ export default class ResultPreview extends React.Component {
   //     const toggle = this.state.completed ? false : true;
       console.log('clicked: Confirm trip');
   //
-      this.props.trip(this.props.history);
+      // this.props.trip(this.props.history);
   //
   //     this.setState( {
   //       completed: toggle
@@ -73,60 +73,74 @@ export default class ResultPreview extends React.Component {
   //   console.log('confirm your trip!');
   // }
 
-  getInitialState() {
-    return { places: [] }
-  }
-  componentDidMount() { this.props.getJSON('/api/places.json', (response) => {
-    this.setState({ places: response })
-    });
-  }
 
+  // getInitialState() {
+  //   return { places: [] }
+  // }
+  // componentDidMount() { this.props.getJSON('/api/place.json', (place) => {
+  //   this.setState({ places: place })
+  //   });
+  // }
+
+  //under render
+  // var PlaceResult = this.state.place.map((place) => {
+  //   return (
+  //     <div key={place.id}>
+  //       <h3>{place.name}</h3>
+  //       <p>{place.address}</p>
+  //     </div> ) });
 
 
   render() {
-    var PlaceResult = this.state.places.map((place) => {
-      return (
-        <div key={place.id}>
-          <h3>{place.name}</h3>
-          <p>{place.address}</p>
-        </div> ) });
+
     return (
       <div>
         <Row className="show-grid">
           <Col xs={4} md={4}>
               <div className="result">
                 <h2>Result 1</h2>
-                {PlaceResult}
+
               </div>
           </Col>
           <Col xs={4} md={4}>
               <div className="result">
                 <h2>Result 2</h2>
-                  {PlaceResult}
+
               </div>
           </Col>
           <Col xs={4} md={4}>
               <div className="result">
                 <h2>Result 3</h2>
-                  {PlaceResult}
+
               </div>
           </Col>
         </Row>
         <Row className="resultchoices">
           <Col xs={2} md={2}>
           <Link
-          className="btn btn-danger"
+          className="btn btn-info"
           role="button"
-          to="/"
-          onClick={this.selectAgain()}>
+          to="/trip_selection"
+          onClick={this.selectAgain()}>Select Again!
           </Link>
 
           </Col>
           <Col xs={2} md={2}>
-            <button className="btn-primary" onClick={this.surpriseMe}>Surprise me!</button>
+          <Link
+          className="btn btn-info"
+          role="button"
+          to="/resultpreview"
+          onClick={this.surpriseMe()}>Surprise me!
+          </Link>
           </Col>
+
           <Col xs={2} md={2}>
-            <button className="btn-success" onClick={this.confirmTrip} Link to="/itinerary">Confirm your trip!</button>
+          <Link
+          className="btn btn-info"
+          role="button"
+          to="/itinerary"
+          onClick={this.confirmTrip()}>Confirm your trip!
+          </Link>
           </Col>
         </Row>
       </div>
