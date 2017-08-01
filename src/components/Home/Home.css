@@ -4,7 +4,7 @@
 }
 
 .homeDiv p {
-  width: 65%;
+  width: 100%;
   margin-left: 18%;
 }
 
@@ -25,7 +25,11 @@
 }
 
 .logo{
-  border: 1px solid black;
   float: right;
   margin-left: 20px;
+  padding-top: 50px;
+}
+img{
+  height: 200px;
+  width: 200px;
 }
