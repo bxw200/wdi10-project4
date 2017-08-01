@@ -1,44 +1,54 @@
-.product.div.thumbnail {
-  /*width: 10em;*/
-  /*max-height:*/
+.place.thumbnail {
   background: black;
   border-radius: 30px;
   padding: 12px 7px;
-  /*max-height: 20%;*/
-  /*padding-top: 5em;*/
 }
 
-.product.thumbnail img {
+.place.thumbnail img {
   border-radius: 25px;
 }
 
-.product__price {
-  color: white;
-  font-size: 1vw;
-  background: #111;
-  margin: auto 5px;
-}
-
-.product.thumbnail p {
+.place.thumbnail p {
   color: #777;
   margin: 7px;
 }
 
-.product>.caption>h3 input[type=checkbox] {
+.place>.caption>h3 input[type=checkbox] {
   width: 2em;
   height: 2em;
   margin: 0 1em;
-
 }
 
-.product>.caption>h3 input[type=checkbox] + span{
+.checkbox-section{
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-section span {
+  background: #222;
+}
+
+.place>.caption>h3 span{
   color: red;
 }
 
+.pricesDiv {
+  color: white;
+
+}
+
+.pricesDiv strong {
+  font-size: 1.8em;
+}
 
 .caption h3 {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.caption p {
+  color: #CEC!important;
 }
 
 .thumbnail>.caption>h3>a {
@@ -46,6 +56,6 @@
   font-size: 2em;
 }
 
-.product__price>div>strong {
-  color: white;
+.checkbox-section input[type=checkBox] {
+  color: #0c6!important;
 }

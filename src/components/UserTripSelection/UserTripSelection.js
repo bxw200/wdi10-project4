@@ -94,7 +94,7 @@ class UserTripSelections extends React.Component {
 									 className="checkbox-control"
 									 checked={this.state.disabled}
 									 onChange={this.toggleDisabled} />
-						<span className="checkbox-label">Disable the control </span>
+						<span className="checkbox-label"> </span>
 					</label>
 					<input type="button"
 								 className="btn btn-success"
