@@ -12,6 +12,58 @@ import {
   Form, Checkbox } from 'react-bootstrap';
 
 import './Profile.css'
+import { getTrips } from '../../actions/tripActions'
+import axios from 'axios'
+
+const trips = [
+    {
+    duration: 1,
+    pax: 4,
+    budget: 500,
+      itineraries: [
+        {
+          places: [
+            {
+              id: 26,
+              name: "National Museum of Singapore",
+              address: "bras basah",
+              lat: "1.2967",
+              lng: "103.8486",
+              price_pax: 500,
+              duration: 1
+
+            }
+          ]
+        }
+      ]
+    }
+  ]
+
+
+const UserOwnTrips = trips.map((trip, id) => {
+  return (
+    <div key={trip.id}>
+    {trip.itineraries.map((itinerary, id) => {
+      return (
+        <div key={itinerary.id}>
+      {itinerary.places.map((place,id) => {
+        return (
+          <div key = {place.id}>
+          <h3>{place.name}</h3>
+          <p>{place.address}</p>
+          </div>
+        )
+      })
+    }
+      </div>
+        )
+      }
+    )
+  }
+    </div>
+  )
+}
+)
 
 export class Profile extends Component {
   constructor(props) {
@@ -24,6 +76,17 @@ export class Profile extends Component {
       email : '',
       trips : []
     }
+  }
+
+  componentDidMount() {
+    // axios.get('/trips')
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    //   this.props.getTrips()
   }
 
   // onChange = (e) => {
@@ -40,94 +103,96 @@ export class Profile extends Component {
     this.props.profile(this.state, this.props.history);
 
   }
-
+//trip.map(element)
+//iterate element thru trip to get itineraries
+//itinerary.map(element)
+// access data from state --> access to individual items ( share the same scope)
+//
+//
   render() {
-    const UserOwnTrips = this.state.trip.itinerary.place.map((trip, place) => {
-      return (
-        <div key={trip.id}>
-          <h3>{trip.place.name}</h3>
-          <p>{trip.place.address}</p>
-        </div> ) });
-    return (
-    <div className="profileBody">
 
-    <Row className="show-grid">
 
-        <Col md={8} mdOffset={2} >
-        <h1 id="profileTitle">User Profile</h1>
-        <FormGroup bsSize="large">
+    //trip.id ref for each element (onlyin the trip)
+    //id is index placced on currrent trip (similar to i in for loop)
+        return (
+        <div className="profileBody">
 
-          <div className="nameField">
-            <p>Place holder for user name:</p>
-            <Button bsStyle="info"
-                    className="profile"
-                    onClick={this.onClick}>
-                    Edit</Button>
-          </div>
+        <Row className="show-grid">
 
-          <div className="passwordField">
-            <p>Place holder for user Password:</p>
-            <Button bsStyle="info"
-                    className="profile"
-                    onClick={this.onClick}>
-                    Edit</Button>
-          </div>
+            <Col md={8} mdOffset={2} >
+            <h1 id="profileTitle">User Profile</h1>
+            <FormGroup bsSize="large">
 
-          <div className="ageField">
-            <p>Place holder for user Age:</p>
-            <Button bsStyle="info"
-                    className="profile"
-                    onClick={this.onClick}>
-                    Edit</Button>
-          </div>
+              <div className="nameField">
+                <p>Place holder for user name:</p>
+                <Button bsStyle="info"
+                        className="profile"
+                        onClick={this.onClick}>
+                        Edit</Button>
+              </div>
 
-          <div className="genderField">
-            <p>Place holder for user Gender:</p>
-            <Button bsStyle="info"
-                    className="profile"
-                    onClick={this.onClick}>
-                    Edit</Button>
-          </div>
+              <div className="passwordField">
+                <p>Place holder for user Password:</p>
+                <Button bsStyle="info"
+                        className="profile"
+                        onClick={this.onClick}>
+                        Edit</Button>
+              </div>
 
-          <div className="emailField">
-            <p>Place holder for user Email:</p>
-            <Button bsStyle="info"
-                    className="profile"
-                    onClick={this.onClick}>
-                    Edit</Button>
-          </div>
+              <div className="ageField">
+                <p>Place holder for user Age:</p>
+                <Button bsStyle="info"
+                        className="profile"
+                        onClick={this.onClick}>
+                        Edit</Button>
+              </div>
 
-        </FormGroup>
+              <div className="genderField">
+                <p>Place holder for user Gender:</p>
+                <Button bsStyle="info"
+                        className="profile"
+                        onClick={this.onClick}>
+                        Edit</Button>
+              </div>
 
-        </Col>
-      </Row>
-      <Row>
-        <Col md={8} mdOffset={2} >
-          {UserOwnTrips}
-        </Col>
-      </Row>
-    </div>);
-      }
-    }
+              <div className="emailField">
+                <p>Place holder for user Email:</p>
+                <Button bsStyle="info"
+                        className="profile"
+                        onClick={this.onClick}>
+                        Edit</Button>
+              </div>
+
+            </FormGroup>
+
+            </Col>
+          </Row>
+          <Row>
+            <Col md={8} mdOffset={2} >
+            {UserOwnTrips}
+            </Col>
+          </Row>
+        </div>);
+  };
+
+}
+
 
 
 // A higher order component is when you do a {connect}: a higher-order component is a function that takes a
 // component and returns a new component.
 const mapStateToProps = (state) => {
     return {
-      // email:state.auth.email,
-      // password:state.auth.password,
-      // name:state.auth.name,
-      // gender:state.auth.gender,
-      // age:state.auth.age
+      trips: state.trips
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      profile(state, history){
-        dispatch(Profile(state, history))
-      }
+      // profile(state, history){
+      //   dispatch(Profile(state, history))
+      // },
+      getTrips: () => {dispatch(getTrips())}
     }
 }
 
