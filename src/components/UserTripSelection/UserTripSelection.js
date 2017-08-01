@@ -118,7 +118,7 @@ class UserTripSelections extends React.Component {
             <Link
                   className="btn btn-info"
                   role="button"
-                  to="/resultpreview">Surprise me!
+                  to="/surpriseme">Surprise me!
             </Link>
           </Col>
 

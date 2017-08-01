@@ -8,26 +8,14 @@ import { Link } from 'react-router-dom';
 import {
   Button, Navbar, NavItem, Nav, Grid, Image, Row, Col
 } from 'react-bootstrap';
-import './ResultPreview.css';
+import './SurpriseMe.css';
 
 export default class ResultPreview extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {isToggleOn: true};
+    this.state = {place: [] };
     // this.handleClick = this.handleClick.bind(this);
   }
-
-  // onClick = (e) => {
-  //
-  //     const toggle = this.state.completed ? false : true;
-  //     console.log('clicked: ', toggle);
-  //
-  //     this.props.toggleTodo(this.props.todo.id);
-  //
-  //     this.setState( {
-  //       completed: toggle
-  //     });
-  // }
 
   selectAgain = (e) => {
 
@@ -53,27 +41,60 @@ export default class ResultPreview extends React.Component {
   //     });
   }
 
+  // var NewItinerary= React.createClass({
+
   confirmTrip= (e) => {
-  //
+
+    const user = {
+
+name: "john iubhiuhbidufb",
+email: "john@fire.orgxc xnicj xicj ixjbc",
+password: "johvdvsv",
+
+trips: [
+{
+
+duration: 1,
+pax: 4,
+budget: 500,
+
+
+itineraries: [
+{
+
+
+places: [
+{
+id: 26,
+name: "National Museum of Singapore",
+address: null,
+lat: "1.2967",
+lng: "103.8486",
+price_pax: 500,
+duration: 1
+
+}
+]
+}
+]
+}
+]
+}
+
+
+
   //     const toggle = this.state.completed ? false : true;
       console.log('clicked: Confirm trip');
-  //
-      // this.props.trip(this.props.history);
-  //
-  //     this.setState( {
-  //       completed: toggle
-  //     });
+      // var name = this.state.place.name.value;
+      // var duration = this.state.place.duration.value;
+
+      axios.post('/users', user).
+      then(res => {
+        console.log('Trip confirmed, new trip confirmation worked!', res);
+      }).catch( err => {
+        console.log('error in creating trip', err);
+      });
   }
-
-  // function selectAgain(e) = {
-  //   console.log('Select again!');
-  // }
-  //
-  // function confirmTrip(e) = {
-  //   console.log('confirm your trip!');
-  // }
-
-
   // getInitialState() {
   //   return { places: [] }
   // }
@@ -81,37 +102,32 @@ export default class ResultPreview extends React.Component {
   //   this.setState({ places: place })
   //   });
   // }
-
-  //under render
-  // var PlaceResult = this.state.place.map((place) => {
-  //   return (
-  //     <div key={place.id}>
-  //       <h3>{place.name}</h3>
-  //       <p>{place.address}</p>
-  //     </div> ) });
-
-
   render() {
-
+    var placeresult = this.state.place.map((place) => {
+      return (
+        <div key={place.id}>
+          <h3>{place.name}</h3>
+          <p>{place.address}</p>
+        </div> ) });
     return (
       <div>
         <Row className="show-grid">
           <Col xs={4} md={4}>
               <div className="result">
                 <h2>Result 1</h2>
-
+                {placeresult}
               </div>
           </Col>
           <Col xs={4} md={4}>
               <div className="result">
                 <h2>Result 2</h2>
-
+                {placeresult}
               </div>
           </Col>
           <Col xs={4} md={4}>
               <div className="result">
                 <h2>Result 3</h2>
-
+                {placeresult}
               </div>
           </Col>
         </Row>
@@ -129,7 +145,7 @@ export default class ResultPreview extends React.Component {
           <Link
           className="btn btn-info"
           role="button"
-          to="/resultpreview"
+          to="/surpriseme"
           onClick={this.surpriseMe()}>Surprise me!
           </Link>
           </Col>
@@ -138,7 +154,7 @@ export default class ResultPreview extends React.Component {
           <Link
           className="btn btn-info"
           role="button"
-          to="/itinerary"
+          to="/profile"
           onClick={this.confirmTrip()}>Confirm your trip!
           </Link>
           </Col>
