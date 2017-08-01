@@ -24,12 +24,10 @@
   font-size: 80px;
 }
 
-.logo{
+.logo img{
   float: right;
+  margin-top: 50px;
   margin-left: 20px;
-  padding-top: 50px;
-}
-img{
   height: 200px;
   width: 200px;
 }
