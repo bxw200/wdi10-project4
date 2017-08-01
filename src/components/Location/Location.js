@@ -21,7 +21,7 @@ class Location extends Component {
         image:"images/3.png",
         description:"This is some place",
         pax:3,
-        url:""
+        image_url:""
       }
     }
 
@@ -38,16 +38,16 @@ class Location extends Component {
 
     render() {
       const {
-        name, price, image, description, pax, url
+        name, price, image, description, pax, image_url, address
       } = this.props.location;
 
       console.log(this.props.location);
       return (
           <div className="product div thumbnail" >
-              <img src={image}alt="product" onClick={this.pictureClicked}/>
+              <img src={"images/"+image_url}alt="product" onClick={this.pictureClicked}/>
               <div className="caption">
                   <h3>
-                    <a href={url}>{name}</a>
+                    <a href={"images/"+image_url}>{name}</a>
                     <input type="checkBox" onChange={this.checkBoxChange}/>
                     <span>
                     {this.state.going? "I'm going!":"Take me there!"}
@@ -65,7 +65,7 @@ class Location extends Component {
                     </div>
                   </div>
                   <p>
-                  {description}
+                  {address}
                   </p>
               </div>
           </div>
@@ -79,7 +79,7 @@ Location.propTypes = {
     // price: PropTypes.number,
     // currency: PropTypes.string,
     // image: PropTypes.string,
-    // url: PropTypes.string,
+    // image_url: PropTypes.string,
     // addToCart: PropTypes.func.isRequired,
     // removeFromCart: PropTypes.func.isRequired,
     // removeAllFromCart: PropTypes.func.isRequired,

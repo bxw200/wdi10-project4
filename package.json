@@ -18,6 +18,10 @@
     "categories": {
       "target": "http://localhost:3001",
       "ws": true
+    },
+    "places": {
+      "target": "http://localhost:3001",
+      "ws": true
     }
   },
   "dependencies": {
