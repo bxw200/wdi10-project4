@@ -1,9 +1,9 @@
-/*.App {
-  height: 100vh;
+.App {
+  /*height: 100vh;
   width: 100vw;
-
-  padding-top: 55px;
-}*/
+  padding-top: 55px;*/
+  background-image: url("images/forest-background.png");
+}
 
 /*.App-header {
   height: 150px;
