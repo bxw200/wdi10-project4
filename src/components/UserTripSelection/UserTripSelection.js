@@ -32,6 +32,8 @@ class UserTripSelections extends React.Component {
 
 		axios.get('categories').then(res=>{
 			// console.log("Server response: ",res.data);
+
+
 			res.data.forEach(cat => {
 				this.props.addCategory({value:cat.id.toString(), label:cat.name});
 			});
@@ -50,6 +52,19 @@ class UserTripSelections extends React.Component {
 	}
 
 	handleGetLocationsClicked = (e) => {
+
+    console.log(this.state.value);
+
+    axios.get('places',{params:{categories_id : this.state.value}})
+    .then(res=>{
+      console.log("server responded ", res);
+    }).catch(err=>{
+      if (err.response) {
+        console.log("server responded with error. ", err.response);
+      }else {
+        console.log("svr request error.", err);
+      }
+    });
 
 		this.setState({
 			sentToServer: true
@@ -127,7 +142,7 @@ class UserTripSelections extends React.Component {
             <Link
                   className="btn btn-info"
                   role="button"
-                  to="/resultpreview">Surprise me!
+                  to="/surpriseMe">Surprise me!
             </Link>
           </Col>
 
