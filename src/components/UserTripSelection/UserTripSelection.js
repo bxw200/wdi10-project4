@@ -29,27 +29,36 @@ class UserTripSelections extends React.Component {
 		};
 
 
-
-		axios.get('categories').then(res=>{
-			// console.log("Server response: ",res.data);
-			res.data.forEach(cat => {
-				this.props.addCategory({value:cat.id.toString(), label:cat.name});
-			});
-			// causes an additional 0 to appear between.
-			// this.props.categoriesRcvdFromSvr(res.data.map(cat => {
-			// 	return {id:cat.id, name:cat.name}
-			// }));
-
-		}).catch(err=>{
-			if (err.response) {
-				console.log("Server responded with error. ", err.response);
-			}else {
-				console.log("Server request error. ", err);
-			}
-		});
 	}
 
 	handleGetLocationsClicked = (e) => {
+
+    console.log(typeof this.state.value);
+
+    if (this.state.value != []) {
+      axios.get('places',{
+        params:{
+          category_ids: this.state.value
+        }
+      })
+      .then(res=>{
+        if (res.data) {
+            console.log("server responded with data. ", res.data);
+        }else {
+          console.log("server responded. ", res);
+        }
+  		}).catch(err=>{
+  			if (err.response) {
+  				console.log("Server responded with error. ", err.response);
+  			}else {
+  				console.log("Server request error. ", err);
+  			}
+  		});
+    }
+
+
+
+// console.log("selectedPlaces:", this.state.value);
 
 		this.setState({
 			sentToServer: true
