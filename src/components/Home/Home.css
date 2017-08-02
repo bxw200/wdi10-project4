@@ -1,7 +1,12 @@
 .homeDiv {
   color: black;
   text-align: left;
+  background-color: white;
+  border-color: black;
+  border-width: medium;
+
 }
+
 
 .homeDiv p {
   width: 100%;

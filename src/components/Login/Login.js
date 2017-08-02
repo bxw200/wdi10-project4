@@ -90,7 +90,7 @@ class Login extends Component {
         {/* Sign UP button */}
           <Col md={6} mdPush={6}>
                   <FormGroup>
-                        <Button bsStyle="info"
+                        <Button 
                                 type="submit"
                                 className="signupButton"
                                 onClick={this.onSignup}>
@@ -102,7 +102,7 @@ class Login extends Component {
           {/* Login button */}
           <Col md={6} mdPull={6}>
                     <FormGroup>
-                        <Button bsStyle="success"
+                        <Button
                                 type="submit"
                                 className="loginButton"
                                 onClick={this.onClick}>

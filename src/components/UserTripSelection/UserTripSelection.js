@@ -29,6 +29,26 @@ class UserTripSelections extends React.Component {
 		};
 
 
+
+		axios.get('categories').then(res=>{
+			// console.log("Server response: ",res.data);
+
+
+			res.data.forEach(cat => {
+				this.props.addCategory({value:cat.id.toString(), label:cat.name});
+			});
+			// causes an additional 0 to appear between.
+			// this.props.categoriesRcvdFromSvr(res.data.map(cat => {
+			// 	return {id:cat.id, name:cat.name}
+			// }));
+
+		}).catch(err=>{
+			if (err.response) {
+				console.log("Server responded with error. ", err.response);
+			}else {
+				console.log("Server request error. ", err);
+			}
+		});
 	}
 
 	handleGetLocationsClicked = (e) => {
@@ -127,7 +147,7 @@ class UserTripSelections extends React.Component {
             <Link
                   className="btn btn-info"
                   role="button"
-                  to="/resultpreview">Surprise me!
+                  to="/surpriseme">Surprise me!
             </Link>
           </Col>
 
