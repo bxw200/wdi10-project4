@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 import Location from '../Location/Location';
 import data from '../../data/data';
-import {updateCategories,updateCategory} from '../../actions/categoriesAction';
+// import {updateCategories,addCategory} from '../../actions/categoriesAction';
 
 import {
   Button, Navbar, NavItem, Nav, Grid, Image, Row, Col
@@ -31,59 +31,59 @@ class UserTripSelections extends React.Component {
 		};
 
     // <editor-fold populate categories from server to redux store
-		axios.get('categories').then(res=>{
-      // map categories to store
-			res.data.forEach(cat => {
-				this.props.addCategory({
-          value:cat.id.toString(),
-          label:cat.name});
-			});
-		}).catch(err=>{
-			if (err.response) {
-				console.log("Server responded with error. ", err.response);
-			}else {
-				console.log("Server request error. ", err);
-			}
-		});
+		// axios.get('categories').then(res=>{
+    //   // map categories to store
+		// 	res.data.forEach(cat => {
+		// 		this.props.addCategory({
+    //       value:cat.id.toString(),
+    //       label:cat.name});
+		// 	});
+		// }).catch(err=>{
+		// 	if (err.response) {
+		// 		console.log("Server responded with error. ", err.response);
+		// 	}else {
+		// 		console.log("Server request error. ", err);
+		// 	}
+		// });
     // </editor-fold>
 	}
 
   serverGetLocationsRequest = (random = false)=>{
     // <editor-fold get place reccomendations from server
 
-    let paramObj = {}
-
-    if (random) {
-      paramObj = { random: true }
-    }else {
-      paramObj = { category_ids: this.state.value }
-    }
-
-    axios.get('places',{
-        params:{
-          category_ids: this.state.value
-        }
-      })
-    .then(res=>{
-      if (res.data) {
-          console.log("server responded with data. ", res.data);
-          this.setState({
-            serverRecommendedPlaces: res.data,
-            serverRespondedWithData: true
-          })
-      }else {
-        console.log("server responded. ", res);
-      }
-    }).catch(err=>{
-      if (err.response) {
-        console.log("Server responded with error. ", err.response);
-      }else {
-        console.log("Server request error. ", err);
-      }
-      this.setState({
-        serverRespondedWithData: true
-      });
-    });
+    // let paramObj = {}
+    //
+    // if (random) {
+    //   paramObj = { random: true }
+    // }else {
+    //   paramObj = { category_ids: this.state.value }
+    // }
+    //
+    // axios.get('places',{
+    //     params:{
+    //       category_ids: this.state.value
+    //     }
+    //   })
+    // .then(res=>{
+    //   if (res.data) {
+    //       console.log("server responded with data. ", res.data);
+    //       this.setState({
+    //         serverRecommendedPlaces: res.data,
+    //         serverRespondedWithData: true
+    //       })
+    //   }else {
+    //     console.log("server responded. ", res);
+    //   }
+    // }).catch(err=>{
+    //   if (err.response) {
+    //     console.log("Server responded with error. ", err.response);
+    //   }else {
+    //     console.log("Server request error. ", err);
+    //   }
+    //   this.setState({
+    //     serverRespondedWithData: true
+    //   });
+    // });
     //</editor-fold>
   }
 
@@ -201,21 +201,21 @@ class UserTripSelections extends React.Component {
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		categoriesRcvdFromSvr: (categories) => {
-			dispatch(updateCategories(categories));
-		},
-		addCategory: (category) => {
-			dispatch(updateCategory(category));
-		}
-	}
-}
+// const mapDispatchToProps = (dispatch) => {
+// 	return {
+// 		categoriesRcvdFromSvr: (categories) => {
+// 			dispatch(updateCategories(categories));
+// 		},
+// 		addCategory: (category) => {
+// 			dispatch(addCategory(category));
+// 		}
+// 	}
+// }
 
-const mapStateToProps = (state) => {
-	return {
-		categories: state.place_categories.categories
-	}
-}
+// const mapStateToProps = (state) => {
+// 	return {
+// 		categories: state.place_categories.categories
+// 	}
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserTripSelections);
+export default connect(null, null)(UserTripSelections);

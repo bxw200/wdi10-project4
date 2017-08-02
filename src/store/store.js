@@ -5,12 +5,12 @@ import {
   combineReducers,
   applyMiddleware
 } from 'redux';
-// import thunk from 'redux-thunk';
 
 //reducers
 import AuthReducer from '../reducers/authReducer';
 import userCheckReducer from '../reducers/userCheckReducer'
-import catReducer from '../reducers/placesCategoriesReducer'
+// import catReducer from '../reducers/categoriesReducer'
+import placesReducer from '../reducers/placesReducer'
 import tripReducer from '../reducers/tripReducer'
 
 export let initStore = () => {
@@ -18,7 +18,8 @@ export let initStore = () => {
   const reducer = combineReducers ({
     auth: AuthReducer,
     itinerary: userCheckReducer,
-    place_categories: catReducer,
+    // categories: catReducer,
+    places: placesReducer,
     trips: tripReducer
   });
   return createStore(reducer,
@@ -28,7 +29,5 @@ export let initStore = () => {
                               f=>f
                             ));
 }
-
-
 
 export default initStore;
