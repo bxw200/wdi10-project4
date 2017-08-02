@@ -25,23 +25,19 @@ class UserTripSelections extends React.Component {
 			crazy: false,
 			options: CATEGORY,
 			value: [],
-			sentToServer: false
+			sentToServer: false,
+      serverRespondedWithData: false,
+      serverRecommendedPlaces: []
 		};
 
-
-
+    // <editor-fold populate categories from server to redux store
 		axios.get('categories').then(res=>{
-			// console.log("Server response: ",res.data);
-
-
+      // map categories to store
 			res.data.forEach(cat => {
-				this.props.addCategory({value:cat.id.toString(), label:cat.name});
+				this.props.addCategory({
+          value:cat.id.toString(),
+          label:cat.name});
 			});
-			// causes an additional 0 to appear between.
-			// this.props.categoriesRcvdFromSvr(res.data.map(cat => {
-			// 	return {id:cat.id, name:cat.name}
-			// }));
-
 		}).catch(err=>{
 			if (err.response) {
 				console.log("Server responded with error. ", err.response);
@@ -49,40 +45,60 @@ class UserTripSelections extends React.Component {
 				console.log("Server request error. ", err);
 			}
 		});
+    // </editor-fold>
 	}
 
-	handleGetLocationsClicked = (e) => {
+  serverGetLocationsRequest = (random = false)=>{
+    // <editor-fold get place reccomendations from server
 
-    console.log(typeof this.state.value);
+    let paramObj = {}
 
-    if (this.state.value != []) {
-      axios.get('places',{
+    if (random) {
+      paramObj = { random: true }
+    }else {
+      paramObj = { category_ids: this.state.value }
+    }
+
+    axios.get('places',{
         params:{
           category_ids: this.state.value
         }
       })
-      .then(res=>{
-        if (res.data) {
-            console.log("server responded with data. ", res.data);
-        }else {
-          console.log("server responded. ", res);
-        }
-  		}).catch(err=>{
-  			if (err.response) {
-  				console.log("Server responded with error. ", err.response);
-  			}else {
-  				console.log("Server request error. ", err);
-  			}
-  		});
+    .then(res=>{
+      if (res.data) {
+          console.log("server responded with data. ", res.data);
+          this.setState({
+            serverRecommendedPlaces: res.data,
+            serverRespondedWithData: true
+          })
+      }else {
+        console.log("server responded. ", res);
+      }
+    }).catch(err=>{
+      if (err.response) {
+        console.log("Server responded with error. ", err.response);
+      }else {
+        console.log("Server request error. ", err);
+      }
+      this.setState({
+        serverRespondedWithData: true
+      });
+    });
+    //</editor-fold>
+  }
+
+	handleGetLocationsClicked = (e) => {
+    if (this.state.value.length == 0) {
+      const aMsg = "Category selection empty. Cannot pass nothing to server."
+      console.log(aMsg);
+      alert(aMsg);
+    }else {
+      this.serverGetLocationsRequest();
     }
 
-
-
-// console.log("selectedPlaces:", this.state.value);
-
-		this.setState({
-			sentToServer: true
-		});
+		// this.setState({
+		// 	sentToServer: true
+		// });
 	}
 
 	handleSelectChange = (value) => {
@@ -98,11 +114,21 @@ class UserTripSelections extends React.Component {
 
 	render () {
 
-		const dispVacations = this.state.sentToServer? (<div className="randomCategory">
+		let dispVacations = this.state.sentToServer?
+    (<div className="randomCategory">
 			<Location location={data[Math.floor(Math.random()*3)+1]}/>
 			<Location location={data[Math.floor(Math.random()*3)+1]}/>
 			<Location location={data[Math.floor(Math.random()*3)+1]}/>
 		</div>):"";
+
+    dispVacations = this.state.serverRespondedWithData?
+    (<div className="randomCategory">
+      {this.state.serverRecommendedPlaces.map(loc=>{
+        console.log(loc);
+        return <Location location={loc}/>
+      })}
+     </div>
+    ):"";
 
 		return (
 
@@ -144,11 +170,13 @@ class UserTripSelections extends React.Component {
             </Link>
           </Col>
           <Col xs={2} md={2}>
-            <Link
+            <div className="btn btn-info"
+                 onClick={this.serverGetLocationsRequest(true)}>Surprise me!</div>
+            {/*<Link
                   className="btn btn-info"
                   role="button"
                   to="/surpriseme">Surprise me!
-            </Link>
+            </Link>*/}
           </Col>
 
           <Col xs={2} md={2}>
