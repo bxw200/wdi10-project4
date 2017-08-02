@@ -1,5 +1,5 @@
 .place.thumbnail {
-  background: white;
+  background: linear-gradient(to right, #AAA, white, white,white,white);
   border-radius: 30px;
 
   height: 250px;

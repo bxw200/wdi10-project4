@@ -4,7 +4,7 @@ import { HashRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import {
-  Button, Navbar, NavItem, Nav, Grid, Image, Row, Col
+  Navbar, NavItem, Nav, Grid, Image, Row, Col
 } from 'react-bootstrap';
 
 import Main from '../Routes/Routes';

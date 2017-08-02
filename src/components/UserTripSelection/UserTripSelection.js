@@ -14,7 +14,7 @@ import {addPlace} from '../../actions/placesAction';
 
 
 import {
-  Button, Navbar, NavItem, Nav, Grid, Image, Row, Col
+  Row, Col
 } from 'react-bootstrap';
 import './UserTripSelection.css';
 
@@ -34,12 +34,14 @@ class UserTripSelections extends React.Component {
 
     // <editor-fold populate categories from server to redux store
 		axios.get('categories').then(res=>{
-      // map categories to store
-			res.data.forEach(cat => {
-				this.props.addCategory({
-          value:cat.id.toString(),
-          label:cat.name});
-			});
+      this.setState({
+        options:res.data.map(cat=>{
+          return {
+            value:cat.id.toString(),
+            label:cat.name
+          }
+        })
+      });      
 		}).catch(err=>{
 			if (err.response) {
 				console.log("Server responded with error. ", err.response);
@@ -51,56 +53,56 @@ class UserTripSelections extends React.Component {
 	}
 
   serverGetLocationsRequest = (random = false)=>{
+
+    return;
     // <editor-fold get place reccomendations from server
 
-    // let paramObj = {}
-    //
-    // if (random) {
-    //   paramObj = { random: true }
-    // }else {
-    //   paramObj = { category_ids: this.state.value }
-    // }
-    //
-    // axios.get('places',{
-    //     params:{
-    //       category_ids: this.state.value
-    //     }
-    //   })
-    // .then(res=>{
-    //   if (res.data) {
-    //       console.log("server responded with data. ", res.data);
-    //       this.setState({
-    //         serverRecommendedPlaces: res.data,
-    //         serverRespondedWithData: true
-    //       })
-    //   }else {
-    //     console.log("server responded. ", res);
-    //   }
-    // }).catch(err=>{
-    //   if (err.response) {
-    //     console.log("Server responded with error. ", err.response);
-    //   }else {
-    //     console.log("Server request error. ", err);
-    //   }
-    //   this.setState({
-    //     serverRespondedWithData: true
-    //   });
-    // });
+    let paramObj = {}
+
+    if (random) {
+      paramObj = { random: true }
+    }else {
+      paramObj = { category_ids: this.state.value }
+    }
+
+    axios.get('places',{
+        params:paramObj
+
+        // {
+        //   category_ids: this.state.value
+        // }
+      })
+    .then(res=>{
+      if (res.data) {
+          console.log("server responded with data. ", res.data);
+          this.setState({
+            serverRecommendedPlaces: res.data,
+            serverRespondedWithData: true
+          })
+      }else {
+        console.log("server responded. ", res);
+      }
+    }).catch(err=>{
+      if (err.response) {
+        console.log("Server responded with error. ", err.response);
+      }else {
+        console.log("Server request error. ", err);
+      }
+      this.setState({
+        serverRespondedWithData: true
+      });
+    });
     //</editor-fold>
   }
 
 	handleGetLocationsClicked = (e) => {
     if (this.state.value.length == 0) {
       const aMsg = "Category selection empty. Cannot pass nothing to server."
-      console.log(aMsg);
+      console.warn(aMsg);
       alert(aMsg);
     }else {
       this.serverGetLocationsRequest();
     }
-
-		// this.setState({
-		// 	sentToServer: true
-		// });
 	}
 
 	handleSelectChange = (value) => {
@@ -115,37 +117,36 @@ class UserTripSelections extends React.Component {
 	}
 
 	render () {
+    // <editor-fold static, just in case
+		// let dispVacations = this.state.sentToServer?
+    // (<div className="randomCategory">
+		// 	<Location location={data[Math.floor(Math.random()*3)+1]}/>
+		// 	<Location location={data[Math.floor(Math.random()*3)+1]}/>
+		// 	<Location location={data[Math.floor(Math.random()*3)+1]}/>
+		// </div>):"";
+		// </editor-fold>
 
-		let dispVacations = this.state.sentToServer?
-    (<div className="randomCategory">
-			<Location location={data[Math.floor(Math.random()*3)+1]}/>
-			<Location location={data[Math.floor(Math.random()*3)+1]}/>
-			<Location location={data[Math.floor(Math.random()*3)+1]}/>
-		</div>):"";
-
-    dispVacations = this.state.serverRespondedWithData?
+    let dispVacations = this.state.serverRespondedWithData?
     (<div className="randomCategory">
       {this.state.serverRecommendedPlaces.map(loc=>{
         console.log(loc);
-        return <Location location={loc}/>
+        return <Location key={loc.id} location={loc}/>
       })}
      </div>
     ):"";
 
 		return (
-
-
 			<div className="section" id="selection">
       <Row className="show-grid">
-   <Col xs={12} md={8}>
+        <Col xs={12} md={8}>
 				<h3 className="section-heading">{this.props.label}</h3>
 				<Select className="select"
                 multi
                 simpleValue
                 disabled={this.state.disabled}
                 value={this.state.value}
-                placeholder="Select your favourite(s)"
-                options={this.props.categories}
+                placeholder="Select by categories"
+                options={this.state.options}
                 onChange={this.handleSelectChange} />
 
 				<div className="checkbox-list">
@@ -165,8 +166,6 @@ class UserTripSelections extends React.Component {
 								 onClick={this.handleGetLocationsClicked}/>
                  </Col>
                   </Row>
-
-
 
 
 				{dispVacations}
@@ -216,7 +215,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
 	return {
-		categories: state.places.categories
+		categories: state.categories
 	}
 }
 

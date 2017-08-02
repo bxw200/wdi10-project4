@@ -14,47 +14,47 @@ class Home extends React.Component {
   }
 
   componentDidMount(){
-
-    let urlCall = 'places';
-
-    axios.get(urlCall).then(res=>{
-      if (res.data) {
-        console.log(`server ${urlCall}-call responded with data. `, res.data);
-        res.data.forEach(place=>{
-          this.props.addPlace(place);
-        });
-      }else {
-        console.log(`server ${urlCall}-call responded, but no data. `, res);
-      }
-    }).catch(err=>{
-      if (err.response) {
-        console.warn(`server ${urlCall}-call responded with error. `, err.response);
-      }else {
-        console.error(`server ${urlCall}-call (error) didn't respond. `, err);
-      }
-    }).then(()=>{
-
-
-      urlCall = 'categories';
-
-      axios.get('categories').then(res=>{
-        if (res.data) {
-          console.log(`server ${urlCall}-call responded with data. `, res.data);
-          res.data.forEach(cat=>{
-            this.props.addCategory(cat);
-          });
-        }else {
-          console.log(`server ${urlCall}-call responded, but no data. `, res);
-        }
-      }).catch(err=>{
-        if (err.response) {
-          console.warn(`server ${urlCall}-call responded with error. `, err.response);
-        }else {
-          console.error(`server ${urlCall}-call (error) didn't respond. `, err);
-        }
-      })
-
-    })
+    //<editor-fold must work with store
+    // let urlCall = 'places';
+    // axios.get(urlCall).then(res=>{
+    //   if (res.data) {
+    //     console.log(`server ${urlCall}-call responded with data. `, res.data);
+    //     res.data.forEach(place=>{
+    //       this.props.addPlace(place);
+    //     });
+    //   }else {
+    //     console.log(`server ${urlCall}-call responded, but no data. `, res);
+    //   }
+    // }).catch(err=>{
+    //   if (err.response) {
+    //     console.warn(`server ${urlCall}-call responded with error. `, err.response);
+    //   }else {
+    //     console.error(`server ${urlCall}-call (error) didn't respond. `, err);
+    //   }
+    // }).then(()=>{
+    //
+    //
+    //   urlCall = 'categories';
+    //
+    //   axios.get('categories').then(res=>{
+    //     if (res.data) {
+    //       console.log(`server ${urlCall}-call responded with data. `, res.data);
+    //       res.data.forEach(cat=>{
+    //         this.props.addCategory(cat);
+    //       });
+    //     }else {
+    //       console.log(`server ${urlCall}-call responded, but no data. `, res);
+    //     }
+    //   }).catch(err=>{
+    //     if (err.response) {
+    //       console.warn(`server ${urlCall}-call responded with error. `, err.response);
+    //     }else {
+    //       console.error(`server ${urlCall}-call (error) didn't respond. `, err);
+    //     }
+    //   })
+    //
+    // })
+    // </editor-fold>
   }
 
 
