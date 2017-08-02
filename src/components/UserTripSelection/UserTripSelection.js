@@ -41,7 +41,7 @@ class UserTripSelections extends React.Component {
             label:cat.name
           }
         })
-      });      
+      });
 		}).catch(err=>{
 			if (err.response) {
 				console.log("Server responded with error. ", err.response);
@@ -54,7 +54,7 @@ class UserTripSelections extends React.Component {
 
   serverGetLocationsRequest = (random = false)=>{
 
-    return;
+    // return;
     // <editor-fold get place reccomendations from server
 
     let paramObj = {}
@@ -96,12 +96,12 @@ class UserTripSelections extends React.Component {
   }
 
 	handleGetLocationsClicked = (e) => {
-    if (this.state.value.length == 0) {
+    if (this.state.value.length > 0) {
+      this.serverGetLocationsRequest();
+    }else {
       const aMsg = "Category selection empty. Cannot pass nothing to server."
       console.warn(aMsg);
       alert(aMsg);
-    }else {
-      this.serverGetLocationsRequest();
     }
 	}
 
@@ -181,7 +181,7 @@ class UserTripSelections extends React.Component {
           </Col>
           <Col xs={2} md={2}>
             <div className="btn btn-info"
-                 onClick={this.serverGetLocationsRequest(true)}>Surprise me!</div>
+                   >Surprise me!</div>
             {/*<Link
                   className="btn btn-info"
                   role="button"
