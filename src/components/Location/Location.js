@@ -37,22 +37,24 @@ class Location extends Component {
       return (
           <div className="place thumbnail" >
             <Row className="show-grid">
-              <Col xs={12} md={8}>
-
+              <Col xs={6} md={4}>
 
               <img src={"images/"+image_url}alt="product" onClick={this.pictureClicked}/>
               </Col>
               <div className="caption">
-              <Col xs={6} md={4}>
-                  <h3>
+              <Col xs={12} md={8}>
+                  <h2>
                     <a href={"images/"+image_url}>{name}</a>
+                        </h2>
                     <div className="checkbox-section">
+                    <h3>
                       <span>
                         {this.state.going? "I'm going!":"Take me there!"}
                       </span>
                       <input type="checkBox" onChange={this.checkBoxChange}/>
+                      </h3>
                     </div>
-                  </h3>
+
                   <div className="pricesDiv">
                     <span>$$ <b>Price</b>/<em>pax</em>: <strong>$ {price_pax}</strong></span>
                   </div>

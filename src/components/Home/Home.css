@@ -7,9 +7,12 @@
   border-radius: 100px;
   padding: 20px;
   margin-bottom: 20px;
+  margin-top: 50px;
 }
+.show-grid.1.row{
+margin-bottom:0px;
 
-
+}
 .homeDiv p {
   width: 100%;
   margin-left: 18%;
@@ -21,7 +24,7 @@
 }
 
 .homeDiv button {
-  
+
   right: 10em;
 }
 
@@ -30,6 +33,7 @@
   left: 4em;
   padding-top: 0px;
   font-size: 80px;
+  margin-bottom: 0px;
 }
 
 .logo img{

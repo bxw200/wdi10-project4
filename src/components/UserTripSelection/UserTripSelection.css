@@ -567,7 +567,7 @@ h6,
 }
 
 .randomCategory {
-  display: flex;
+
   align-items: flex-start;
 }
 
@@ -580,7 +580,7 @@ h6,
 }
 #selection{
   margin-top: 150px;
-  margin-bottom: 200px;
+  margin-bottom: 300px;
 }
 #getBtn{
   margin-top: 10px;

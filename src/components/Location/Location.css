@@ -1,21 +1,33 @@
 .place.thumbnail {
-  background: black;
+  background: white;
   border-radius: 30px;
-  padding: 12px 7px;
-  height: 300px;
+
+  height: 250px;
   width: 1000px;
+  margin-top: 10px;
+}
+.show-grid.row {
+  margin-top: 10px;
+  padding: 12px 7px;
+
 }
 
 .place.thumbnail img {
-  border-radius: 25px;
+  border-radius: 30px;
+  border-color: black;
+  border-width: 5px;
+  height:200px;
+  width: 250px;
+  margin-bottom: 10px;
+  margin-top: 0px;
 }
 
 .place.thumbnail p {
-  color: #777;
+  color: black;
   margin: 7px;
 }
 
-.place>.caption>h3 input[type=checkbox] {
+.place>.caption>h2 input[type=checkbox] {
   width: 2em;
   height: 2em;
   margin: 0 1em;
@@ -27,15 +39,15 @@
 }
 
 .checkbox-section span {
-  background: #222;
+
 }
 
 .place>.caption>h3 span{
-  color: red;
+  color: black;
 }
 
 .pricesDiv {
-  color: white;
+  color: black;
 
 }
 
@@ -43,14 +55,14 @@
   font-size: 1.8em;
 }
 
-.caption h3 {
+.caption h2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .caption p {
-  color: #CEC!important;
+  color: black!important;
 }
 
 .thumbnail>.caption>h3>a {
@@ -60,4 +72,5 @@
 
 .checkbox-section input[type=checkBox] {
   color: #0c6!important;
+  margin-left: 10px;
 }

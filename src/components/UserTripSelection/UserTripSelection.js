@@ -84,10 +84,12 @@ class UserTripSelections extends React.Component {
 
 	render () {
 
-		const dispVacations = this.state.sentToServer? (<div className="randomCategory">
-			<Location location={data[Math.floor(Math.random()*3)+1]}/>
-			<Location location={data[Math.floor(Math.random()*3)+1]}/>
-			<Location location={data[Math.floor(Math.random()*3)+1]}/>
+		const dispVacations = this.state.sentToServer? (
+      <div className="randomCategory">
+			<div><Location location={data[Math.floor(Math.random()*3)+1]}/></div>
+      <div><Location location={data[Math.floor(Math.random()*3)+1]}/></div>
+      <div><Location location={data[Math.floor(Math.random()*3)+1]}/></div>
+
 		</div>):"";
 
 		return (

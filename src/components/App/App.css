@@ -17,7 +17,7 @@
 */
 .App {
   background-image: url("/images/homepageBG.jpg");
-  background-size: cover;
+  background-size:cover;
 }
 .show-grid {
   padding-top: 5em;

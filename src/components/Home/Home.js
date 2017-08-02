@@ -22,7 +22,7 @@ export default class Home extends React.Component {
 
       <div className='homeDiv'>
 
-      <Row className="show-grid">
+      <Row className="show-grid 1">
      <Col xs={12} md={8}>
 
         <h1>Say Hello! to iTina</h1>
