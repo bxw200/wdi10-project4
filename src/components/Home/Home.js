@@ -5,8 +5,8 @@ import {Row, Col, Form, Checkbox } from 'react-bootstrap';
 import './Home.css';
 
 import {connect} from 'react-redux';
-// import {addCategory} from '../../actions/categoriesAction';
-import {addPlace, addCategory} from '../../actions/placesAction';
+import {addCategory} from '../../actions/categoriesAction';
+import {addPlace} from '../../actions/placesAction';
 
 class Home extends React.Component {
   constructor(props) {

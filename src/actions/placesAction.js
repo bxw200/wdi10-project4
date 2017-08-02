@@ -4,10 +4,3 @@ export function addPlace (payload) {
         payload
     }
 }
-
-export function addCategory (payload) {
-    return {
-        type: 'ADD_CATEGORY',
-        payload
-    }
-}

@@ -9,20 +9,21 @@ import {
 //reducers
 import AuthReducer from '../reducers/authReducer';
 import userCheckReducer from '../reducers/userCheckReducer'
-// import catReducer from '../reducers/categoriesReducer'
+import catReducer from '../reducers/categoriesReducer'
 import placesReducer from '../reducers/placesReducer'
 import tripReducer from '../reducers/tripReducer'
 
-export let initStore = () => {
+export let initStore = (persistedState) => {
 
   const reducer = combineReducers ({
     auth: AuthReducer,
     itinerary: userCheckReducer,
-    // categories: catReducer,
+    categories: catReducer,
     places: placesReducer,
     trips: tripReducer
   });
   return createStore(reducer,
+                     persistedState,
                      compose(applyMiddleware(thunk),
                              window.devToolsExtension?
                               window.devToolsExtension():

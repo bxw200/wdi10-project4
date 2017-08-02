@@ -9,7 +9,9 @@ import { Link } from 'react-router-dom';
 
 import Location from '../Location/Location';
 import data from '../../data/data';
-// import {updateCategories,addCategory} from '../../actions/categoriesAction';
+import {addCategory} from '../../actions/categoriesAction';
+import {addPlace} from '../../actions/placesAction';
+
 
 import {
   Button, Navbar, NavItem, Nav, Grid, Image, Row, Col
@@ -31,20 +33,20 @@ class UserTripSelections extends React.Component {
 		};
 
     // <editor-fold populate categories from server to redux store
-		// axios.get('categories').then(res=>{
-    //   // map categories to store
-		// 	res.data.forEach(cat => {
-		// 		this.props.addCategory({
-    //       value:cat.id.toString(),
-    //       label:cat.name});
-		// 	});
-		// }).catch(err=>{
-		// 	if (err.response) {
-		// 		console.log("Server responded with error. ", err.response);
-		// 	}else {
-		// 		console.log("Server request error. ", err);
-		// 	}
-		// });
+		axios.get('categories').then(res=>{
+      // map categories to store
+			res.data.forEach(cat => {
+				this.props.addCategory({
+          value:cat.id.toString(),
+          label:cat.name});
+			});
+		}).catch(err=>{
+			if (err.response) {
+				console.log("Server responded with error. ", err.response);
+			}else {
+				console.log("Server request error. ", err);
+			}
+		});
     // </editor-fold>
 	}
 
@@ -201,21 +203,21 @@ class UserTripSelections extends React.Component {
 	}
 }
 
-// const mapDispatchToProps = (dispatch) => {
-// 	return {
-// 		categoriesRcvdFromSvr: (categories) => {
-// 			dispatch(updateCategories(categories));
-// 		},
-// 		addCategory: (category) => {
-// 			dispatch(addCategory(category));
-// 		}
-// 	}
-// }
+const mapDispatchToProps = (dispatch) => {
+	return {
+		// categoriesRcvdFromSvr: (categories) => {
+		// 	dispatch(updateCategories(categories));
+		// },
+		addCategory: (category) => {
+			dispatch(addCategory(category));
+		}
+	}
+}
 
-// const mapStateToProps = (state) => {
-// 	return {
-// 		categories: state.place_categories.categories
-// 	}
-// }
+const mapStateToProps = (state) => {
+	return {
+		categories: state.places.categories
+	}
+}
 
-export default connect(null, null)(UserTripSelections);
+export default connect(mapStateToProps, mapDispatchToProps)(UserTripSelections);
