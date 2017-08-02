@@ -15,7 +15,10 @@
   border-radius: 5px;
 }
 */
-
+.App {
+  background-image: url("/images/homepageBG.jpg");
+  background-size: cover;
+}
 .show-grid {
   padding-top: 5em;
   /*background: url('/images/forest-background.png') no-repeat center center fixed;;
@@ -28,4 +31,6 @@
 .box{
   margin-left: 100px;
   margin-right: 100px;
+  /*background-image: "/images/homepageBG.jpg";*/
+  background-size: cover;
 }

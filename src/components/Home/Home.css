@@ -1,16 +1,19 @@
 .homeDiv {
   color: black;
-  text-align: left;
+  text-align: center;
   background-color: white;
   border-color: black;
   border-width: medium;
-
+  border-radius: 100px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 
 .homeDiv p {
   width: 100%;
   margin-left: 18%;
+  margin-bottom: 10px;
 }
 
 .homeDiv section:first-of-type {
@@ -18,20 +21,19 @@
 }
 
 .homeDiv button {
-  position: absolute;
+  
   right: 10em;
 }
 
 .homeDiv h1 {
   position: left;
   left: 4em;
-  padding-top: 50px;
+  padding-top: 0px;
   font-size: 80px;
 }
 
 .logo img{
   float: right;
-  margin-top: 50px;
   margin-left: 20px;
   height: 200px;
   width: 200px;

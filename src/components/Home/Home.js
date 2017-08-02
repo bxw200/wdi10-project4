@@ -18,6 +18,8 @@ export default class Home extends React.Component {
 
   render() {
     return (
+      <div className="box">
+
       <div className='homeDiv'>
 
       <Row className="show-grid">
@@ -47,10 +49,10 @@ export default class Home extends React.Component {
           </section>
         </div>
         <a href='/login'>
-          <button>Let's go! </button>
+          <button>Let's get started! </button>
         </a>
       </div>
-  
+      </div>
     );
   }
 }

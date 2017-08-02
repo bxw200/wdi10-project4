@@ -578,3 +578,10 @@ h6,
 .checkbox-list > .btn.btn-success {
   float: right;
 }
+#selection{
+  margin-top: 150px;
+  margin-bottom: 200px;
+}
+#getBtn{
+  margin-top: 10px;
+}

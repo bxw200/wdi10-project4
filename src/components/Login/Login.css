@@ -3,9 +3,8 @@
   padding-top: 10px;
   padding-bottom: 10px;
   margin-top: 50px;
-  margin-bottom: 10px;
-  border-radius: 15px;
-  border: 3px solid white;
+  margin-bottom: 100px;
+
   /*height: 500px;*/
 }
 
@@ -13,6 +12,7 @@ h1#login {
   font-family: serif;
   padding: 15px;
   color: white;
+  text-align: center;
 }
 
 h4 {
@@ -38,17 +38,21 @@ div.checkbox label{
 
 label.emailLabel {
   padding-left: 35px;
+  color: white;
 }
 
 label.passwordLabel {
   padding-left: 35px;
+  color: white;
 }
 
 Button.signupButton {
   margin-bottom: 20px;
   border: 2px solid white;
+  margin-right: 50px;
 }
 Button.loginButton {
   margin-bottom: 20px;
+  margin-left: 200px;
   border: 2px solid white;
 }
