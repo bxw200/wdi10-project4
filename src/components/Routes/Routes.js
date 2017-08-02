@@ -14,7 +14,7 @@ import Itinerary from '../Itinerary/Itinerary';
 import Success from '../Success/Success';
 import Failure from '../Failure/Failure';
 import UserTripSelection from '../UserTripSelection/UserTripSelection';
-import ResultPreview from '../UserTripSelection/surpriseMe'
+import SurpriseMe from '../UserTripSelection/SurpriseMe'
 // </editor-fold>
 
 import Deleteme from '../Deleteme/sajay';
@@ -24,7 +24,7 @@ const Main = () => (
     <Switch>
       <Route exact path = '/' component={Home}></Route>
       <Route exact path = '/trip_selection' component={UserTripSelection}></Route>
-      <Route exact path = '/surpriseMe' component={ResultPreview}></Route>
+      <Route exact path = '/surpriseme' component={SurpriseMe}></Route>
       <Route exact path = '/locations' component={Cart}></Route>
       <Route exact path = '/login' component={Login}></Route>
       <Route exact path = '/profile' component={Profile}></Route>
