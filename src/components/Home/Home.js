@@ -18,9 +18,11 @@ export default class Home extends React.Component {
 
   render() {
     return (
+      <div className="box">
+
       <div className='homeDiv'>
 
-      <Row className="show-grid">
+      <Row className="show-grid 1">
      <Col xs={12} md={8}>
 
         <h1>Say Hello! to iTina</h1>
@@ -47,10 +49,10 @@ export default class Home extends React.Component {
           </section>
         </div>
         <a href='/login'>
-          <button>Let's go! </button>
+          <button>Let's get started! </button>
         </a>
       </div>
-  
+      </div>
     );
   }
 }

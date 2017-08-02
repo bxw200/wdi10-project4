@@ -61,7 +61,7 @@ export class SignUp extends Component {
         <FormGroup bsSize="large">
 
           <div className="SignUpField">
-            <p>Name:</p>
+
               <FormControl
                           id="formControlsText"
                           type="name"
@@ -73,7 +73,7 @@ export class SignUp extends Component {
           </div>
 
           <div className="SignUpField">
-            <p>Password:</p>
+
               <FormControl
                           id="formControlsText"
                           type="password"
@@ -84,7 +84,7 @@ export class SignUp extends Component {
           </div>
 
           <div className="SignUpField">
-            <p>Age:</p>
+
               <FormControl
               id="formControlsText"
               type="title"
@@ -95,20 +95,18 @@ export class SignUp extends Component {
           </div>
 
           <div className="SignUpField">
-            <p>Gender:</p>
+
               <FormControl
                 id="formControlsText"
-                componentClass="textarea"
                 name="gender"
                 placeholder="Gender"
                 onChange={this.onChange}/>
           </div>
 
           <div className="SignUpField">
-            <p>Email:</p>
+
               <FormControl
                 id="formControlsText"
-                componentClass="textarea"
                 name="email"
                 placeholder="Email"
                 onChange={this.onChange}/>
@@ -116,7 +114,7 @@ export class SignUp extends Component {
 
           <Col md={8} >
 
-          <Button bsStyle="success"
+          <Button id="btSignup"
                   className="signup"
                   onClick={this.onClick}>
                   Sign Up</Button>

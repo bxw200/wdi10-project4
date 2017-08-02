@@ -5,3 +5,10 @@
 .result h2 {
   color: red;
 }
+.randomSurprise{
+  background: white;
+  border-radius: 30px;
+  padding: 12px 7px;
+  height: 300px;
+  width: 1000px;
+}

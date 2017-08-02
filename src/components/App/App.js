@@ -12,6 +12,7 @@ import NavbarInstance from '../NavBar/NavBar';
 
 import './App.css';
 
+
 class App extends Component {
   constructor(props){
    super(props);

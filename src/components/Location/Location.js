@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { Checkbox, Button } from 'react-bootstrap';
+import { Checkbox, Button,Row, Col } from 'react-bootstrap';
 
 import './Location.css';
 
@@ -36,24 +36,34 @@ class Location extends Component {
       // console.log(this.props.location);
       return (
           <div className="place thumbnail" >
+            <Row className="show-grid">
+              <Col xs={6} md={4}>
+
               <img src={"images/"+image_url}alt="product" onClick={this.pictureClicked}/>
+              </Col>
               <div className="caption">
-                  <h3>
+              <Col xs={12} md={8}>
+                  <h2>
                     <a href={"images/"+image_url}>{name}</a>
+                        </h2>
                     <div className="checkbox-section">
+                    <h3>
                       <span>
                         {this.state.going? "I'm going!":"Take me there!"}
                       </span>
                       <input type="checkBox" onChange={this.checkBoxChange}/>
+                      </h3>
                     </div>
-                  </h3>
+
                   <div className="pricesDiv">
                     <span>$$ <b>Price</b>/<em>pax</em>: <strong>$ {price_pax}</strong></span>
                   </div>
                   <p>
                     {address}
                   </p>
+                  </Col>
               </div>
+              </Row>
           </div>
       );
     }

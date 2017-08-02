@@ -132,7 +132,10 @@ class UserTripSelections extends React.Component {
 
 		return (
 
-			<div className="section">
+
+			<div className="section" id="selection">
+      <Row className="show-grid">
+   <Col xs={12} md={8}>
 				<h3 className="section-heading">{this.props.label}</h3>
 				<Select className="select"
                 multi
@@ -151,11 +154,17 @@ class UserTripSelections extends React.Component {
 									 onChange={this.toggleDisabled} />
 						<span className="checkbox-label"> </span>
 					</label>
+            </div>
+          </Col>
+          <Col xs={6} md={4} id="getBtn">
 					<input type="button"
 								 className="btn btn-success"
 								 value="Get Locations"
 								 onClick={this.handleGetLocationsClicked}/>
-				</div>
+                 </Col>
+                  </Row>
+
+
 
 
 				{dispVacations}

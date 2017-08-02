@@ -38,7 +38,7 @@ class Cart extends React.Component {
             this.state.locations.map(x => <Location key={x.id} location={x}/>):""
           }
           <a href="/itinerary">
-            <Button bsStyle="primary">Itinerary</Button>
+            <Button>Itinerary</Button>
           </a>
         </div>
       );
