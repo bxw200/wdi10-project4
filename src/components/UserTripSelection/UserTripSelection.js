@@ -110,7 +110,8 @@ class UserTripSelections extends React.Component {
 		this.setState({ value });
     if (value.length === 0) {
       this.setState({
-        serverRespondedWithData: false
+        serverRespondedWithData: false,
+        serverRecommendedPlaces: []
       })
     }
 	}
@@ -138,7 +139,6 @@ class UserTripSelections extends React.Component {
           console.log(loc);
           return <Location key={loc.id} location={loc}/>
         })
-
       }
      </div>
     ):"";
@@ -175,14 +175,11 @@ class UserTripSelections extends React.Component {
                  </Col>
                   </Row>
 
-
 				{dispVacations}
-
 
         <Row className="resultchoices">
           <Col xs={2} md={2}>
-            <Link
-                  className="btn btn-info"
+            <Link className="btn btn-info"
                   role="button"
                   to="/trip_selection">Select Again!
             </Link>
