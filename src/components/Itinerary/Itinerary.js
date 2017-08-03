@@ -9,6 +9,8 @@ import firstDummyData from '../../data/data';
 import {dummyData} from './dummyData';
 import './Itinerary.css';
 
+import {mjo} from './massiveJSONobj';
+
 class Itinerary extends Component {
     constructor(props){
       super(props);
@@ -18,6 +20,26 @@ class Itinerary extends Component {
       this.state = {
           data
       };
+    }
+
+
+    confirmTripsClick = () => {
+      const svrPath = 'users/1';
+      axios.post(svrPath,mjo).
+      then(res=>{
+        if (res.data) {
+          console.log(`server post to ${svrPath} responded with data: `, res.data);
+        }else {
+          console.log(`server post to ${svrPath} responded: `, res);
+        }
+      }).
+      catch(err=>{
+        if (err.response) {
+          console.error(`server post to ${svrPath} error. responded with: `, err.response);
+        }else {
+          console.error(`server post to ${svrPath} error: `, err.response);
+        }
+      });
     }
 
     render() {
@@ -65,9 +87,9 @@ class Itinerary extends Component {
           }
           </Row>
 
-            <a href="/">
-              <Button bsStyle="primary">Confirm</Button>
-            </a>
+            {/*<a href="/">*/}
+              <Button bsStyle="primary" onClick={this.confirmTripsClick}>Confirm</Button>
+            {/*</a>*/}
 
         </div>
 
