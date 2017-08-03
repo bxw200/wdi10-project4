@@ -6,5 +6,11 @@
   margin-top: 5em;
   border: 1px solid gray;
   border-radius: 5px;
-  background-color:rgba(200,215,255,0.5);  
+  background-color:rgba(200,215,255,0.85);
+  display: flex;
+}
+
+
+.confirmTripsDiv a{
+  flex: end;
 }

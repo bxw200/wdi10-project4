@@ -2,45 +2,26 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import {
-  Button,
-  FormGroup,
-  InputGroup,
-  ControlLabel,
-  FormControl,
-  Glyphicon,
-  Row,
-  Col,
-  Form, Checkbox } from 'react-bootstrap';
+import {Button,FormGroup,InputGroup,ControlLabel,FormControl,Glyphicon,Row,Col,Form,Checkbox}
+from 'react-bootstrap';
 
-import data from '../../data/data';
+import firstDummyData from '../../data/data';
 import {dummyData} from './dummyData';
 import './Itinerary.css';
 
 class Itinerary extends Component {
     constructor(props){
       super(props);
-
-      this.state ={
-        name:'',
-        price:'',
-        user: {
-          name: "not found",
-          email: "not found",
-          trips: [{
-            itineraries: [{
-              places: [{
-                price_pax: "not found"
-              }]
-            }]
-            ,pax: -1
-          }]
-
-        }
-      }
+      let data = localStorage.getItem('user-trip-selection')
+      // console.log(JSON.parse(data));
+      data = JSON.parse(data);
+      this.state = {
+          data
+      };
     }
 
     render() {
+      const {data} = this.state;
       const dataRow = (name, price, pax) => (
         <Row className="show-grid">
           <Col xsHidden md={1}>
@@ -58,8 +39,6 @@ class Itinerary extends Component {
             ${price*pax}
           </Col>
         </Row>);
-
-
       return (
         <div className="confirmTripsDiv">
           <Row className="show-grid table-headers">
@@ -79,15 +58,17 @@ class Itinerary extends Component {
             </Col>
           </Row>
 
-          {dummyData.map(loc =>
-               dataRow(loc.name, loc.price, loc.pax)
-          )}
+          {
+            data?
+            data.map(loc =>
+               dataRow(loc.name, loc.price_pax, loc.pax)):""
+          }
 
-          <div>
+
             <a href="/">
-            <Button bsStyle="primary">Confirm</Button>
+              <Button bsStyle="primary">Confirm</Button>
             </a>
-          </div>
+          
         </div>
 
       );
@@ -95,3 +76,22 @@ class Itinerary extends Component {
 }
 
 export default Itinerary;
+
+
+// this.state = {
+//   name:'',
+//   price:'',
+//   user: {
+//     name: "not found",
+//     email: "not found",
+//     trips: [{
+//       itineraries: [{
+//         places: [{
+//           price_pax: "not found"
+//         }]
+//       }]
+//       ,pax: -1
+//     }]
+//
+//   }
+// }
