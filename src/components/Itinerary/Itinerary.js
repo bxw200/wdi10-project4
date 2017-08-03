@@ -23,7 +23,7 @@ class Itinerary extends Component {
     render() {
       const {data} = this.state;
       const dataRow = (name, price, pax) => (
-        <Row className="show-grid">
+        <Row className="show-grid data-row">
           <Col xsHidden md={1}>
           </Col>
           <Col md={3}>
@@ -57,18 +57,18 @@ class Itinerary extends Component {
               <h3>Total</h3>
             </Col>
           </Row>
-
+          <Row className="datas">
           {
             data?
             data.map(loc =>
-               dataRow(loc.name, loc.price_pax, loc.pax)):""
+               dataRow(loc.name, loc.price_pax, 5)):""
           }
-
+          </Row>
 
             <a href="/">
               <Button bsStyle="primary">Confirm</Button>
             </a>
-          
+
         </div>
 
       );

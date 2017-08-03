@@ -130,7 +130,7 @@ class UserTripSelections extends React.Component {
   confirmTripsButtonClick = () => {
     const {userSelectedPlaces} = this.state;
     // console.log(`is it? ${Array.isArray(userSelectedPlaces)}`);
-console.clear();
+    console.clear();
     try {
       localStorage.setItem('user-trip-selection', JSON.stringify(userSelectedPlaces));
       window.location.replace(`itinerary`);
