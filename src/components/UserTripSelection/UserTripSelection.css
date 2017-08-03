@@ -555,7 +555,7 @@ h6,
 }
 
 .randomCategory{
-  padding-top: 50px;
+  padding-top: 5px;
   float: inherit;
 }
 
@@ -577,7 +577,12 @@ h6,
 }
 .section {
   margin-bottom: 20px;
-  padding-top: 5em;
+  padding-top: 1em;
+}
+
+.section-to-mid-screen {
+  margin-top: 173px;
+  margin-bottom: 300px;
 }
 
 #selection{
@@ -586,6 +591,10 @@ h6,
   /*display: flex;
   flex-direction: column;*/
 }
+
+
+
+
 
 .select {
 

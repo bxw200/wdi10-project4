@@ -144,7 +144,7 @@ class UserTripSelections extends React.Component {
     ):"";
 
 		return (
-			<div className="section" id="selection">
+			<div className={this.state.serverRecommendedPlaces.length > 0 ? "section" : "section-to-mid-screen"} id="">
       <Row className="show-grid">
         <Col xs={12} md={8}>
 				<h3 className="section-heading">{this.props.label}</h3>
@@ -156,7 +156,7 @@ class UserTripSelections extends React.Component {
                 placeholder="Select by categories"
                 options={this.state.options}
                 onChange={this.handleSelectChange} />
-
+{/*
 				<div className="checkbox-list">
 					<label className="checkbox">
 						<input type="checkbox"
@@ -166,6 +166,7 @@ class UserTripSelections extends React.Component {
 						<span className="checkbox-label"> </span>
 					</label>
             </div>
+            */}
           </Col>
           <Col xs={6} md={4} id="getBtn">
 					<input type="button"
