@@ -41,15 +41,17 @@ class Itinerary extends Component {
     }
 
     render() {
-      const row = (name, price, pax) => (
+      const dataRow = (name, price, pax) => (
         <Row className="show-grid">
+          <Col xsHidden md={1}>
+          </Col>
           <Col md={3}>
             {name}
           </Col>
-          <Col md={3}>
+          <Col md={2}>
             ${price}
           </Col>
-          <Col md={3}>
+          <Col md={2}>
             {pax}
           </Col>
           <Col md={3}>
@@ -60,14 +62,16 @@ class Itinerary extends Component {
 
       return (
         <div className="confirmTripsDiv">
-          <Row className="show-grid">
+          <Row className="show-grid table-headers">
+            <Col xsHidden md={1}>
+            </Col>
             <Col md={3}>
               <h3>Name</h3>
             </Col>
-            <Col md={3}>
+            <Col md={2}>
               <h3>Price</h3>
             </Col>
-            <Col md={3}>
+            <Col md={2}>
               <h3>Pax</h3>
             </Col>
             <Col md={3}>
@@ -76,7 +80,7 @@ class Itinerary extends Component {
           </Row>
 
           {dummyData.map(loc =>
-               row(loc.name, loc.price, loc.pax)
+               dataRow(loc.name, loc.price, loc.pax)
           )}
 
           <div>
