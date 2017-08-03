@@ -89,7 +89,7 @@ class UserTripSelections extends React.Component {
         console.log("Server request error. ", err);
       }
       this.setState({
-        serverRespondedWithData: true
+        serverRespondedWithData: false
       });
     });
     //</editor-fold>
@@ -108,6 +108,11 @@ class UserTripSelections extends React.Component {
 	handleSelectChange = (value) => {
 		console.log('You\'ve selected:', value);
 		this.setState({ value });
+    if (value.length === 0) {
+      this.setState({
+        serverRespondedWithData: false
+      })
+    }
 	}
 
 	toggleDisabled =(e) =>{
@@ -128,10 +133,13 @@ class UserTripSelections extends React.Component {
 
     let dispVacations = (this.state.serverRespondedWithData && this.state.value > 0)?
     (<div className="randomCategory">
-      {this.state.serverRecommendedPlaces.map(loc=>{
-        console.log(loc);
-        return <Location key={loc.id} location={loc}/>
-      })}
+      {
+        this.state.serverRecommendedPlaces.map(loc=>{
+          console.log(loc);
+          return <Location key={loc.id} location={loc}/>
+        })
+
+      }
      </div>
     ):"";
 
