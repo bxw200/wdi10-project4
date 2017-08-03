@@ -29,7 +29,8 @@ class UserTripSelections extends React.Component {
 			value: [],
 			sentToServer: false,
       serverRespondedWithData: false,
-      serverRecommendedPlaces: []
+      serverRecommendedPlaces: [],
+      userSelectedPlaces: []
 		};
 
     // <editor-fold populate categories from server to redux store
@@ -117,10 +118,13 @@ class UserTripSelections extends React.Component {
 	}
 
 	toggleDisabled =(e) =>{
-
 		this.setState({ disabled: e.target.checked });
-
 	}
+
+  placeCheckChanged = (state, location)=>{
+    const going = state? "going":"not going";
+    console.log(`User is ${going} to ${location.name} `);
+  }
 
 	render () {
     // <editor-fold static, just in case
@@ -137,44 +141,40 @@ class UserTripSelections extends React.Component {
       {
         this.state.serverRecommendedPlaces.map(loc=>{
           console.log(loc);
-          return <Location key={loc.id} location={loc}/>
+          return <Location key={loc.id} location={loc} checkChanged={this.placeCheckChanged}/>
         })
       }
      </div>
     ):"";
 
+    let {userSelectedPlaces} = this.state;
 		return (
 			<div className={this.state.serverRecommendedPlaces.length > 0 ? "section" : "section-to-mid-screen"} id="">
       <Row className="show-grid">
         <Col xs={12} md={8}>
-				<h3 className="section-heading">{this.props.label}</h3>
-				<Select className="select"
-                multi
-                simpleValue
-                disabled={this.state.disabled}
-                value={this.state.value}
-                placeholder="Select by categories"
-                options={this.state.options}
-                onChange={this.handleSelectChange} />
-{/*
-				<div className="checkbox-list">
-					<label className="checkbox">
-						<input type="checkbox"
-									 className="checkbox-control"
-									 checked={this.state.disabled}
-									 onChange={this.toggleDisabled} />
-						<span className="checkbox-label"> </span>
-					</label>
-            </div>
-            */}
-          </Col>
-          <Col xs={6} md={4} id="getBtn">
+  				<h3 className="section-heading">{this.props.label}</h3>
+  				<Select className="select"
+                  multi
+                  simpleValue
+                  disabled={this.state.disabled}
+                  value={this.state.value}
+                  placeholder="Select by categories"
+                  options={this.state.options}
+                  onChange={this.handleSelectChange} />
+        </Col>
+        <Col xs={6} md={4} id="getBtn">
 					<input type="button"
 								 className="btn btn-success"
 								 value="Get Locations"
 								 onClick={this.handleGetLocationsClicked}/>
-                 </Col>
-                  </Row>
+         </Col>
+         <Col xs={6} md={4} id="getBtn">
+ 					<input type="button"
+ 								 className={userSelectedPlaces.length > 0? "btn btn-info":"hidden"}
+ 								 value="Confirm trips"
+ 								 onClick={this.handleGetLocationsClicked}/>
+          </Col>
+        </Row>
 
 				{dispVacations}
 
@@ -186,13 +186,7 @@ class UserTripSelections extends React.Component {
             </Link>
           </Col>
           <Col xs={2} md={2}>
-            <div className="btn btn-info"
-                   >Surprise me!</div>
-            {/*<Link
-                  className="btn btn-info"
-                  role="button"
-                  to="/surpriseme">Surprise me!
-            </Link>*/}
+            <div className="btn btn-info">Surprise me!</div>
           </Col>
 
           <Col xs={2} md={2}>

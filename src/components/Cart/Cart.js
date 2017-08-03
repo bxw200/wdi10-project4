@@ -36,8 +36,8 @@ class Cart extends React.Component {
             this.state.locations?
             this.state.locations.map(x => <Location key={x.id} dontShowCheckbox={true} location={x}/>):""
           }
-          <a href="/itinerary">
-            <Button>Itinerary</Button>
+          <a href="/trip_selection">
+            <Button>Trip selection</Button>
           </a>
         </div>
       );

@@ -603,3 +603,7 @@ h6,
 #getBtn{
   margin-top: 10px;
 }
+
+.resultchoices{
+  display: none;
+}

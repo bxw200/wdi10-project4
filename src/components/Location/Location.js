@@ -24,8 +24,10 @@ class Location extends Component {
       // console.log("in checkbox change");
       // e.preventDefault(); causes issue with response
       this.setState({
-        going: !this.state.going
+        going: e.target.checked
       });
+
+      this.props.checkChanged(e.target.checked, this.props.location);
     }
 
     render() {
