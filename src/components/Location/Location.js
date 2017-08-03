@@ -50,7 +50,7 @@ class Location extends Component {
                         </h2>
                     <div className={this.props.dontShowCheckbox?"donShowCheckBoxSection":"checkbox-section"}>
                       <h3>
-                        <span>
+                        <span className={this.state.going? "span-is-going":"span-not-going"}>
                           {this.state.going? "I'm going!":"Take me there!"}
                         </span>
                         <input type="checkBox" onChange={this.checkBoxChange}/>

@@ -78,3 +78,11 @@
 .donShowCheckBoxSection{
   display: none
 }
+
+.span-not-going{
+  color: red;
+}
+
+.span-is-going{
+  color: green;
+}
