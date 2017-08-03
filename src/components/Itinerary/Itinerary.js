@@ -14,6 +14,7 @@ import {
   Form, Checkbox } from 'react-bootstrap';
 
 import data from '../../data/data';
+import {dummyData} from './dummyData';
 import './Itinerary.css';
 
 class Itinerary extends Component {
@@ -39,42 +40,26 @@ class Itinerary extends Component {
       }
     }
 
-    componentWillMount(){
-
-      console.log('prior axios call to express');
-      let self = this;
-      axios.get('/auth0').then(res => {
-        console.log(res);
-      }).catch(function(err){
-        console.log('Error in server call: ',err);
-        if (err.response) {
-          console.log('server responded with err: ', err.response);
-        }
-      })
-
-
-    }
-
     render() {
       const row = (name, price, pax) => (
         <Row className="show-grid">
-        <Col md={3}>
-          {name}
-        </Col>
-        <Col md={3}>
-          ${price}
-        </Col>
-        <Col md={3}>
-          {pax}
-        </Col>
-        <Col md={3}>
-          ${price*pax}
-        </Col>
-      </Row>);
+          <Col md={3}>
+            {name}
+          </Col>
+          <Col md={3}>
+            ${price}
+          </Col>
+          <Col md={3}>
+            {pax}
+          </Col>
+          <Col md={3}>
+            ${price*pax}
+          </Col>
+        </Row>);
 
 
       return (
-        <div>
+        <div className="confirmTripsDiv">
           <Row className="show-grid">
             <Col md={3}>
               <h3>Name</h3>
@@ -90,59 +75,19 @@ class Itinerary extends Component {
             </Col>
           </Row>
 
-          <Row className="show-grid">
-            <Col md={3}>
-              <h3>{this.state.user.name}</h3>
-            </Col>
-            <Col md={3}>
-              <h3>{this.state.user.trips[0].itineraries[0].places[0].price_pax}</h3>
-            </Col>
-            <Col md={3}>
-              <h3>{this.state.user.trips[0].pax}</h3>
-            </Col>
-            <Col md={3}>
-              <h3>{this.state.user.trips[0].pax * this.state.user.trips[0].itineraries[0].places[0].price_pax}</h3>
-            </Col>
-          </Row>
+          {dummyData.map(loc =>
+               row(loc.name, loc.price, loc.pax)
+          )}
 
-
-          {/*{data.map(loc => {
-              return row(loc.name, loc.price, loc.pax)
-          })}*/}
-
-                  <div>
-                  <a href="/">
-                  <Button bsStyle="primary">Confirm</Button>
-                  </a>
-                  </div>
+          <div>
+            <a href="/">
+            <Button bsStyle="primary">Confirm</Button>
+            </a>
+          </div>
         </div>
 
       );
     }
 }
-
-Itinerary.propTypes = {
-    // id: PropTypes.number.isRequired,
-    // name: PropTypes.string.isRequired,
-    // price: PropTypes.number,
-    // currency: PropTypes.string,
-    // image: PropTypes.string,
-    // url: PropTypes.string,
-
-}
-
-// const mapStateToProps = (state, props) => {
-//     return {
-//         quantityInCart: getItemQtyInCart(state, props)
-//     }
-// }
-//
-// const mapDispatchToProps = (dispatch) => ({
-//     addToCart: (id) => dispatch(addToCart(id)),
-//     removeFromCart: (id) => dispatch(removeFromCart(id)),
-//     removeAllFromCart: (id) => dispatch(removeAllFromCart(id))
-// })
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Product);
 
 export default Itinerary;
