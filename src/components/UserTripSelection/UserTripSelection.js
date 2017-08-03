@@ -12,7 +12,6 @@ import data from '../../data/data';
 import {addCategory} from '../../actions/categoriesAction';
 import {addPlace} from '../../actions/placesAction';
 
-
 import {
   Row, Col
 } from 'react-bootstrap';
@@ -23,12 +22,8 @@ class UserTripSelections extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			disabled: false,
-			crazy: false,
 			options: CATEGORY,
 			value: [],
-			sentToServer: false,
-      serverRespondedWithData: false,
       serverRecommendedPlaces: [],
       userSelectedPlaces: []
 		};
@@ -68,17 +63,15 @@ class UserTripSelections extends React.Component {
 
     axios.get('places',{
         params:paramObj
-
         // {
         //   category_ids: this.state.value
         // }
       })
     .then(res=>{
       if (res.data) {
-          console.log("server responded with data. ", res.data);
+          // console.log("server responded with data. ", res.data);
           this.setState({
-            serverRecommendedPlaces: res.data,
-            serverRespondedWithData: true
+            serverRecommendedPlaces: res.data
           })
       }else {
         console.log("server responded. ", res);
@@ -89,9 +82,6 @@ class UserTripSelections extends React.Component {
       }else {
         console.log("Server request error. ", err);
       }
-      this.setState({
-        serverRespondedWithData: false
-      });
     });
     //</editor-fold>
   }
@@ -107,23 +97,48 @@ class UserTripSelections extends React.Component {
 	}
 
 	handleSelectChange = (value) => {
-		console.log('You\'ve selected:', value);
+		// console.log('You\'ve selected:', value);
 		this.setState({ value });
     if (value.length === 0) {
       this.setState({
-        serverRespondedWithData: false,
         serverRecommendedPlaces: []
       })
     }
 	}
 
-	toggleDisabled =(e) =>{
-		this.setState({ disabled: e.target.checked });
-	}
-
   placeCheckChanged = (state, location)=>{
-    const going = state? "going":"not going";
-    console.log(`User is ${going} to ${location.name} `);
+    // let going = state? "going":"not going";
+    // console.log(`User is ${going} to ${location.name} `);
+
+    const going = state;
+
+    let userSelectedPlaces = this.state.userSelectedPlaces;
+    const index = userSelectedPlaces.findIndex(loc=>loc.id === location.id);
+
+    if (going) {
+      if (index < 0) {//not found, so add
+        userSelectedPlaces.push(location)
+      }
+    }else {
+      if (index >= 0) {// not going & found, hence remove
+        userSelectedPlaces.splice(index,1);
+      }
+    }
+    this.setState({userSelectedPlaces});
+  }
+
+  confirmTripsButtonClick = () => {
+    const {userSelectedPlaces} = this.state;
+    // console.log(`is it? ${Array.isArray(userSelectedPlaces)}`);
+console.clear();
+    try {
+      localStorage.setItem('user-trip-selection', JSON.stringify(userSelectedPlaces));
+      window.location.replace(`itinerary`);
+      // console.log('store success?');
+    } catch (e) {
+      console.error(`store fail: ${e}`);
+    }
+
   }
 
 	render () {
@@ -140,7 +155,6 @@ class UserTripSelections extends React.Component {
     (<div className="randomCategory">
       {
         this.state.serverRecommendedPlaces.map(loc=>{
-          console.log(loc);
           return <Location key={loc.id} location={loc} checkChanged={this.placeCheckChanged}/>
         })
       }
@@ -156,7 +170,6 @@ class UserTripSelections extends React.Component {
   				<Select className="select"
                   multi
                   simpleValue
-                  disabled={this.state.disabled}
                   value={this.state.value}
                   placeholder="Select by categories"
                   options={this.state.options}
@@ -170,15 +183,15 @@ class UserTripSelections extends React.Component {
          </Col>
          <Col xs={6} md={4} id="getBtn">
  					<input type="button"
- 								 className={userSelectedPlaces.length > 0? "btn btn-info":"hidden"}
+ 								 className={userSelectedPlaces.length > 0? "btn btn-lg btn-warning":"hidden"}
  								 value="Confirm trips"
- 								 onClick={this.handleGetLocationsClicked}/>
+ 								 onClick={this.confirmTripsButtonClick}/>
           </Col>
         </Row>
 
 				{dispVacations}
 
-        <Row className="resultchoices">
+        {/*<Row className="resultchoices">
           <Col xs={2} md={2}>
             <Link className="btn btn-info"
                   role="button"
@@ -196,7 +209,7 @@ class UserTripSelections extends React.Component {
                   to="/itinerary">Confirm your trip!
             </Link>
           </Col>
-        </Row>
+        </Row>*/}
 			</div>
 		);
 	}
