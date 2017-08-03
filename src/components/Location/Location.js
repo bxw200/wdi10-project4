@@ -30,7 +30,7 @@ class Location extends Component {
 
     render() {
       const {
-        name, price_pax, image, description, pax, image_url, address
+        name, price_pax, image, description, pax, image_url, address, showTakeMeThere
       } = this.props.location;
 
       // console.log(this.props.location);
@@ -46,15 +46,14 @@ class Location extends Component {
                   <h2>
                     <a href={"images/"+image_url}>{name}</a>
                         </h2>
-                    <div className="checkbox-section">
-                    <h3>
-                      <span>
-                        {this.state.going? "I'm going!":"Take me there!"}
-                      </span>
-                      <input type="checkBox" onChange={this.checkBoxChange}/>
-                      </h3>
+                    <div className={this.props.dontShowCheckbox?"donShowCheckBoxSection":"checkbox-section"}>
+                      <h3>
+                        <span>
+                          {this.state.going? "I'm going!":"Take me there!"}
+                        </span>
+                        <input type="checkBox" onChange={this.checkBoxChange}/>
+                        </h3>
                     </div>
-
                   <div className="pricesDiv">
                     <span>$$ <b>Price</b>/<em>pax</em>: <strong>$ {price_pax}</strong></span>
                   </div>

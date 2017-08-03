@@ -13,7 +13,6 @@ class Cart extends React.Component {
       locations: []
     }
 
-
     axios.get('/places').then(res=>{
       console.log("server responded: ", res);
 
@@ -35,7 +34,7 @@ class Cart extends React.Component {
         <div className="cartDiv">
           {
             this.state.locations?
-            this.state.locations.map(x => <Location key={x.id} location={x}/>):""
+            this.state.locations.map(x => <Location key={x.id} dontShowCheckbox={true} location={x}/>):""
           }
           <a href="/itinerary">
             <Button>Itinerary</Button>

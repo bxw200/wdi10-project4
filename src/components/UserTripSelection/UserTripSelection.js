@@ -132,7 +132,7 @@ class UserTripSelections extends React.Component {
 		// </div>):"";
 		// </editor-fold>
 
-    let dispVacations = (this.state.serverRespondedWithData && this.state.value > 0)?
+    let dispVacations = (this.state.serverRecommendedPlaces.length > 0)?
     (<div className="randomCategory">
       {
         this.state.serverRecommendedPlaces.map(loc=>{
