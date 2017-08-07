@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 // <editor-fold components imports
@@ -29,7 +29,7 @@ const Main = () => (
       <Route exact path = '/login' component={Login}></Route>
       <Route exact path = '/profile' component={Profile}></Route>
       <Route exact path = '/logout' component={Logout}></Route>
-      <Route exact path = '/signUp' component={SignUp}></Route>
+      {/*<Route exact path = '/signUp' component={SignUp}></Route>*/}
       <Route exact path = '/itinerary' component={Itinerary}></Route>
       <Route exact path = '/success' component={Success}></Route>
       <Route exact path = '/failure' component={Failure}></Route>

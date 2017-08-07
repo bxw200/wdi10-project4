@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  padding-top: 5em;
   font-family: sans-serif;
   background-image: url("/images/homepageBG.jpg");
   background-repeat: no-repeat;

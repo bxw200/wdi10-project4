@@ -12,15 +12,17 @@ import userCheckReducer from '../reducers/userCheckReducer'
 import catReducer from '../reducers/categoriesReducer'
 import placesReducer from '../reducers/placesReducer'
 import tripReducer from '../reducers/tripReducer'
+import user_trips from '../reducers/userSelectedTripsReducer';
 
 export let initStore = (persistedState) => {
 
   const reducer = combineReducers ({
-    auth: AuthReducer,
-    itinerary: userCheckReducer,
-    categories: catReducer,
+    // auth: AuthReducer,
+    // itinerary: userCheckReducer,
+    // categories: catReducer,
     places: placesReducer,
-    trips: tripReducer
+    // trips: tripReducer,
+    user_trips
   });
   return createStore(reducer,
                      persistedState,

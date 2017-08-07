@@ -1,0 +1,6 @@
+.error.container {
+  background-color: rgba(205,255,245,0.58);
+  max-width: 71%;
+  padding: 00.5em 2em;
+  border-radius: 3px;
+}

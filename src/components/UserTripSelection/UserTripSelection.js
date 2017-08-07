@@ -9,8 +9,10 @@ import { Link } from 'react-router-dom';
 
 import Location from '../Location/Location';
 import data from '../../data/data';
-import {addCategory} from '../../actions/categoriesAction';
+import {addCategory, addCategories} from '../../actions/categoriesAction';
 import {addPlace} from '../../actions/placesAction';
+
+import {addTrip, addTrips, removeTrip, removeTrips} from '../../actions/userSelectedTripsAction';
 
 import {
   Row, Col
@@ -22,31 +24,37 @@ class UserTripSelections extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			options: CATEGORY,
+			options: [],
 			value: [],
       serverRecommendedPlaces: [],
       userSelectedPlaces: []
 		};
-
-    // <editor-fold populate categories from server to redux store
-		axios.get('categories').then(res=>{
-      this.setState({
-        options:res.data.map(cat=>{
-          return {
-            value:cat.id.toString(),
-            label:cat.name
-          }
-        })
-      });
-		}).catch(err=>{
-			if (err.response) {
-				console.log("Server responded with error. ", err.response);
-			}else {
-				console.log("Server request error. ", err);
-			}
-		});
-    // </editor-fold>
 	}
+
+  componentDidMount(){
+    const {options} = this.state;
+    if (options && options.length > 0) {
+    }else {
+      const path = 'categories';
+      axios.get(path).then(res=>{
+        console.log(`server responded with data(${path}): ${res.data}`);
+        this.setState({
+          options:res.data.map(cat=>{
+            return {
+              value:cat.id.toString(),
+              label:cat.name
+            }
+          })
+        });
+      }).catch(err=>{
+        if (err.response) {
+          console.error(`server-call ${path} error. Responded with data. ${err.response}`);
+        }else {
+          console.error(`server-call ${path} error: ${err.response}`);
+        }
+      });
+    }
+  }
 
   serverGetLocationsRequest = (random = false)=>{
 
@@ -107,10 +115,22 @@ class UserTripSelections extends React.Component {
 	}
 
   placeCheckChanged = (state, location)=>{
-    // let going = state? "going":"not going";
-    // console.log(`User is ${going} to ${location.name} `);
-
     const going = state;
+
+
+    if (going) {
+
+      this.props.addTrips(this.state.serverRecommendedPlaces);
+
+      // this.props.addTrip(location);
+
+    }else {
+      this.props.removeTrip(location);
+    }
+
+    return;
+
+
 
     let userSelectedPlaces = this.state.userSelectedPlaces;
     const index = userSelectedPlaces.findIndex(loc=>loc.id === location.id);
@@ -142,15 +162,6 @@ class UserTripSelections extends React.Component {
   }
 
 	render () {
-    // <editor-fold static, just in case
-		// let dispVacations = this.state.sentToServer?
-    // (<div className="randomCategory">
-		// 	<Location location={data[Math.floor(Math.random()*3)+1]}/>
-		// 	<Location location={data[Math.floor(Math.random()*3)+1]}/>
-		// 	<Location location={data[Math.floor(Math.random()*3)+1]}/>
-		// </div>):"";
-		// </editor-fold>
-
     let dispVacations = (this.state.serverRecommendedPlaces.length > 0)?
     (<div className="randomCategory">
       {
@@ -217,12 +228,24 @@ class UserTripSelections extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		// categoriesRcvdFromSvr: (categories) => {
-		// 	dispatch(updateCategories(categories));
-		// },
 		addCategory: (category) => {
 			dispatch(addCategory(category));
-		}
+		},
+    addCategories: (categories) => {
+      dispatch(addCategories(categories))
+    },
+    addTrip: (trip) => {
+      dispatch(addTrip(trip))
+    },
+    addTrips: (trips) => {
+      dispatch(addTrips(trips))
+    },
+    removeTrip: (trip) => {
+      dispatch(removeTrip(trip))
+    },
+    removeTrips: () => {
+      dispatch(removeTrips())
+    }
 	}
 }
 

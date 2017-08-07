@@ -4,3 +4,10 @@ export function addPlace (payload) {
         payload
     }
 }
+
+export function addPlaces (payload) {
+    return {
+        type: 'ADD_PLACES',
+        payload
+    }
+}

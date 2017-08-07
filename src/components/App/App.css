@@ -1,33 +1,4 @@
-.App {
-
-  /*height: 100vh;*/
-  /*padding: 1px;*/  
-}
-
-/*
-.App-header {
-  height: 150px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  border-radius: 5px;
-}
-*/
-.show-grid {
-  padding-top: 5em;
-  /*background: url('/images/forest-background.png') no-repeat center center fixed;;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  width: 100vw;*/
-
-}
-
 .box{
   margin-left: 100px;
   margin-right: 100px;
-  /*height: 100%;*/
-  /*background-image: "/images/homepageBG.jpg";*/
-  /*background-size: cover;*/
 }

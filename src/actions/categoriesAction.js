@@ -4,3 +4,10 @@ export function addCategory (payload) {
         payload
     }
 }
+
+export function addCategories (payload) {
+    return {
+        type: 'ADD_CATEGORIES',
+        payload
+    }
+}
