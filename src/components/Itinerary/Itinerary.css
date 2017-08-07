@@ -1,28 +1,27 @@
-.show-grid{
-  /*color: black;*/
-}
-
-.confirmTripsDiv{
-  margin-top: 5em;
-  border: 1px solid gray;
-  border-radius: 5px;
-  background-color:rgba(200,215,255,0.85);
-}
-
-.confirmTripsDiv button {
-  bottom: 2px;
-  right: 25px;
-  position: absolute;
-}
-
-.datas{
-  margin-bottom: 2.5em;
+.itinerary table{
+  border-collapse: collapse;
+  border-style: hidden;
+  border-radius: 13px;
+  background-color: rgba(255,250,245,0.71);
 }
 
 td {
-  background-color: rgba(255,250,245,0.65);
+  max-width: 130px;
 }
 
 thead{
+  font-size: 1.75em;
+  font-weight: bold;
+}
+
+tbody > tr > td {
   font-size: 1.5em;
+}
+
+table+button {
+  float: right;
+}
+
+tbody > tr:nth-child(odd){
+  color: #555;
 }

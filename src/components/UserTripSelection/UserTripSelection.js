@@ -37,7 +37,7 @@ class UserTripSelections extends React.Component {
     }else {
       const path = 'categories';
       axios.get(path).then(res=>{
-        console.log(`server responded with data(${path}): ${res.data}`);
+        // console.log(`server responded with data(${path}): ${res.data}`);
         this.setState({
           options:res.data.map(cat=>{
             return {
@@ -104,8 +104,7 @@ class UserTripSelections extends React.Component {
     }
 	}
 
-	handleSelectChange = (value) => {
-		// console.log('You\'ve selected:', value);
+	handlePlacesSelectionsChanged = (value) => {
 		this.setState({ value });
     if (value.length === 0) {
       this.setState({
@@ -116,14 +115,8 @@ class UserTripSelections extends React.Component {
 
   placeCheckChanged = (state, location)=>{
     const going = state;
-
-
     if (going) {
-
-      this.props.addTrips(this.state.serverRecommendedPlaces);
-
-      // this.props.addTrip(location);
-
+      this.props.addTrip(location);
     }else {
       this.props.removeTrip(location);
     }
@@ -148,11 +141,11 @@ class UserTripSelections extends React.Component {
   }
 
   confirmTripsButtonClick = () => {
-    const {userSelectedPlaces} = this.state;
+    // const {userSelectedPlaces} = this.state;
     // console.log(`is it? ${Array.isArray(userSelectedPlaces)}`);
     console.clear();
     try {
-      localStorage.setItem('user-trip-selection', JSON.stringify(userSelectedPlaces));
+      // localStorage.setItem('user-trip-selection', JSON.stringify(userSelectedPlaces));
       window.location.replace(`itinerary`);
       // console.log('store success?');
     } catch (e) {
@@ -172,7 +165,10 @@ class UserTripSelections extends React.Component {
      </div>
     ):"";
 
-    let {userSelectedPlaces} = this.state;
+    // let {userSelectedPlaces} = this.state;
+
+    let userSelectedPlaces = this.props.user_selected_trips;
+
 		return (
 			<div className={this.state.serverRecommendedPlaces.length > 0 ? "section" : "section-to-mid-screen"} id="">
       <Row className="show-grid">
@@ -181,10 +177,11 @@ class UserTripSelections extends React.Component {
   				<Select className="select"
                   multi
                   simpleValue
+                  autofocus
                   value={this.state.value}
                   placeholder="Select by categories"
                   options={this.state.options}
-                  onChange={this.handleSelectChange} />
+                  onChange={this.handlePlacesSelectionsChanged} />
         </Col>
         <Col xs={6} md={4} id="getBtn">
 					<input type="button"
@@ -251,7 +248,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
 	return {
-		categories: state.categories
+		categories: state.categories,
+    user_selected_trips: state.user_trips
 	}
 }
 

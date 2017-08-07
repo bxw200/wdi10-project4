@@ -60,26 +60,26 @@ class Itinerary extends Component {
     render() {
       const {data} = this.state;
       return(
-        <div>
-      <table className="table table-hover table-bordered">
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Price</td>
-            <td>Pax</td>
-            <td>Total</td>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            data?
-            data.map(loc =>
-               this.dataRow(loc.name, loc.price_pax, 5)):""
-          }
-        </tbody>
-      </table>
-      <Button bsStyle="primary" onClick={this.confirmTripsClick}>Confirm</Button>
-      </div>
+      <div className="itinerary">
+        <table className="table table-hover table-bordered table-responsive">
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Pax</td>
+              <td>Total</td>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              data?
+              data.map(loc =>
+                 this.dataRow(loc.name, loc.price_pax, 5)):""
+            }
+          </tbody>
+        </table>
+        <Button bsStyle="default" bsSize="large" onClick={this.confirmTripsClick}>Confirm</Button>
+    </div>
     )
     }
 }

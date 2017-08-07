@@ -19,82 +19,82 @@ class Location extends Component {
         image_url:"images/3.png",
       }
     }
+    intervalChecker = null;
+    componentDidMount(){
+      this.intervalChecker = setInterval(()=>{
+        let paxInput = document.querySelector('.pricesDiv input[type=number]');
+
+        if (paxInput.value != this.state.pax) {
+          console.log('im in');
+            this.setState({
+              pax: paxInput.value
+            });
+        }
+
+        if (paxInput.value == 0) {
+
+        }else {
+
+        }
+      },610);
+    }
+
+    componentWillUnmount(){
+      window.clearInterval(this.intervalChecker);
+      // console.log(`intervalChecker cleared`);
+    }
 
     checkBoxChange = (e) => {
-      // console.log("in checkbox change");
-      // e.preventDefault(); causes issue with response
       this.setState({
         going: e.target.checked
       });
-
       this.props.checkChanged(e.target.checked, this.props.location);
     }
 
     render() {
-      const {
-        name, price_pax, image, description, pax, image_url, address, showTakeMeThere
-      } = this.props.location;
+      const { name, price_pax, image, description, image_url, address} = this.props.location;
+      const {pax} = this.state;
 
-      // console.log(this.props.location);
       return (
-          <div className="place thumbnail" >
-            <Row className="show-grid">
-              <Col xs={6} md={4}>
-
-              <img src={"images/"+image_url}alt="product" onClick={this.pictureClicked}/>
-              </Col>
-              <div className="caption">
-              <Col xs={12} md={8}>
-                  <h2>
-                    <a href={"images/"+image_url}>{name}</a>
-                        </h2>
-                    <div className={this.props.dontShowCheckbox?"donShowCheckBoxSection":"checkbox-section"}>
-                      <h3>
-                        <span className={this.state.going? "span-is-going":"span-not-going"}>
-                          {this.state.going? "I'm going!":"Take me there!"}
-                        </span>
-                        <input type="checkBox" onChange={this.checkBoxChange}/>
-                        </h3>
-                    </div>
-                  <div className="pricesDiv">
-                    <span>$$ <b>Price</b>/<em>pax</em>: <strong>$ {price_pax}</strong></span>
-                  </div>
-                  <p>
-                    {address}
-                  </p>
-                  </Col>
-              </div>
-              </Row>
-          </div>
+    <div className="place thumbnail" >
+      <Row className="show-grid">
+        <Col xs={6} md={4}>
+          <img src={"images/"+image_url}
+               alt="product"
+               onClick={this.pictureClicked}/>
+          </Col>
+        <div className="caption">
+          <Col xs={12} md={8}>
+            <h2>
+              <a href={"images/"+image_url}>{name}</a>
+            </h2>
+            <div className={this.props.dontShowCheckbox?
+                    "donShowCheckBoxSection":"checkbox-section"}>
+              <h3>
+                <span className={this.state.going?
+                                "span-is-going":"span-not-going"}>
+                  {this.state.going? "I'm going!":"Take me there!"}
+                </span>
+                <input type="checkBox" onChange={this.checkBoxChange}/>
+              </h3>
+            </div>
+            <div className="pricesDiv">
+              <span>$$ <b>Price</b>/<em>pax</em>: <strong>$ {price_pax}</strong></span>
+              <label>Pax:</label>
+              <input type="number"
+                     max="20"
+                     min="0"
+                     placeholder="0"
+                     onChange={console.log(`I was changed`)}/>
+               <label>Price: $ {price_pax*pax}</label>
+            </div>
+            <p>{address}</p>
+          </Col>
+        </div>
+        </Row>
+    </div>
       );
     }
 }
-
-Location.propTypes = {
-    // id: PropTypes.number.isRequired,
-    // name: PropTypes.string.isRequired,
-    // price: PropTypes.number,
-    // currency: PropTypes.string,
-    // image: PropTypes.string,
-    // image_url: PropTypes.string,
-    // addToCart: PropTypes.func.isRequired,
-    // removeFromCart: PropTypes.func.isRequired,
-    // removeAllFromCart: PropTypes.func.isRequired,
-    // quantityInCart: PropTypes.number
-}
-
-// const mapStateToProps = (state, props) => {
-//     return {
-//         quantityInCart: getItemQtyInCart(state, props)
-//     }
-// }
-//
-// const mapDispatchToProps = (dispatch) => ({
-//     addToCart: (id) => dispatch(addToCart(id)),
-//     removeFromCart: (id) => dispatch(removeFromCart(id)),
-//     removeAllFromCart: (id) => dispatch(removeAllFromCart(id))
-// })
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Location);
 
 export default Location;

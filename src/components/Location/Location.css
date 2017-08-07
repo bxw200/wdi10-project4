@@ -1,7 +1,6 @@
 .place.thumbnail {
-  background: linear-gradient(to right, #AAA, white, white,white,white);
+  background: linear-gradient(to right, #BBB, white, white,white,white,white);
   border-radius: 30px;
-
   height: 250px;
   width: 800px;
   margin-top: 10px;
@@ -9,7 +8,6 @@
 .show-grid.row {
   margin-top: 10px;
   padding: 12px 7px;
-
 }
 
 .place.thumbnail img {
@@ -27,19 +25,14 @@
   margin: 7px;
 }
 
-.place>.caption>h2 input[type=checkbox] {
-  width: 2em;
-  height: 2em;
-  margin: 0 1em;
+h3 input[type=checkbox] {
+  width: 1em;
+  height: 1em;
 }
 
 .checkbox-section{
   display: flex;
   align-items: center;
-}
-
-.checkbox-section span {
-
 }
 
 .place>.caption>h3 span{
@@ -85,4 +78,14 @@
 
 .span-is-going{
   color: green;
+}
+
+.pricesDiv label{
+  margin: 0 1em;
+}
+
+.pricesDiv input[type=number]{
+  padding-left: 1em;
+  text-align: center;
+  border-radius: 4px;
 }
