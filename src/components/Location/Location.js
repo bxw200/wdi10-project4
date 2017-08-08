@@ -19,63 +19,37 @@ class Location extends Component {
         image_url:"images/3.png",
       }
     }
-    intervalChecker = null;
-    componentDidMount(){
-      return;
-      this.intervalChecker = setInterval(()=>{
-        let paxInput = document.querySelector('.pricesDiv input[type=number]');
-
-        if (paxInput.value != this.state.pax) {
-          // console.log('im in');
-            this.setState({
-              pax: paxInput.value
-            });
-        }
-
-        if (paxInput.value == 0) {
-
-        }else {
-
-        }
-      },610);
-    }
-
-    componentWillUnmount(){
-      return;
-      window.clearInterval(this.intervalChecker);
-      // console.log(`intervalChecker cleared`);
-    }
 
     checkBoxChange = (e) => {
-      if (e.target.checked && this._input.value == `0`) {
-        this._input.value = 1;
+      let pax = this.state.pax;
+      if (e.target.checked) {
+        if (pax === 0) {
+          pax = 1;
+        }
       }else {
-        this._input.value = 0;
+        pax = 0;
       }
+
       this.setState({
-        going: e.target.checked
+        going: e.target.checked,
+        pax
       });
-      this.props.checkChanged(e.target.checked, this.props.location);
+
+      // raise to set in store
+      this.props.checkChanged(e.target.checked, this.props.location, this.state.pax);
     }
 
     paxInputChanged = (e) => {
-      this.setState({
-        pax: e.target.value
-      });
+      const pax = parseInt(e.target.value);
+      let going = this.state.going;
 
-      const valChangedToZero_andGoingChecked =
-                        e.target.value == `0` &&
-                        this._checkbox.checked;
-
-      const valChangedToOne_andGoingNotChecked =
-                        e.target.value == `1` &&
-                        !this._checkbox.checked;
-
-      if (valChangedToZero_andGoingChecked ||
-          valChangedToOne_andGoingNotChecked) {
-        this._checkbox.click();
+      if (pax === 0) {
+        going = false;
+      }else if (pax === 1) {
+        going = true;
       }
-
+      this.setState({going});
+      this.setState({pax});
     }
 
     render() {
@@ -93,7 +67,7 @@ class Location extends Component {
         <div className="caption">
           <Col xs={12} md={8}>
             <h2>
-              <a href={"images/"+image_url}>{name}</a>
+              <a href={`images/${image_url}`}>{name}</a>
             </h2>
             <div className={this.props.dontShowCheckbox?
                     "donShowCheckBoxSection":"checkbox-section"}>
@@ -103,6 +77,8 @@ class Location extends Component {
                   {this.state.going? "I'm going!":"Take me there!"}
                 </span>
                 <input type="checkBox"
+                       value={this.state.going}
+                       checked={this.state.going}
                        ref={(el)=>this._checkbox = el}
                        onChange={this.checkBoxChange}/>
               </h3>
@@ -114,6 +90,7 @@ class Location extends Component {
                      max="20"
                      min="0"
                      placeholder="0"
+                     value={this.state.pax}
                      ref={(el)=> this._input = el}
                      onChange={this.paxInputChanged}/>
                <label>Price: $ {price_pax*pax}</label>
