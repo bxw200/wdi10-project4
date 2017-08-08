@@ -113,9 +113,10 @@ class UserTripSelections extends React.Component {
     }
 	}
 
-  placeCheckChanged = (state, location)=>{
+  placeCheckChanged = (state, location, pax)=>{
     const going = state;
     if (going) {
+      location.pax = pax;
       this.props.addTrip(location);
     }else {
       this.props.removeTrip(location);

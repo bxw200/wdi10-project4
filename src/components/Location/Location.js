@@ -15,17 +15,18 @@ class Location extends Component {
         name:"Some place",
         price: 200,
         description:"This is some place",
-        pax:3,
+        pax:0,
         image_url:"images/3.png",
       }
     }
     intervalChecker = null;
     componentDidMount(){
+      return;
       this.intervalChecker = setInterval(()=>{
         let paxInput = document.querySelector('.pricesDiv input[type=number]');
 
         if (paxInput.value != this.state.pax) {
-          console.log('im in');
+          // console.log('im in');
             this.setState({
               pax: paxInput.value
             });
@@ -40,15 +41,41 @@ class Location extends Component {
     }
 
     componentWillUnmount(){
+      return;
       window.clearInterval(this.intervalChecker);
       // console.log(`intervalChecker cleared`);
     }
 
     checkBoxChange = (e) => {
+      if (e.target.checked && this._input.value == `0`) {
+        this._input.value = 1;
+      }else {
+        this._input.value = 0;
+      }
       this.setState({
         going: e.target.checked
       });
       this.props.checkChanged(e.target.checked, this.props.location);
+    }
+
+    paxInputChanged = (e) => {
+      this.setState({
+        pax: e.target.value
+      });
+
+      const valChangedToZero_andGoingChecked =
+                        e.target.value == `0` &&
+                        this._checkbox.checked;
+
+      const valChangedToOne_andGoingNotChecked =
+                        e.target.value == `1` &&
+                        !this._checkbox.checked;
+
+      if (valChangedToZero_andGoingChecked ||
+          valChangedToOne_andGoingNotChecked) {
+        this._checkbox.click();
+      }
+
     }
 
     render() {
@@ -59,7 +86,7 @@ class Location extends Component {
     <div className="place thumbnail" >
       <Row className="show-grid">
         <Col xs={6} md={4}>
-          <img src={"images/"+image_url}
+          <img src={`images/${image_url}`}
                alt="product"
                onClick={this.pictureClicked}/>
           </Col>
@@ -75,7 +102,9 @@ class Location extends Component {
                                 "span-is-going":"span-not-going"}>
                   {this.state.going? "I'm going!":"Take me there!"}
                 </span>
-                <input type="checkBox" onChange={this.checkBoxChange}/>
+                <input type="checkBox"
+                       ref={(el)=>this._checkbox = el}
+                       onChange={this.checkBoxChange}/>
               </h3>
             </div>
             <div className="pricesDiv">
@@ -85,13 +114,14 @@ class Location extends Component {
                      max="20"
                      min="0"
                      placeholder="0"
-                     onChange={console.log(`I was changed`)}/>
+                     ref={(el)=> this._input = el}
+                     onChange={this.paxInputChanged}/>
                <label>Price: $ {price_pax*pax}</label>
             </div>
             <p>{address}</p>
           </Col>
         </div>
-        </Row>
+      </Row>
     </div>
       );
     }
