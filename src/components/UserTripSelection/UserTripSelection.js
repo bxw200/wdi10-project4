@@ -98,19 +98,33 @@ class UserTripSelections extends React.Component {
     }
 	}
 
-  handleLocationCheckedChanged = (going, location, pax)=>{
+  userSelectedPlaceUpdated = (location, pax)=>{
     let userSelectedPlaces = this.state.userSelectedPlaces;
-    if (going) {
-      location.pax = pax;
-      // this.props.addTrip(location);
-      userSelectedPlaces.push(location);
+    let foundIndex = userSelectedPlaces.findIndex(usp=>usp.id===location.id);
+    location.pax = pax;
+
+    //if found, check if going. if going, update pax. if not going, removeTrips
+    //if not found & going, insert. if not going, dont do anything.
+    console.log(`pax is ${pax}`);
+    if (foundIndex < 0) {
+      if (pax > 0) {
+        userSelectedPlaces.push(location);
+      }else {
+        return;
+      }
     }else {
-      // this.props.removeTrip(location);
-      const index = userSelectedPlaces.findIndex(usp=>usp.id === location.id);
-      if (index >= 0) {
-        userSelectedPlaces.splice(index,1);
+      if (pax > 0) {
+        //update
+        userSelectedPlaces.forEach((elem, index)=>{
+          if (index === foundIndex) {
+            elem.pax = pax;
+          }
+        });
+      }else {
+        userSelectedPlaces.splice(foundIndex,1);
       }
     }
+
     this.setState({
       userSelectedPlaces
     });
@@ -132,7 +146,7 @@ class UserTripSelections extends React.Component {
       {this.state.serverRecommendedPlaces.map(loc=>{
           return <Location key={loc.id}
                            location={loc}
-                           checkChanged={this.handleLocationCheckedChanged}/>})}
+                           updated={this.userSelectedPlaceUpdated}/>})}
      </div>
     ):"";
 
