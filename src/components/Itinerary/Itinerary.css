@@ -18,8 +18,17 @@ tbody > tr > td {
   font-size: 1.5em;
 }
 
-table+button {
+table+span {
   float: right;
+}
+
+.itinerary button{
+  margin: 0 5px;
+}
+
+.itinerary button:first-of-type{
+  color: red;
+  border: solid 1px red;
 }
 
 tbody > tr:nth-child(odd){

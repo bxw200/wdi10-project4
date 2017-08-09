@@ -19,7 +19,7 @@ export let initStore = (persistedState) => {
   const reducer = combineReducers ({
     // auth: AuthReducer,
     // itinerary: userCheckReducer,
-    categories: catReducer,
+    // categories: catReducer,
     places: placesReducer,
     // trips: tripReducer,
     user_trips

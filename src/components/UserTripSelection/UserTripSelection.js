@@ -2,10 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import axios from 'axios';
-
-// import {BUDGET, CATEGORY} from './categoryAndBudget';
-// import { Link } from 'react-router-dom';
-// import data from '../../data/data';
+import {Redirect} from 'react-router';
+import {withRouter} from 'react-router-dom';
 
 import Location from '../Location/Location';
 import {addCategory, addCategories} from '../../actions/categoriesAction';
@@ -19,7 +17,6 @@ import {
 import './UserTripSelection.css';
 
 class UserTripSelections extends React.Component {
-
 	constructor(props){
 		super(props);
 		this.state = {
@@ -31,18 +28,15 @@ class UserTripSelections extends React.Component {
 	}
 
   componentDidMount(){
-    // check if categories available. if yes, do nothing.
+    // check if categories(OPTION) available. if yes, do nothing.
     // if no, get from server.
-    //
-    // map categories to options, used by select.
-    console.log(`i was mounted`);
-    const {categories} = this.props;
-    if (categories.length == 0) {
+
+    const {options} = this.state;
+    if (options && options.length > 0) {
+    }else {
       const path = 'categories';
       axios.get(path).then(res=>{
         if (res.data) {
-          // console.log(`server responded with data(${path}). ${res.data}`);
-          // this.props.addCategories(res.data);
           this.setState({
             options:res.data.map(cat=>{
               return {
@@ -61,26 +55,6 @@ class UserTripSelections extends React.Component {
           console.error(`server call(${path}), error. ${err}`);
         }
       });
-    }
-  }
-
-  componentDidUpdate(){
-    return;
-
-    const {options} = this.state;
-    if (options && options.length > 0) {
-    }else {
-      const {categories} = this.props;
-      if (categories.length > 0) {
-        this.setState({
-          options:categories.map(cat=>{
-            return {
-              value:cat.id.toString(),
-              label:cat.name
-            }
-          })
-        });
-      }
     }
   }
 
@@ -152,28 +126,6 @@ class UserTripSelections extends React.Component {
     this.setState({
       userSelectedPlaces
     });
-    // <editor-fold delete me
-    // can delete if no bugs found. refactored below code to above.
-    // August-09-2017
-    // if (foundIndex < 0) {
-    //   if (pax > 0) {
-    //     userSelectedPlaces.push(location);
-    //   }else {
-    //     return;
-    //   }
-    // }else {
-    //   if (pax > 0) {
-    //     //update
-    //     userSelectedPlaces.forEach((elem, index)=>{
-    //       if (index === foundIndex) {
-    //         elem.pax = pax;
-    //       }
-    //     });
-    //   }else {
-    //     userSelectedPlaces.splice(foundIndex,1);
-    //   }
-    // }
-    // </editor-fold>
   }
 
   confirmTripsButtonClick = () => {
@@ -184,11 +136,12 @@ class UserTripSelections extends React.Component {
       if (userSelectedPlaces.length > 0) {
         this.props.addTrips(userSelectedPlaces);
         this.setState({userSelectedPlaces:[]});
-        window.location.replace(`itinerary`);
+        this.props.history.push('itinerary');
+        // window.location.replace(`itinerary`);
       }
 
     } catch (e) {
-      // console.error(`store fail: ${e}`);
+      console.error(`confirmTripsButtonClick fail: ${e}`);
     }
   }
 
@@ -279,4 +232,5 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserTripSelections);
+UserTripSelections = connect(mapStateToProps, mapDispatchToProps)(UserTripSelections);
+export default withRouter(UserTripSelections);

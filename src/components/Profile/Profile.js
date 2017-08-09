@@ -12,7 +12,7 @@ import {
   Form, Checkbox } from 'react-bootstrap';
 
 import './Profile.css'
-import { getTrips } from '../../actions/tripActions'
+// import { getTrips } from '../../actions/tripActions'
 import axios from 'axios'
 
 const trips = [
@@ -192,7 +192,7 @@ const mapDispatchToProps = (dispatch) => {
       // profile(state, history){
       //   dispatch(Profile(state, history))
       // },
-      getTrips: () => {dispatch(getTrips())}
+      // getTrips: () => {dispatch(getTrips())}
     }
 }
 

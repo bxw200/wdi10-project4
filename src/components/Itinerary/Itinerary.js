@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 
 import {Button, Row, Col}
 from 'react-bootstrap';
@@ -8,6 +9,8 @@ from 'react-bootstrap';
 import firstDummyData from '../../data/data';
 import {dummyData} from './dummyData';
 import './Itinerary.css';
+
+import {removeTrips} from '../../actions/userSelectedTripsAction'
 
 import {mjo} from './massiveJSONobj';
 
@@ -23,16 +26,16 @@ class Itinerary extends Component {
     }
 
     componentWillUnmount(){
-      debugger;
+      // debugger;
+    }
+
+    cancel = () => {
+      // cancel store data
+      this.props.cancelTrips();
+      this.props.history.goBack();
     }
 
     confirmTripsClick = () => {
-      // mytesting works
-      // axios.get('mytesting').then(res=>
-      //   console.log(res)
-      // ).catch(err=>console.error(err));
-      // return;
-
       const svrPath = 'users/1';
       axios.post(svrPath,mjo).
       then(res=>{
@@ -52,9 +55,9 @@ class Itinerary extends Component {
     }
 
     dataRow = (loc) => (
-      <tr>
+      <tr key={loc.id}>
         <td>{loc.name.trim()}</td>
-        <td>{loc.price_pax}</td>
+        <td>$ {loc.price_pax}</td>
         <td>{loc.pax}</td>
         <td>$ {loc.price_pax * loc.pax}</td>
       </tr>
@@ -81,13 +84,27 @@ class Itinerary extends Component {
               }
             </tbody>
           </table>
-          <Button bsStyle="default" bsSize="large" onClick={this.confirmTripsClick}>Confirm</Button>
+          <span>
+            <Button bsStyle="default" bsSize="large" onClick={this.cancel}>Cancel</Button>
+            <Button bsStyle="success" bsSize="large" onClick={this.confirmTripsClick}>Confirm</Button>
+          </span>
       </div>)
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    cancelTrips: () => {
+      dispatch(removeTrips())
+    }
+  }
+}
+
 const mapStateToProps = (state)=>{
   return {
     user_trips: state.user_trips
   }
 }
-export default connect(mapStateToProps)(Itinerary);
+
+Itinerary = connect(mapStateToProps, mapDispatchToProps)(Itinerary);
+export default withRouter(Itinerary);
