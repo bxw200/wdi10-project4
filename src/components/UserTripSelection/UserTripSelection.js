@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-// import createClass from 'create-react-class';
 import Select from 'react-select';
 import axios from 'axios';
 
-import {BUDGET, CATEGORY} from './categoryAndBudget';
-import { Link } from 'react-router-dom';
+// import {BUDGET, CATEGORY} from './categoryAndBudget';
+// import { Link } from 'react-router-dom';
+// import data from '../../data/data';
 
 import Location from '../Location/Location';
-import data from '../../data/data';
 import {addCategory, addCategories} from '../../actions/categoriesAction';
 import {addPlace} from '../../actions/placesAction';
 
@@ -32,27 +31,46 @@ class UserTripSelections extends React.Component {
 	}
 
   componentDidMount(){
+    // check if categories available. if yes, do nothing.
+    // if no, get from server.
+    //
+    // map categories to options, used by select.
+
+    const {categories} = this.props;
+    if (categories.length == 0) {
+      const path = 'categories';
+      axios.get(path).then(res=>{
+        if (res.data) {
+          // console.log(`server responded with data(${path}). ${res.data}`);
+          this.props.addCategories(res.data);
+        }else {
+          console.warn(`server responded without data(${path}). ${res}`);
+        }
+      }).catch(err=>{
+        if (err.response) {
+          console.error(`server responded with error(${path}). ${err.response}`);
+        }else {
+          console.error(`server call(${path}), error. ${err}`);
+        }
+      });
+    }
+  }
+
+  componentDidUpdate(){
     const {options} = this.state;
     if (options && options.length > 0) {
     }else {
-      const path = 'categories';
-      axios.get(path).then(res=>{
-        // console.log(`server responded with data(${path}): ${res.data}`);
+      const {categories} = this.props;
+      if (categories.length > 0) {
         this.setState({
-          options:res.data.map(cat=>{
+          options:categories.map(cat=>{
             return {
               value:cat.id.toString(),
               label:cat.name
             }
           })
         });
-      }).catch(err=>{
-        if (err.response) {
-          console.error(`server-call ${path} error. Responded with data. ${err.response}`);
-        }else {
-          console.error(`server-call ${path} error: ${err.response}`);
-        }
-      });
+      }
     }
   }
 
@@ -101,33 +119,51 @@ class UserTripSelections extends React.Component {
   userSelectedPlaceUpdated = (location, pax)=>{
     let userSelectedPlaces = this.state.userSelectedPlaces;
     let foundIndex = userSelectedPlaces.findIndex(usp=>usp.id===location.id);
-    location.pax = pax;
 
-    //if found, check if going. if going, update pax. if not going, removeTrips
-    //if not found & going, insert. if not going, dont do anything.
-    console.log(`pax is ${pax}`);
-    if (foundIndex < 0) {
-      if (pax > 0) {
-        userSelectedPlaces.push(location);
-      }else {
-        return;
-      }
+    // new location
+    if (foundIndex < 0 && pax > 0) {
+      location.pax = pax;
+      userSelectedPlaces.push(location);
+
+    // remove location
+    }else if (foundIndex >= 0 && pax <= 0) {
+      userSelectedPlaces.splice(foundIndex,1);
+
+    // update pax
+    }else if (foundIndex >= 0 && pax > 0) {
+      userSelectedPlaces.forEach((elem,ind)=> {
+        if (ind == foundIndex) {
+          elem.pax = pax;
+        }
+      });
     }else {
-      if (pax > 0) {
-        //update
-        userSelectedPlaces.forEach((elem, index)=>{
-          if (index === foundIndex) {
-            elem.pax = pax;
-          }
-        });
-      }else {
-        userSelectedPlaces.splice(foundIndex,1);
-      }
+      return;
     }
-
     this.setState({
       userSelectedPlaces
     });
+    // <editor-fold delete me
+    // can delete if no bugs found. refactored below code to above.
+    // August-09-2017
+    // if (foundIndex < 0) {
+    //   if (pax > 0) {
+    //     userSelectedPlaces.push(location);
+    //   }else {
+    //     return;
+    //   }
+    // }else {
+    //   if (pax > 0) {
+    //     //update
+    //     userSelectedPlaces.forEach((elem, index)=>{
+    //       if (index === foundIndex) {
+    //         elem.pax = pax;
+    //       }
+    //     });
+    //   }else {
+    //     userSelectedPlaces.splice(foundIndex,1);
+    //   }
+    // }
+    // </editor-fold>
   }
 
   confirmTripsButtonClick = () => {

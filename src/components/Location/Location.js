@@ -16,7 +16,7 @@ export default class Location extends Component {
 
     checkBoxChange = (e) => {
       let pax = this.state.pax;
-      // !! beware of pax === 0 !! 1 is string the other is int.
+      // !! beware! pax === 0 ! 1 is string the other is int.
       // pax == 0 works.
       if (e.target.checked && pax == 0){
           pax = 1;
@@ -26,13 +26,16 @@ export default class Location extends Component {
         return;
       }
       this.setState({pax});
-      this.props.updated(this.props.location, pax)
+      // cannot use state.pax, as it doesn't update immediately.↓
+      // tried setState callback doesn't seem to get called.
+      this.props.updated(this.props.location, pax);
     }
 
     paxInputChanged = (e) => {
       this.setState({
         pax: e.target.value
       });
+      // cannot use state.pax, as it doesn't update immediately.↓
       this.props.updated(this.props.location, e.target.value);
     }
 
