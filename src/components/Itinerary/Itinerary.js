@@ -22,6 +22,9 @@ class Itinerary extends Component {
       };
     }
 
+    componentWillUnmount(){
+      debugger;
+    }
 
     confirmTripsClick = () => {
       // mytesting works
@@ -48,39 +51,43 @@ class Itinerary extends Component {
       });
     }
 
-    dataRow = (name, price, pax) => (
+    dataRow = (loc) => (
       <tr>
-        <td>{name.trim()}</td>
-        <td>{price}</td>
-        <td>{pax}</td>
-        <td>$ {price * pax}</td>
+        <td>{loc.name.trim()}</td>
+        <td>{loc.price_pax}</td>
+        <td>{loc.pax}</td>
+        <td>$ {loc.price_pax * loc.pax}</td>
       </tr>
       );
 
     render() {
-      const {data} = this.state;
+      const {user_trips} = this.props;
       return(
-      <div className="itinerary">
-        <table className="table table-hover table-bordered table-responsive">
-          <thead>
-            <tr>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Pax</td>
-              <td>Total</td>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              data?
-              data.map(loc =>
-                 this.dataRow(loc.name, loc.price_pax, 5)):""
-            }
-          </tbody>
-        </table>
-        <Button bsStyle="default" bsSize="large" onClick={this.confirmTripsClick}>Confirm</Button>
-    </div>
-    )
+        <div className="itinerary">
+          <table className="table table-hover table-bordered table-responsive">
+            <thead>
+              <tr>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Pax</td>
+                <td>Total</td>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                user_trips?
+                user_trips.map(loc =>
+                   this.dataRow(loc)):""
+              }
+            </tbody>
+          </table>
+          <Button bsStyle="default" bsSize="large" onClick={this.confirmTripsClick}>Confirm</Button>
+      </div>)
     }
 }
-export default Itinerary;
+const mapStateToProps = (state)=>{
+  return {
+    user_trips: state.user_trips
+  }
+}
+export default connect(mapStateToProps)(Itinerary);

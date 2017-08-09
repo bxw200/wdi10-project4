@@ -35,14 +35,22 @@ class UserTripSelections extends React.Component {
     // if no, get from server.
     //
     // map categories to options, used by select.
-
+    console.log(`i was mounted`);
     const {categories} = this.props;
     if (categories.length == 0) {
       const path = 'categories';
       axios.get(path).then(res=>{
         if (res.data) {
           // console.log(`server responded with data(${path}). ${res.data}`);
-          this.props.addCategories(res.data);
+          // this.props.addCategories(res.data);
+          this.setState({
+            options:res.data.map(cat=>{
+              return {
+                value:cat.id.toString(),
+                label:cat.name
+              }
+            })
+          });
         }else {
           console.warn(`server responded without data(${path}). ${res}`);
         }
@@ -57,6 +65,8 @@ class UserTripSelections extends React.Component {
   }
 
   componentDidUpdate(){
+    return;
+
     const {options} = this.state;
     if (options && options.length > 0) {
     }else {
@@ -169,7 +179,14 @@ class UserTripSelections extends React.Component {
   confirmTripsButtonClick = () => {
     console.clear();
     try {
-      window.location.replace(`itinerary`);
+      const {userSelectedPlaces} = this.state
+
+      if (userSelectedPlaces.length > 0) {
+        this.props.addTrips(userSelectedPlaces);
+        this.setState({userSelectedPlaces:[]});
+        window.location.replace(`itinerary`);
+      }
+
     } catch (e) {
       // console.error(`store fail: ${e}`);
     }
