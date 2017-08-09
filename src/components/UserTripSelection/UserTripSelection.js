@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import createClass from 'create-react-class';
+// import createClass from 'create-react-class';
 import Select from 'react-select';
 import axios from 'axios';
 
@@ -56,42 +56,26 @@ class UserTripSelections extends React.Component {
     }
   }
 
+  //  get place reccomendations from server
   serverGetLocationsRequest = (random = false)=>{
+    let paramObj = random? {random}: {category_ids: this.state.value};
 
-    // return;
-    // <editor-fold get place reccomendations from server
-
-    let paramObj = {}
-
-    if (random) {
-      paramObj = { random: true }
-    }else {
-      paramObj = { category_ids: this.state.value }
-    }
-
-    axios.get('places',{
-        params:paramObj
-        // {
-        //   category_ids: this.state.value
-        // }
-      })
+    axios.get('places',{params:paramObj})
     .then(res=>{
       if (res.data) {
-          // console.log("server responded with data. ", res.data);
           this.setState({
             serverRecommendedPlaces: res.data
           })
       }else {
-        console.log("server responded. ", res);
+        console.warn("server responded without data. ", res);
       }
     }).catch(err=>{
       if (err.response) {
-        console.log("Server responded with error. ", err.response);
+        console.error("Server responded with error. ", err.response);
       }else {
-        console.log("Server request error. ", err);
+        console.error("Server request error. ", err);
       }
     });
-    //</editor-fold>
   }
 
 	handleGetLocationsClicked = (e) => {
@@ -110,68 +94,63 @@ class UserTripSelections extends React.Component {
       this.setState({
         serverRecommendedPlaces: []
       })
+      this.props.removeTrips();
     }
 	}
 
-  placeCheckChanged = (state, location, pax)=>{
-    const going = state;
+  handleLocationCheckedChanged = (going, location, pax)=>{
+    let userSelectedPlaces = this.state.userSelectedPlaces;
     if (going) {
       location.pax = pax;
-      this.props.addTrip(location);
+      // this.props.addTrip(location);
+      userSelectedPlaces.push(location);
     }else {
-      this.props.removeTrip(location);
-    }
-
-    return;
-
-
-
-    let userSelectedPlaces = this.state.userSelectedPlaces;
-    const index = userSelectedPlaces.findIndex(loc=>loc.id === location.id);
-
-    if (going) {
-      if (index < 0) {//not found, so add
-        userSelectedPlaces.push(location)
-      }
-    }else {
-      if (index >= 0) {// not going & found, hence remove
+      // this.props.removeTrip(location);
+      const index = userSelectedPlaces.findIndex(usp=>usp.id === location.id);
+      if (index >= 0) {
         userSelectedPlaces.splice(index,1);
       }
     }
-    this.setState({userSelectedPlaces});
+    this.setState({
+      userSelectedPlaces
+    });
   }
 
   confirmTripsButtonClick = () => {
-    // const {userSelectedPlaces} = this.state;
-    // console.log(`is it? ${Array.isArray(userSelectedPlaces)}`);
     console.clear();
     try {
-      // localStorage.setItem('user-trip-selection', JSON.stringify(userSelectedPlaces));
       window.location.replace(`itinerary`);
-      // console.log('store success?');
     } catch (e) {
-      console.error(`store fail: ${e}`);
+      // console.error(`store fail: ${e}`);
     }
-
   }
 
 	render () {
+    // display server places to visit reccomendations
     let dispVacations = (this.state.serverRecommendedPlaces.length > 0)?
     (<div className="randomCategory">
-      {
-        this.state.serverRecommendedPlaces.map(loc=>{
-          return <Location key={loc.id} location={loc} checkChanged={this.placeCheckChanged}/>
-        })
-      }
+      {this.state.serverRecommendedPlaces.map(loc=>{
+          return <Location key={loc.id}
+                           location={loc}
+                           checkChanged={this.handleLocationCheckedChanged}/>})}
      </div>
     ):"";
 
-    // let {userSelectedPlaces} = this.state;
+    // display button to confirm user selections and go to next page
+    // let userSelectedPlaces = this.props.user_selected_trips;
+    const {userSelectedPlaces} = this.state;
+    let confirmButtonClasses = 'btn btn-lg btn-warning ';
+    if (userSelectedPlaces.length === 0) {
+      confirmButtonClasses += 'invisible';
+    }
 
-    let userSelectedPlaces = this.props.user_selected_trips;
+    // position selector mid screen when no recommended places
+    // and towards the top when there are
+    let divPosOnScreenClasses = 'section';
+    divPosOnScreenClasses += dispVacations != ''? '':'-to-mid-screen';
 
 		return (
-			<div className={this.state.serverRecommendedPlaces.length > 0 ? "section" : "section-to-mid-screen"} id="">
+			<div className={divPosOnScreenClasses}>
       <Row className="show-grid">
         <Col xs={12} md={8}>
   				<h3 className="section-heading">{this.props.label}</h3>
@@ -192,33 +171,12 @@ class UserTripSelections extends React.Component {
          </Col>
          <Col xs={6} md={4} id="getBtn">
  					<input type="button"
- 								 className={userSelectedPlaces.length > 0? "btn btn-lg btn-warning":"hidden"}
+ 								 className={confirmButtonClasses}
  								 value="Confirm trips"
  								 onClick={this.confirmTripsButtonClick}/>
-          </Col>
+         </Col>
         </Row>
-
 				{dispVacations}
-
-        {/*<Row className="resultchoices">
-          <Col xs={2} md={2}>
-            <Link className="btn btn-info"
-                  role="button"
-                  to="/trip_selection">Select Again!
-            </Link>
-          </Col>
-          <Col xs={2} md={2}>
-            <div className="btn btn-info">Surprise me!</div>
-          </Col>
-
-          <Col xs={2} md={2}>
-            <Link
-                  className="btn btn-info"
-                  role="button"
-                  to="/itinerary">Confirm your trip!
-            </Link>
-          </Col>
-        </Row>*/}
 			</div>
 		);
 	}

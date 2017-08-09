@@ -50,6 +50,7 @@ class Location extends Component {
       }
       this.setState({going});
       this.setState({pax});
+      this.props.checkChanged(e.target.checked, this.props.location, this.state.pax);
     }
 
     render() {

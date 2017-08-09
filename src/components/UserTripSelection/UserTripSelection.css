@@ -564,17 +564,13 @@ h6,
 }
 
 .randomCategory {
-
   align-items: flex-start;
-}
-
-.randomCategory *{
-
 }
 
 .checkbox-list > .btn.btn-success {
   float: right;
 }
+
 .section {
   margin-bottom: 20px;
   padding-top: 1em;
@@ -590,14 +586,6 @@ h6,
   margin-bottom: 300px;
   /*display: flex;
   flex-direction: column;*/
-}
-
-
-
-
-
-.select {
-
 }
 
 #getBtn{
