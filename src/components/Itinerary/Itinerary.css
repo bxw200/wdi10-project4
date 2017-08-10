@@ -2,35 +2,63 @@
   border-collapse: collapse;
   border-style: hidden;
   border-radius: 13px;
-  background-color: rgba(255,250,245,0.71);
+  background-color: rgba(255,250,245,0.85);
 }
 
+/*all columns */
 td {
-  max-width: 130px;
+
 }
+
+tr td:not(:first-of-type){
+  max-width: 110px;
+}
+
 
 thead{
   font-size: 1.75em;
   font-weight: bold;
 }
 
-tbody > tr > td {
+/*data cells*/
+tbody td {
   font-size: 1.5em;
+  text-align: center;
+  vertical-align: middle;
 }
 
+/* align buttons right */
 table+span {
   float: right;
 }
 
+/* margins between buttons */
 .itinerary button{
   margin: 0 5px;
 }
 
+/*cancel button*/
 .itinerary button:first-of-type{
   color: red;
   border: solid 1px red;
 }
 
+/*alternate font intensity of every other row*/
 tbody > tr:nth-child(odd){
   color: #555;
+}
+
+td img {
+  height: auto;
+  width: 1.9em;
+  border-radius: 4px;
+  opacity: 0.37;
+}
+
+tbody tr td:first-of-type text{
+  float: left;
+}
+
+tbody tr td:first-of-type img{
+  float: right;
 }

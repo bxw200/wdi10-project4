@@ -56,7 +56,10 @@ class Itinerary extends Component {
 
     dataRow = (loc) => (
       <tr key={loc.id}>
-        <td>{loc.name.trim()}</td>
+        <td>
+          <text>{loc.name.trim()}</text>
+          <img src={`images/${loc.image_url}`}/>
+        </td>
         <td>$ {loc.price_pax}</td>
         <td>{loc.pax}</td>
         <td>$ {loc.price_pax * loc.pax}</td>
@@ -85,7 +88,7 @@ class Itinerary extends Component {
             </tbody>
           </table>
           <span>
-            <Button bsStyle="default" bsSize="large" onClick={this.cancel}>Cancel</Button>
+            <Button bsStyle="default" bsSize="large" autofocus onClick={this.cancel}>Cancel</Button>
             <Button bsStyle="success" bsSize="large" onClick={this.confirmTripsClick}>Confirm</Button>
           </span>
       </div>)
