@@ -1,21 +1,21 @@
-export function addTrip(trip) {
+export function addTrip(payload) {
   return {
     type:'ADD_TRIP',
-    trip
+    payload
   };
 }
 
-export function addTrips(trips) {
+export function addTrips(payload) {
   return {
     type:'ADD_TRIPS',
-    trips
+    payload
   };
 }
 
-export function removeTrip(trip) {
+export function removeTrip(payload) {
   return {
     type:'REMOVE_TRIP',
-    trip
+    payload
   };
 }
 

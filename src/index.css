@@ -3,7 +3,7 @@ body {
   padding: 0;
   padding-top: 5em;
   font-family: sans-serif;
-  background-image: url("/images/homepageBG.jpg");
+  background-image: url("/images/forest-background.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -12,3 +12,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
+
+
+
+/*background-image: url("/images/homepageBG.jpg");*/

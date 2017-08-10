@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
-
-import {Button, Row, Col}
-from 'react-bootstrap';
+import {Button, Row, Col} from 'react-bootstrap';
 
 import firstDummyData from '../../data/data';
 import {dummyData} from './dummyData';
 import './Itinerary.css';
 
 import {removeTrips} from '../../actions/userSelectedTripsAction'
-
 import {mjo} from './massiveJSONobj';
 
 class Itinerary extends Component {
@@ -88,8 +85,13 @@ class Itinerary extends Component {
             </tbody>
           </table>
           <span>
-            <Button bsStyle="default" bsSize="large" autofocus onClick={this.cancel}>Cancel</Button>
-            <Button bsStyle="success" bsSize="large" onClick={this.confirmTripsClick}>Confirm</Button>
+            <Button bsStyle="default"
+                    bsSize="large"
+                    autofocus
+                    onClick={this.cancel}>Cancel</Button>
+            <Button bsStyle="success"
+                    bsSize="large"
+                    onClick={this.confirmTripsClick}>Confirm</Button>
           </span>
       </div>)
     }

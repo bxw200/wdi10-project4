@@ -1,4 +1,34 @@
-[goto express](#result)
+1. [React](#react-router-navigation)
+2. [Server Calls](#server-calls)
+
+# React
+## React router navigation
+
+![React-props-history](/design-log/react-history.png)
+
+Using `BrowserRouter` from `react-router-dom`, its possible to navigate  
+back and forth between component routes by calling methods   
+like `goForward()` & `goBack()`  
+
+To call these methods, within the routed component(*s*),  
+##### 1. Import
+```js
+import {withRouter} from 'react-router-dom';```
+##### 2. Export
+Then in the export portion call the `withRouter()` method as such:  
+```js
+export default withRouter(Itinerary);```  
+But if the export is used in conjunction with `connect` from `react-redux` (**redux store**)
+Use it this way:  
+```js
+Itinerary = connect(mapStateToProps, mapDispatchToProps)(Itinerary);
+export default withRouter(Itinerary);
+```
+##### 3. Use
+```js
+this.props.history.goBack();
+```
+# Server calls
 
 ## Setting up proxy
 **In package.json**,  
@@ -29,8 +59,8 @@
 componentWillMount(){  
   console.log('prior axios call');
   let self = this;
-  // fat pipe below binds the state.
   // error using func(){} instead of (param)=>{}
+  // fat pipe below binds the state.  
   axios.get('/users/1').then(res => {        
     self.setState({
       user: res.data
@@ -41,6 +71,25 @@ componentWillMount(){
       console.log('server responded with err: ', err.response);
     }
   })
+}
+```
+**Actually to axios call then set state, just do:**,  
+```js
+constructor(props){
+  super(props);
+  this.state = {
+    options: []
+  };
+}
+
+componentDidMount(){  
+  axios.get('categories').then(res=>{
+    if (res.data) {
+      this.setState({
+        options:res.data
+      });
+    }
+  });
 }
 ```
 ## Proxy-ing to a 3rd server (express):
@@ -100,7 +149,7 @@ componentWillMount(){
   "categories": {
     "target": "http://localhost:3001",
     "ws": true
-  }  // < cannot have comma!
+  }             <cannot have comma!
 },
 ```
 # <span style="color:red">Always <strong>yarn start</strong> after editing package.json</style>

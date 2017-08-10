@@ -5,15 +5,11 @@
   background-color: rgba(255,250,245,0.85);
 }
 
-/*all columns */
-td {
-
-}
-
+/*limit column width of all data cells
+except for first column (longest)*/
 tr td:not(:first-of-type){
   max-width: 110px;
 }
-
 
 thead{
   font-size: 1.75em;
@@ -48,6 +44,7 @@ tbody > tr:nth-child(odd){
   color: #555;
 }
 
+/*img styling*/
 td img {
   height: auto;
   width: 1.9em;
@@ -55,10 +52,18 @@ td img {
   opacity: 0.37;
 }
 
+/*bigger image for clearer view*/
+td img:hover {
+  opacity: 1;
+  width: 7em;
+}
+
+/*align place name left*/
 tbody tr td:first-of-type text{
   float: left;
 }
 
+/*align image right*/
 tbody tr td:first-of-type img{
   float: right;
 }
