@@ -13,11 +13,13 @@ like `goForward()` & `goBack()`
 To call these methods, within the routed component(*s*),  
 ##### 1. Import
 ```js
-import {withRouter} from 'react-router-dom';```
+import {withRouter} from 'react-router-dom';
+```
 ##### 2. Export
 Then in the export portion call the `withRouter()` method as such:  
 ```js
-export default withRouter(Itinerary);```  
+export default withRouter(Itinerary);
+```  
 But if the export is used in conjunction with `connect` from `react-redux` (**redux store**)
 Use it this way:  
 ```js
