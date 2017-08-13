@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import './Cart.css'
 
-
 import {connect} from 'react-redux';
 
 import {addPlaces} from '../../actions/placesAction'
@@ -17,7 +16,6 @@ class Cart extends React.Component {
 
   componentDidMount(){
     if (this.props.places.length === 0) {
-
         const svrCall = 'places';
         console.log(`I'm making a server call to ${svrCall}`);
         axios.get(svrCall).then(res=>{

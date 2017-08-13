@@ -8,7 +8,7 @@ import firstDummyData from '../../data/data';
 import {dummyData} from './dummyData';
 import './Itinerary.css';
 
-import {removeTrips} from '../../actions/userSelectedTripsAction'
+import {removeTrips, updateTrip} from '../../actions/userSelectedTripsAction'
 import {mjo} from './massiveJSONobj';
 
 class Itinerary extends Component {
@@ -51,6 +51,10 @@ class Itinerary extends Component {
       });
     }
 
+    paxChanged = (e,locid) => {
+      this.props.updateTrip({id:locid, pax:parseInt(e.target.value)});
+    }
+
     dataRow = (loc) => (
       <tr key={loc.id}>
         <td>
@@ -58,7 +62,13 @@ class Itinerary extends Component {
           <img src={`images/${loc.image_url}`}/>
         </td>
         <td>$ {loc.price_pax}</td>
-        <td>{loc.pax}</td>
+        <td>
+          <input type="number"
+                 value={loc.pax}
+                 max="100"
+                 min="0"
+                 onChange={(e)=>this.paxChanged(e, loc.id)}/>
+         </td>
         <td>$ {loc.price_pax * loc.pax}</td>
       </tr>
       );
@@ -101,6 +111,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     cancelTrips: () => {
       dispatch(removeTrips())
+    },
+    updateTrip: (trip) => {
+      dispatch(updateTrip(trip))
     }
   }
 }

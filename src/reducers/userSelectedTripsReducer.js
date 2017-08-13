@@ -10,44 +10,30 @@ export default function userSelectedTripsReducer(state = initialState, action) {
       return removeTrip(state, action.payload);
     case 'REMOVE_TRIPS':
       return removeTrips();
+    case 'UPDATE_TRIP':
+      return updateTrip(state, action.payload);
     default:
       return state;
   }
 }
 
 function addTrip(state, payload){
-
-  // if dont care about exist or not &
-  // to hold on to the rule of not mutating state.
-  // who set that rule anyway?
-  return [...state, payload];
-
-
+  // state not mutated. Aug 13 2017.
   if (state && state.length > 0) {
     const found = state.find(trip=> trip.id === payload.id);
     if (!found) {
-
       return [...state, payload];
     }
-    // return [...state];
+    return [...state];
   }else {
     return [payload];
   }
 }
 
 function removeTrip(state, payload){
-
-  // let trips = [...state];
-
-
-
-  if (state && state.length > 0) {
-    const foundIndex = state.findIndex(trip=> trip.id === payload.id);
-    if (foundIndex >= 0){
-      state.splice(foundIndex,1);
-    }
-  }
-  return [...state];
+  return state.filter((trip, index) => {
+    return trip.id != payload.id
+  });
 }
 
 function removeTrips(){
@@ -55,16 +41,30 @@ function removeTrips(){
 }
 
 function addTrips(state, payload){
-  debugger;
   if (state && state.length > 0) {
+    let result = [...state];
     payload.forEach(trip=>{
       const found = state.find(ust=> ust.id === trip.id)
       if (!found) {
-        state.push(trip);
+        result.push(trip);
       }
     });
+    return result;
   }else {
-    state = [...payload];
+    return [...payload];
   }
-  return [...state];
+}
+
+function updateTrip(state, payload) {
+  return state.map(trip=>{
+    if (trip.id === payload.id) {
+
+      let result = {...trip};
+      result.pax = payload.pax;
+      return result;
+
+    }else {
+      return trip;
+    }
+  });
 }

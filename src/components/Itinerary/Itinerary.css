@@ -67,3 +67,8 @@ tbody tr td:first-of-type text{
 tbody tr td:first-of-type img{
   float: right;
 }
+
+td input {
+  text-align: center;
+  background-color: transparent;
+}

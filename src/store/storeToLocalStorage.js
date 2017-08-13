@@ -17,10 +17,14 @@ export const persistStoreToLocalStorage = (store)=>{
 
   // populate store with values from localStorage
   let places = JSON.parse(localStorage.getItem('places'));
-  store.dispatch(addPlaces(places));
+  if (Array.isArray(places)) {
+    store.dispatch(addPlaces(places));
+  }
 
   let user_trips = JSON.parse(localStorage.getItem('user_trips'));
-  store.dispatch(addTrips(user_trips));
+  if (Array.isArray(user_trips)) {
+    store.dispatch(addTrips(user_trips));
+  }
 
   // let categories = JSON.parse(localStorage.getItem('categories'));
   // if (categories && categories.length > 0) {

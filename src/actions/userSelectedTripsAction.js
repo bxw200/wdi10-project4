@@ -24,3 +24,10 @@ export function removeTrips() {
     type:'REMOVE_TRIPS'
   };
 }
+
+export function updateTrip(payload) {
+  return {
+    type:'UPDATE_TRIP',
+    payload
+  };
+}
